@@ -1,0 +1,154 @@
+# Cutback
+
+Cutback is a backup system with the goal of creating smaller, more focused backups by generating
+filtered file lists before archiving and keeping records of easily reaquirable files.
+
+## Installation
+
+### Manual
+
+```sh
+$ make
+$ sudo make install
+
+# Or
+$ make DESTDIR="/" install
+```
+
+## Strategy
+
+1. Gather all files within search paths
+  * Skip
+    * Files matching exclusion patterns
+    * Files matching record patterns
+  * Save to `ID.manifest`
+2. Gather all files within search paths
+  * Only
+    * Files matching record patterns
+  * Save to `ID.records`
+3. Archive files within the manifest
+  * Only
+    * Files within the manifest
+  * Save to `ID.tar[.COMPRESSION-SUFFIX]`
+4. Gather metadata
+  * Backup
+    * Date & time (UTC)
+    * Search paths
+    * Duration
+  * Manifest
+    * File count
+    * Total file size
+  * Archive
+    * Compression
+      * Enabled
+      * Tool (gzip, xz, etc.)
+      * Flags (passed to the tool)
+    * Checksum
+      * Tool (sha256sum, sha512sum, etc.)
+      * Value
+  * Save to `ID.{yaml,json}`
+
+### Manifest
+
+The list of all files within the search paths, sans exclusions.
+
+Used for creating the archive and verification of the archive contents.
+
+### Records
+
+The list of all files within the search paths, filtered by the records list.
+
+Used to keep the archive size (and backup duration) low as files within the records should be
+easily reaquirable (from external media, internet, etc.)
+
+### Archive
+
+The (optionally compressed) archive created from the file list within the manifest.
+
+### Metadata
+
+The list of all files in the backup (manifest, records, archive, checksum) as well as information
+about each of them:
+
+* Backup
+  * Datetime (UTC)
+  * Paths to backup files (manifest, records, archive)
+* Manifest
+  * Number of files
+  * Total sum of the size of files
+* Records
+  * Number of files
+  * Total sum of the size of files
+* Archive
+  * Compression
+    * Enabled
+    * Tool (gz, xz, etc)
+    * Flags
+  * Checksum
+    * Method
+    * Value
+
+## Usage
+
+The following will backup all files in the current user's home directory as well as a public
+`/srv/public` directory.
+
+All nodes with the `node_modules`, `.bundle`, and `.cache` name will not be included in the file list
+or the archive.
+
+In addition, public `Songs` and `Videos` directory at any depth will not be included, but will have
+a record kept of alongside the archive.  
+This will cut the archive size down significantly, as the songs and videos can easily be reaquired.
+
+```sh
+$ cutback --paths '~;/srv/public' --excludes 'node_modules;.bundle;.cache' --records '/srv/public/*/{Songs,Videos}'
+```
+
+Cutback can also be configured from a [YAML][yaml] or [JSON][json] file with the `--config` option:
+
+```sh
+$ cutback --config backup.yaml
+```
+
+`backup.yaml`
+
+> Note that paths do not have to be surrounded by quotation marks but every now and then YAML doesn't
+> assume the value is a String.
+
+```yaml
+paths:             # Paths to search for files
+  - "~"
+  - "/srv/public"
+excludes:          # Paths to exclude from the file list
+  - "node_modules"
+  - ".bundle"
+  - ".cache"
+records:           # Paths to keep a record of, also excluded from the file list
+  - "/srv/public/*/{Songs,Videos}"
+```
+
+### Viewing Progress
+
+If [PV][pv] is installed, you can pass the `--progress/-P` option 
+
+## Development
+
+TODO: Write development instructions here
+
+## Contributing
+
+1. Fork it (<https://github.com/your-github-user/cutback/fork>)
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
+## License
+
+This program is available as open source under the terms of the MIT License <http://opensource.org/licenses/MIT>.
+
+[yaml]:     http://yaml.org/
+[json]:     http://json.org/
+[pv]:       https://ivarch.com/programs/pv.shtml
+[progress]: #Viewing-Progress
+

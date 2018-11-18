@@ -1,0 +1,19 @@
+cutback v0.1.0 - System for smaller, more focused backups
+
+Usage: cutback [OPTIONS]
+
+Options:
+  -h, --help               Display help
+  -v, --version            Display version
+  -c, --config             Configuration file path
+  -o, --output   PATH      Output path
+  -d, --date     DATE      Date for the backup in YYYY-MM-DD format
+  -i, --index    INDEX     Index for the backup
+  -p, --paths    DIRS      Search paths
+  -e, --excludes PATTERNS  Exclusion path patterns
+  -r, --records  PATTERNS  Record path patterns
+  -f, --format   FORMAT    Format of the metadata file
+  -P, --progress           Enable viewing progress
+
+See `man 1 cutback` for more detailed information.
+See `man 5 cutback` for configuration file information.

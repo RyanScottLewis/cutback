@@ -1,0 +1,19 @@
+<%= name %> v<%= version %> - <%= summary %>
+
+Usage: <%= name %> [OPTIONS]
+
+Options:
+  -h, --help               <%= options["help"] %>
+  -v, --version            <%= options["version"] %>
+  -c, --config             <%= options["config"] %>
+  -o, --output   PATH      <%= options["output"] %>
+  -d, --date     DATE      <%= options["date"] %>
+  -i, --index    INDEX     <%= options["index"] %>
+  -p, --paths    DIRS      <%= options["paths"] %>
+  -e, --excludes PATTERNS  <%= options["excludes"] %>
+  -r, --records  PATTERNS  <%= options["records"] %>
+  -f, --format   FORMAT    <%= options["format"] %>
+  -P, --progress           <%= options["progress"] %>
+
+See `man 1 cutback` for more detailed information.
+See `man 5 cutback` for configuration file information.

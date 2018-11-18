@@ -1,0 +1,55 @@
+---
+  # The list of paths to search for files to backup
+  paths:
+    - "/etc"
+    - "/home"
+    - "/root"
+    - "/srv/git"
+    - "/srv/rive"
+    - "/mnt/share"
+
+  # The file patterns to exclude while searching
+  excludes:
+    - "*/.DS_Store"
+    - "*/._.DS_Store"
+    - "*/.antigen/*"
+    - "*/.arduino*/*"
+    - "*/.bundle/*"
+    - "*/.cache/*"
+    - "*/.gem/*"
+    - "*/.java/*"
+    - "*/.local/mnt/*"
+    - "*/.local/share/Steam/*"
+    - "*/.local/share/Trash/*"
+    - "*/.local/share/Trash/*"
+    - "*/.local/share/Zeal/*"
+    - "*/.local/share/rosegarden/*"
+    - "*/.local/tmp/*"
+    - "*/.node-gyp/*"
+    - "*/.npm/*"
+    - "*/.openttd/*"
+    - "*/.steam*/*"
+    - "*/.thumbnails/*"
+    - "*/Downloads/*"
+    - "*/VirtualBox VMs/*"
+    - "*/node_modules/*"
+
+  # The file patterns to exclude while searching and keep a record of
+  records:
+    - "/mnt/share/*/Books/*"
+    - "/mnt/share/*/Comics/*"
+    - "/mnt/share/*/MIDI/*"
+    - "/mnt/share/*/ROMs/*"
+    - "/mnt/share/*/Songs/*"
+    - "/mnt/share/*/Sounds/*"
+    - "/mnt/share/*/Videos/*"
+    - "/mnt/share/Technology/Audio/Plugins/*"
+    - "/mnt/share/Technology/Software/Applications/*"
+    - "/mnt/share/Technology/Software/Operating Systems/*"
+
+  # Show progress of each step while performing
+  progress: true
+
+  # Format of the archive metadata
+  #format: "json"
+

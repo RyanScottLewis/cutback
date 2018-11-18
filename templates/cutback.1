@@ -1,0 +1,96 @@
+.TH man 1 "<%= name %>" "<%= version %>" "<%= name %>"
+.SH NAME
+<%= name %> \- <%= summary %>
+.SH SYNOPSIS
+\fB<%= name %>\fR [\fIoptions\fR]
+.SH DESCRIPTION
+<%= description %>
+.SH OPTIONS
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+<%= options["help"] %>
+.TP
+\fB\-v\fR, \fB\-\-version\fR
+<%= options["version"] %>
+.TP
+\fB\-c\fR, \fB\-\-config\fR
+<%= options["config"] %>
+
+See \fI<%= name %>(5)\fR for config file details.
+.TP
+\fB\-o\fR, \fB\-\-output\fR
+<%= options["output"] %>
+
+\fBDefault:\fR \fI"."\fR
+.TP
+\fB\-d\fR, \fB\-\-date\fR
+<%= options["date"] %>
+
+\fBDefault:\fR The current date
+.TP
+\fB\-i\fR, \fB\-\-index\fR
+<%= options["index"] %>
+
+\fBDefault:\fR The largest index for the current date incremented by \fI1\fR or \fI0\fR
+.TP
+\fB\-p\fR, \fB\-\-paths\fR
+<%= options["paths"] %>
+.TP
+\fB\-e\fR, \fB\-\-excludes\fR
+<%= options["excludes"] %>
+.TP
+\fB\-r\fR, \fB\-\-records\fR
+<%= options["records"] %>
+.TP
+\fB\-p\fR, \fB\-\-progress\fR
+<%= options["progress"] %>
+.TP
+\fB\-f\fR, \fB\-\-format\fR
+<%= options["format"] %>
+
+\fBValid:\fR \fI"yaml"\fR or \fI"json"\fR
+
+\fBDefault:\fR \fI"yaml"\fR
+.TP
+\fBLIST VALUES\fR
+Values passed to the \fB\-\-paths\fR, \fB\-\-excludes\fR, and \fB\-\-records\fR options are paths
+delimited by semi-colon (;) characters:
+.PP
+.nf
+.RS
+.RS
+--paths "/home;/srv;/etc"
+.RE
+.RE
+.fi
+.TP
+\fBPATTERN VALUES\fR
+Values passed to the \fB\-\-excludes\fR and \fB\-\-records\fR options are file patterns capable of using
+wildcards:
+.PP
+.nf
+.RS
+.RS
+--excludes "/srv/public/*/Videos/*"
+.RE
+.fi
+.SH STRATEGY
+.nf
+<%= strategy %>
+.fi
+.SH SEE ALSO
+.TP
+\fBHomepage\fR
+<%= homepage %>
+.TP
+\fBRepository\fR
+<%= repository %>
+.TP
+\fBIssues/Bugs\fR
+<%= issues %>
+.TP
+\fBConfiguration\fR
+\fI<%= name %>(5)\fR
+.SH LICENSE
+<%= mit_license %>
+
