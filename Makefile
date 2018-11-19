@@ -24,7 +24,7 @@ APP_YML       ?= app.yml shard.yml
 
 CUTBACK_CR    ?= $(DIR_SRC)/$(NAME).cr $(wildcard $(DIR_SRC)/$(NAME)/*.cr)
 CUTBACK_EXE   ?= $(DIR_BLD)/$(NAME)
-#CUTBACK_FLAGS ?= --release
+#CUTBACK_FLAGS ?= --release # TODO: DONT FORGET ABOUT ME~! CHECK for DEBUG for this
 
 GENERATE_CR   ?= $(DIR_SRC)/generate.cr $(wildcard $(DIR_SRC)/generate/*.cr)
 GENERATE_EXE  ?= $(DIR_BIN)/generate
