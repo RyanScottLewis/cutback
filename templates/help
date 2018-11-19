@@ -1,6 +1,6 @@
 <%= name %> v<%= version %> - <%= summary %>
 
-Usage: <%= name %> [OPTIONS]
+Usage: <%= name %> [OPTIONS] [ACTION] [TYPE]
 
 Options:
   -h, --help               <%= options["help"] %>
@@ -14,6 +14,16 @@ Options:
   -r, --records  PATTERNS  <%= options["records"] %>
   -f, --format   FORMAT    <%= options["format"] %>
   -P, --progress           <%= options["progress"] %>
+
+Actions:
+  generate                 <%= actions["generate"] %>
+  inspect                  <%= actions["inspect"] %>
+
+Types:
+  manifest                 <%= types["manifest"] %>
+  records                  <%= types["records"] %>
+  archive                  <%= types["archive"] %>
+  metadata                 <%= types["metadata"] %>
 
 See `man 1 cutback` for more detailed information.
 See `man 5 cutback` for configuration file information.

@@ -40,6 +40,8 @@ mit_license = app["mit_license"]
 description = app["description"].as_s.chomp
 strategy    = app["strategy"].as_s.chomp
 options     = app["options"]
+actions     = app["actions"]
+types       = app["types"]
 
 files = {} of String => String
 generate_templates(files, [

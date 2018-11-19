@@ -49,4 +49,12 @@ options:
   records:  Record path patterns
   format:   Format of the metadata file
   progress: Enable viewing progress
+actions:
+  generate: Generate a file of the given type, or all types if none is given
+  inspect:  Inspect a file of the given type, or all types if none is given
+types:
+  manifest: List of all files in the archive
+  records:  List of files /not/ in the archive, but kept a record of
+  archive:  Archive of files in the manifest
+  metadata: Information about the backup
 

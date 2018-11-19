@@ -16,5 +16,11 @@ class Cutback::Error < Exception
     end
   end
 
+  class InvalidArguments < Error
+    def initialize
+      super("Invalid arguments")
+    end
+  end
+
 end
 

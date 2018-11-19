@@ -1,6 +1,6 @@
 cutback v0.1.0 - System for smaller, more focused backups
 
-Usage: cutback [OPTIONS]
+Usage: cutback [OPTIONS] [ACTION] [TYPE]
 
 Options:
   -h, --help               Display help
@@ -14,6 +14,16 @@ Options:
   -r, --records  PATTERNS  Record path patterns
   -f, --format   FORMAT    Format of the metadata file
   -P, --progress           Enable viewing progress
+
+Actions:
+  generate                 Generate a file of the given type, or all types if none is given
+  inspect                  Inspect a file of the given type, or all types if none is given
+
+Types:
+  manifest                 List of all files in the archive
+  records                  List of files /not/ in the archive, but kept a record of
+  archive                  Archive of files in the manifest
+  metadata                 Information about the backup
 
 See `man 1 cutback` for more detailed information.
 See `man 5 cutback` for configuration file information.
