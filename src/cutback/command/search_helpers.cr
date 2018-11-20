@@ -1,4 +1,4 @@
-abstract class Cutback::Command::Search < Cutback::Command
+module Cutback::Command::SearchHelpers
 
   protected def formatted_paths
     @options.paths.map { |path| "'#{path}'" }.join(" ")

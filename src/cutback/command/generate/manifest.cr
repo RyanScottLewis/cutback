@@ -1,11 +1,6 @@
-require "./search"
+class Cutback::Command::Generate::Manifest < Cutback::Command::Generate
 
-class Cutback::Command::GenerateManifest < Cutback::Command::Search
-
-  @paths : Paths
-
-  def initialize(@options, @paths)
-  end
+  include SearchHelpers
 
   def to_s(io)
     find_files(io,

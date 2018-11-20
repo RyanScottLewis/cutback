@@ -1,8 +1,6 @@
-require "./search"
+class Cutback::Command::Generate::Records < Cutback::Command::Generate
 
-class Cutback::Command::GenerateRecords < Cutback::Command::Search
-
-  @paths : Paths
+  include SearchHelpers
 
   def initialize(@options, @paths)
   end

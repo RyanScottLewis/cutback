@@ -1,7 +1,7 @@
 class Cutback::Route::Manifest < Cutback::Route
 
   def generate
-    Command::GenerateManifest.execute(@options, @paths)
+    Command::Generate::Manifest.execute(@options, @paths)
   end
 
   def inspect
