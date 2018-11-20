@@ -10,6 +10,7 @@
     * See `Cutback::Command#execute`
   * CLI options should override config options
   * `output` option, when from config, should be relative to the config file
+  * Bool options should toggle known value (from default or config value)
 * Commands
   * `generate [TYPE]`
     * `archive`
