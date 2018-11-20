@@ -1,7 +1,6 @@
 class Cutback::Command::Progress < Cutback::Command
 
-  @options : Options
-  @name    : String?
+  @name : String?
 
   def initialize(@options, @name=nil)
   end

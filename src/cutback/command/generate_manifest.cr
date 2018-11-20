@@ -2,8 +2,7 @@ require "./search"
 
 class Cutback::Command::GenerateManifest < Cutback::Command::Search
 
-  @options : Options
-  @paths   : Paths
+  @paths : Paths
 
   def initialize(@options, @paths)
   end
