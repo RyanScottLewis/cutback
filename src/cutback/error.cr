@@ -22,5 +22,11 @@ class Cutback::Error < Exception
     end
   end
 
+  class InvalidFormat < Error
+    def initialize
+      super("Invalid format")
+    end
+  end
+
 end
 

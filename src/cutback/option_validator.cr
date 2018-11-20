@@ -1,5 +1,7 @@
 class Cutback::OptionValidator
 
+  FORMATS = %w[json yaml]
+
   def self.execute(options : Options)
     new(options).execute
   end
@@ -14,6 +16,7 @@ class Cutback::OptionValidator
     validate_version
     validate_output
     validate_paths
+    validate_format
   end
 
   protected def validate_help
@@ -36,6 +39,10 @@ class Cutback::OptionValidator
 
   protected def validate_paths
     raise Error::InvalidPaths.new if @options.paths.empty?
+  end
+
+  protected def validate_format
+    raise Error::InvalidFormat.new unless FORMATS.includes?(@options.format)
   end
 
 end

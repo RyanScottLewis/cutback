@@ -22,7 +22,7 @@ class Cutback::Options
     excludes:  { type: Array(String), default: [] of String },
     records:   { type: Array(String), default: [] of String },
     progress:  { type: Bool? },
-    format:    { type: String? },
+    format:    { type: String,        default: "yaml" },
     toolchain: { type: Toolchain,     default: Toolchain.new },
   })
 
@@ -36,18 +36,18 @@ class Cutback::Options
   property excludes  = [] of String
   property records   = [] of String
   property progress  = nil
-  property format    = nil
+  property format    = "yaml"
   property toolchain = Toolchain.new
 
   def initialize
   end
 
-  def dump(format=:yaml)
+  def dump(format="yaml")
     case format
-    when :yaml then to_yaml
-    when :json then to_json
+    when "yaml" then to_yaml
+    when "json" then to_json
     else
-      raise Error::InvalidExtension.new
+      raise Error::InvalidFormat.new
     end
   end
 
