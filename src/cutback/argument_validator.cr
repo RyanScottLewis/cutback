@@ -1,7 +1,7 @@
 class Cutback::ArgumentValidator
 
   ACTIONS = %w[generate inspect]
-  TYPES   = %w[manifest records archive metadata]
+  TYPES   = %w[manifest records archive checksum metadata]
 
   def self.execute(arguments : Array(String))
     new(arguments).execute
