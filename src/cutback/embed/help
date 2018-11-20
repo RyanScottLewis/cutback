@@ -21,7 +21,7 @@ Actions:
 
 Types:
   manifest                 List of all files in the archive
-  records                  List of files /not/ in the archive, but kept a record of
+  records                  List of files excluded from the archive, but kept a record of
   archive                  Archive of files in the manifest
   metadata                 Information about the backup
 

@@ -2,7 +2,7 @@
 .SH NAME
 cutback \- System for smaller, more focused backups
 .SH SYNOPSIS
-\fBcutback\fR [\fIoptions\fR] [\fIaction\fR] [\fItype\fR]
+\fBcutback\fR [\fIOPTIONS\fR] [\fIACTION\fR] [\fITYPE\fR]
 .SH DESCRIPTION
 Cutback is a backup system with the goal of creating smaller, more focused backups by generating
 filtered file lists before archiving and keeping records of easily reaquirable files.
@@ -53,7 +53,7 @@ Format of the metadata file
 
 \fBDefault:\fR \fI"yaml"\fR
 .TP
-\fBLIST VALUES\fR
+\fBList Values\fR
 Values passed to the \fB\-\-paths\fR, \fB\-\-excludes\fR, and \fB\-\-records\fR options are paths
 delimited by semi-colon (;) characters:
 .PP
@@ -65,7 +65,7 @@ delimited by semi-colon (;) characters:
 .RE
 .fi
 .TP
-\fBPATTERN VALUES\fR
+\fBPattern Values\fR
 Values passed to the \fB\-\-excludes\fR and \fB\-\-records\fR options are file patterns capable of using
 wildcards:
 .PP
@@ -88,7 +88,7 @@ Inspect a file of the given type, or all types if none is given
 List of all files in the archive
 .TP
 \fBrecords\fR
-List of files /not/ in the archive, but kept a record of
+List of files excluded from the archive, but kept a record of
 .TP
 \fBarchive\fR
 Archive of files in the manifest
