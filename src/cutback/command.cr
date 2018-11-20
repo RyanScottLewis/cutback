@@ -29,6 +29,11 @@ abstract class Cutback::Command
     io << path
   end
 
+  protected def error_to(io, path)
+    io << " 2>> "
+    io << path
+  end
+
   protected def join(io, *partials)
     io << partials.to_a.flatten.compact.join(" ")
   end

@@ -8,6 +8,8 @@ class Cutback::Command::Generate::Manifest < Cutback::Command::Generate
       exclude_flags(@options.records)
     )
 
+    error_to(io, @paths.log)
+
     pipe_to(io, progress) if @options.progress
 
     output_to(io, @paths.manifest)

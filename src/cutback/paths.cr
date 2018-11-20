@@ -1,5 +1,6 @@
 class Cutback::Paths
 
+  getter log      = ""
   getter manifest = ""
   getter records  = ""
   getter archive  = ""
@@ -16,6 +17,7 @@ class Cutback::Paths
     tar_ext = @options.toolchain.compress # TODO: Not really true since gzip will be gz
     output  = @options.output.not_nil!
 
+    @log      = File.join(output, "#{@identifier}.log")
     @manifest = File.join(output, "#{@identifier}.manifest")
     @records  = File.join(output, "#{@identifier}.records")
     @archive  = File.join(output, "#{@identifier}.tar.#{tar_ext}")
