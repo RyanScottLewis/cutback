@@ -1,10 +1,8 @@
-require "./search"
+require "./search_command"
 
-class Cutback::Command::Records < Cutback::Command::Search
+class Cutback::Route::Records < Cutback::Route::SearchCommand
 
-  @options  : Options
-  @paths    : Paths
-  @progress : Progress
+  @paths : Paths
 
   def initialize(@options, @paths, @progress)
   end

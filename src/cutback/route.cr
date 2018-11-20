@@ -1,4 +1,4 @@
-abstract class Cutback::Command
+abstract class Cutback::Route
 
   @options : Options
 

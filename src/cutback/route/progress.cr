@@ -1,10 +1,6 @@
-require "./system"
-
-class Cutback::Command::Progress < Cutback::Command::System
+class Cutback::Route::Progress < Cutback::Route::SystemCommand
 
   getter arguments : Array(String)
-
-  @options : Options
 
   def initialize(@options)
     @arguments = %w[-r -a -t]
@@ -18,7 +14,7 @@ class Cutback::Command::Progress < Cutback::Command::System
   end
 
   def with_name(name)
-    instance = Progress.new(@options)
+    instance = self.class.new(@options)
     instance.arguments << "-N '#{name}'"
 
     instance

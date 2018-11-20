@@ -9,10 +9,10 @@ class Cutback::Application
     @option_parser        = OptionParser.new
     @identifier           = Identifier.new(@options)
     @paths                = Paths.new(@options, @identifier)
-    @commands             = Commands.new(@options, @paths)
+    @routes               = Routes.new(@options, @paths)
     @option_controller    = OptionController.new(arguments, @option_parser, @options, @identifier, @paths)
     @argument_controller  = ArgumentController.new(arguments)
-    @generator_controller = GeneratorController.new(@commands)
+    @generator_controller = GeneratorController.new(@routes)
     @router               = Router.new(arguments, @generator_controller)
   end
 

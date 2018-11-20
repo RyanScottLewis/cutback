@@ -1,4 +1,4 @@
-class Cutback::Command::Metadata < Cutback::Command
+class Cutback::Route::Metadata < Cutback::Route
 
   @paths : Paths
 

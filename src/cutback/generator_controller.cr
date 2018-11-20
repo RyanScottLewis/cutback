@@ -1,8 +1,8 @@
 class Cutback::GeneratorController
 
-  @commands : Commands
+  @routes : Routes
 
-  def initialize(@commands)
+  def initialize(@routes)
   end
 
   def generate
@@ -13,20 +13,20 @@ class Cutback::GeneratorController
   end
 
   def manifest
-    @commands.manifest.execute
+    @routes.manifest.execute
   end
 
   def records
-    @commands.records.execute
+    @routes.records.execute
   end
 
   def archive
     # TODO: 
-    #@commands.archive.execute
+    #@routes.archive.execute
   end
 
   def metadata
-    @commands.metadata.execute
+    @routes.metadata.execute
   end
 
 end

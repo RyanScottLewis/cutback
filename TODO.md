@@ -2,7 +2,7 @@
 
 * Logger
 * CommandBuilder
-* Rename Command to Route, Commands to Route::List
+  * The Progress, SystemCommand, and SearchCommand routes aren't really "routes"
 * Options
   * `--verbose [LEVEL]`
     * Level 0: Display nothing
