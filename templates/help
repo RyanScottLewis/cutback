@@ -25,6 +25,7 @@ Types:
   manifest                 <%= types["manifest"] %>
   records                  <%= types["records"] %>
   archive                  <%= types["archive"] %>
+  checksum                 <%= types["checksum"] %>
   metadata                 <%= types["metadata"] %>
 
 See `man 1 cutback` for more detailed information.

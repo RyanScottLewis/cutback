@@ -1,4 +1,7 @@
 ---
+  # Output path for backup
+  output: "./tmp"
+
   # The list of paths to search for files to backup
   paths:
     - "/home"
@@ -20,9 +23,12 @@
     - "*/Pictures/*"
     - "*/Documents/Plans/*"
 
+  # Compress the archive
+  compress: true
+
   # Show progress of each step while performing
   progress: true
 
   # Format of the archive metadata
-  #format: "json"
+  format: "json"
 
