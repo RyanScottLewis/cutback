@@ -5,10 +5,10 @@ abstract class Cutback::Command::Generate < Cutback::Command
   def initialize(@options, @paths)
   end
 
-  protected def progress
+  protected def progress(*arguments)
     name = self.class.name.split("::").last
 
-    progress("Generating #{name}")
+    super(*arguments).with_name("Generating #{name}")
   end
 
 end

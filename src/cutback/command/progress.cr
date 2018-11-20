@@ -1,8 +1,9 @@
 class Cutback::Command::Progress < Cutback::Command
 
-  @name : String?
+  @arguments = [] of String
 
-  def initialize(@options, @name=nil)
+  def initialize(@options, *arguments)
+    arguments.each { |argument| @arguments << argument }
   end
 
   def to_s(io)
@@ -11,8 +12,14 @@ class Cutback::Command::Progress < Cutback::Command
       "-r", # Show current rate
       "-a", # Show average rate
       "-t", # Show timer
-      @name.nil? ? nil : "-N '#{@name}'" # Show name
+      @arguments
     )
+  end
+
+  def with_name(name)
+    @arguments << "-N '#{name}'" # Show name
+
+    self
   end
 
 end

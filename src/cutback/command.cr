@@ -38,8 +38,8 @@ abstract class Cutback::Command
     io << partials.to_a.flatten.compact.join(" ")
   end
 
-  protected def progress(name=nil)
-    Progress.new(@options, name)
+  protected def progress(*arguments)
+    Progress.new(@options, *arguments)
   end
 
 end
