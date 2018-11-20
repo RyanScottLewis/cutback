@@ -8,6 +8,8 @@
     * Level 2: Display system commands
   * `--dry`
     * See `Cutback::Command#execute`
+  * CLI options should override config options
+  * `output` option, when from config, should be relative to the config file
 * Commands
   * `generate [TYPE]`
     * `archive`
