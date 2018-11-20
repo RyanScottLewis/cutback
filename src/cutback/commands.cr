@@ -1,9 +1,11 @@
 class Cutback::Commands
 
-  def initialize(@options : Options, @paths : Paths)
+  @options : Options
+  @paths   : Paths
+
+  def initialize(@options, @paths)
     @progress = Command::Progress.new(@options)
     @manifest = Command::Manifest.new(@options, @paths, @progress)
-    @records  = Command::Records.new(@options, @paths, @progress)
   end
 
   getter manifest

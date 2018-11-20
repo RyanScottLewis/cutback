@@ -2,7 +2,11 @@ require "./search"
 
 class Cutback::Command::Records < Cutback::Command::Search
 
-  def initialize(@options : Options, @paths : Paths, @progress : Progress)
+  @options  : Options
+  @paths    : Paths
+  @progress : Progress
+
+  def initialize(@options, @paths, @progress)
   end
 
   def to_s(io)

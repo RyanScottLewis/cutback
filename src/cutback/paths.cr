@@ -5,7 +5,10 @@ class Cutback::Paths
   getter archive  = ""
   getter metadata = ""
 
-  def initialize(@options : Options, @identifier : Identifier)
+  @options    : Options
+  @identifier : Identifier
+
+  def initialize(@options, @identifier)
     update
   end
 

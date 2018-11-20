@@ -2,7 +2,9 @@ class Cutback::Command::Progress < Cutback::Command
 
   getter arguments : Array(String)
 
-  def initialize(@options : Options)
+  @options : Options
+
+  def initialize(@options)
     @arguments = %w[-r -a -t]
   end
 

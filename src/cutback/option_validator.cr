@@ -4,7 +4,9 @@ class Cutback::OptionValidator
     new(options).execute
   end
 
-  def initialize(@options : Options)
+  @options : Options
+
+  def initialize(@options)
   end
 
   def execute

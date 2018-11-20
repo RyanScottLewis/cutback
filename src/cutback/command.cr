@@ -1,6 +1,8 @@
 abstract class Cutback::Command
 
-  def initialize(@options : Options)
+  @options : Options
+
+  def initialize(@options)
   end
 
   abstract def to_s(io)

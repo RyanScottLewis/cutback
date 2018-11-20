@@ -1,6 +1,8 @@
 class Cutback::GeneratorController
 
-  def initialize(@commands : Commands)
+  @commands : Commands
+
+  def initialize(@commands)
   end
 
   def generate
