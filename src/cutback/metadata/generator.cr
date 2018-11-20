@@ -31,17 +31,18 @@ class Cutback::Metadata::Generator
     data  = File.read(path)
     count = data.count('\n')
     bytes = data.lines.sum { |path| File.size(path) }
-    human = FileSize.convert(bytes)
 
-    size = FileList::Size.new(bytes, human)
+    size = Size.new(bytes)
 
     FileList.new(count, size)
   end
 
   protected def create_archive_metadata
-    compression = Archive::Compression.new(@options.toolchain.compress, true) # TODO: Option for compression enabled
-    checksum    = Archive::Checksum.new(@options.toolchain.sum, "I am a checksum") # TODO: Generate checksum
-    archive     = Archive.new(compression, checksum)
+    compression = Archive::Compression.new(@options.toolchain.compress, @options.compress) # TODO: Option for compression enabled
+    bytes       = File.size(@paths.archive)
+    size        = Size.new(bytes)
+
+    Archive.new(compression, size)
   end
 
 end

@@ -2,10 +2,10 @@ class Cutback::Metadata::Archive
 
   Cutback.mapping({
     compression: { type: Compression },
-    checksum:    { type: Checksum },
+    size: { type: Size },
   })
 
-  def initialize(@compression, @checksum)
+  def initialize(@compression, @size)
   end
 
 end
