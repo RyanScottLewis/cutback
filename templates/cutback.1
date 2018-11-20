@@ -42,15 +42,18 @@ See \fI<%= name %>(5)\fR for config file details.
 \fB\-r\fR, \fB\-\-records\fR
 <%= options["records"] %>
 .TP
-\fB\-p\fR, \fB\-\-progress\fR
-<%= options["progress"] %>
-.TP
 \fB\-f\fR, \fB\-\-format\fR
 <%= options["format"] %>
 
 \fBValid:\fR \fI"yaml"\fR or \fI"json"\fR
 
 \fBDefault:\fR \fI"yaml"\fR
+.TP
+\fB\-C\fR, \fB\-\-compress\fR
+<%= options["compress"] %>
+.TP
+\fB\-p\fR, \fB\-\-progress\fR
+<%= options["progress"] %>
 .TP
 \fBList Values\fR
 Values passed to the \fB\-\-paths\fR, \fB\-\-excludes\fR, and \fB\-\-records\fR options are paths

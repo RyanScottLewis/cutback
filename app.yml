@@ -48,6 +48,7 @@ options:
   excludes: Exclusion path patterns
   records:  Record path patterns
   format:   Format of the metadata file
+  compress: Enable archive compression
   progress: Enable viewing progress
 actions:
   generate: Generate a file of the given type, or all types if none is given

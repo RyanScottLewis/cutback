@@ -11,6 +11,7 @@ class Cutback::OptionController
     excludes: {"-e", "--excludes VALUE"},
     records:  {"-r", "--records VALUE"},
     format:   {"-f", "--format VALUE"},
+    compress: {"-C", "--compress"},
     progress: {"-P", "--progress"},
   }
 
@@ -41,7 +42,8 @@ class Cutback::OptionController
     @option_parser.on( *OPTIONS[:excludes], "" ) { |value| @options.excludes = parse_list(value) }
     @option_parser.on( *OPTIONS[:records],  "" ) { |value| @options.records  = parse_list(value) }
     @option_parser.on( *OPTIONS[:format],   "" ) { |value| @options.format   = value }
-    @option_parser.on( *OPTIONS[:progress], "" ) { |value| @options.progress = true }
+    @option_parser.on( *OPTIONS[:compress], "" ) {         @options.compress = true }
+    @option_parser.on( *OPTIONS[:progress], "" ) {         @options.progress = true }
   end
 
   protected def parse_options

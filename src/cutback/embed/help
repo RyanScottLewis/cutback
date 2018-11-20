@@ -13,6 +13,8 @@ Options:
   -e, --excludes PATTERNS  Exclusion path patterns
   -r, --records  PATTERNS  Record path patterns
   -f, --format   FORMAT    Format of the metadata file
+  -f, --format   FORMAT    Format of the metadata file
+  -C, --compress           Enable archive compression
   -P, --progress           Enable viewing progress
 
 Actions:
