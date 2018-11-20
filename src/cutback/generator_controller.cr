@@ -21,9 +21,12 @@ class Cutback::GeneratorController
   end
 
   def archive
+    # TODO: 
+    #@commands.archive.execute
   end
 
   def metadata
+    @commands.metadata.execute
   end
 
 end
