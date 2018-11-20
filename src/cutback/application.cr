@@ -12,8 +12,7 @@ class Cutback::Application
     @routes               = Routes.new(@options, @paths)
     @option_controller    = OptionController.new(arguments, @option_parser, @options, @identifier, @paths)
     @argument_controller  = ArgumentController.new(arguments)
-    @generator_controller = GeneratorController.new(@routes)
-    @router               = Router.new(arguments, @generator_controller)
+    @router               = Router.new(arguments, @routes)
   end
 
   def execute

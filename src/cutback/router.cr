@@ -1,9 +1,9 @@
 class Cutback::Router
 
-  @arguments            : Array(String)
-  @generator_controller : GeneratorController
+  @arguments : Array(String)
+  @routes    : Routes
 
-  def initialize(@arguments, @generator_controller)
+  def initialize(@arguments, @routes)
   end
 
   def execute
@@ -20,16 +20,30 @@ class Cutback::Router
 
   protected def perform_generate
     case @arguments[1]?
-    when nil        then @generator_controller.generate
-    when "manifest" then @generator_controller.manifest
-    when "records"  then @generator_controller.records
-    when "archive"  then @generator_controller.archive
-    when "metadata" then @generator_controller.metadata
+    when nil
+      @routes.manifest.generate
+      @routes.records.generate
+      @routes.archive.generate
+      @routes.metadata.generate
+    when "manifest" then @routes.manifest.generate
+    when "records"  then @routes.records.generate
+    when "archive"  then @routes.archive.generate
+    when "metadata" then @routes.metadata.generate
     end
   end
 
   protected def perform_inspect
-    # TODO
+    case @arguments[1]?
+    when nil
+      @routes.manifest.inspect
+      @routes.records.inspect
+      @routes.archive.inspect
+      @routes.metadata.inspect
+    when "manifest" then @routes.manifest.inspect
+    when "records"  then @routes.records.inspect
+    when "archive"  then @routes.archive.inspect
+    when "metadata" then @routes.metadata.inspect
+    end
   end
 
 end

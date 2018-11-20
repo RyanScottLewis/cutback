@@ -1,13 +1,14 @@
 abstract class Cutback::Route
 
   @options : Options
+  @paths   : Paths
 
-  def initialize(@options)
+  def initialize(@options, @paths)
   end
 
-  abstract def to_s(io)
+  abstract def generate
 
-  abstract def execute
+  abstract def inspect
 
 end
 

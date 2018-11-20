@@ -1,5 +1,9 @@
 class Cutback::Metadata
 
+  def self.create(options, paths)
+    Generator.create(options, paths)
+  end
+
   Cutback.mapping({
     backup:   { type: Backup },
     manifest: { type: FileList },
@@ -17,6 +21,10 @@ class Cutback::Metadata
     else
       raise Error::InvalidFormat.new
     end
+  end
+
+  def save(path, format="yaml")
+    File.write(path, dump(format))
   end
 
 end

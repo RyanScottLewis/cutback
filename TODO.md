@@ -1,8 +1,6 @@
 # TOOD
 
 * Logger
-* CommandBuilder
-  * The Progress, SystemCommand, and SearchCommand routes aren't really "routes"
 * Options
   * `--verbose [LEVEL]`
     * Level 0: Display nothing

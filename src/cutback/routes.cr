@@ -9,10 +9,9 @@ class Cutback::Routes
   getter metadata
 
   def initialize(@options, @paths)
-    @progress = Route::Progress.new(@options)
-    @manifest = Route::Manifest.new(@options, @paths, @progress)
-    @records  = Route::Records.new(@options, @paths, @progress)
-    @archive  = Route::Archive.new(@options, @paths, @progress)
+    @manifest = Route::Manifest.new(@options, @paths)
+    @records  = Route::Records.new(@options, @paths)
+    @archive  = Route::Archive.new(@options, @paths)
     @metadata = Route::Metadata.new(@options, @paths)
   end
 
