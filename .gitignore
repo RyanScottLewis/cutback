@@ -1,5 +1,9 @@
 /build/
 /lib/
 /bin/
+/tmp/
 /.shards/
 *.dwarf
+doc/README.html
+doc/man/
+src/cutback/embed/
