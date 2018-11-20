@@ -34,7 +34,7 @@ class Cutback::OptionController
     update_paths
   end
 
-  protected def define_options
+  protected def define_options # TODO: Macro for these.. use `value` for all then do parse_list on options after
     @option_parser.on( *OPTIONS[:help],     "" ) {         @options.help     = true }
     @option_parser.on( *OPTIONS[:version],  "" ) {         @options.version  = true }
     @option_parser.on( *OPTIONS[:config],   "" ) { |value| @options.config   = value }
