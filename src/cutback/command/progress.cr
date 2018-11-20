@@ -8,8 +8,10 @@ class Cutback::Command::Progress < Cutback::Command
   def to_s(io)
     join(io,
       @options.toolchain.pv,
-      %w[-r -a -t],
-      @name.nil? ? nil : "-N '#{@name}'"
+      "-r", # Show current rate
+      "-a", # Show average rate
+      "-t", # Show timer
+      @name.nil? ? nil : "-N '#{@name}'" # Show name
     )
   end
 
