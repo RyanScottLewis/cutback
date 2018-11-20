@@ -7,13 +7,7 @@ abstract class Cutback::Command
 
   abstract def to_s(io)
 
-  def execute
-    command = to_s
-
-    puts command
-
-    `#{command}`
-  end
+  abstract def execute
 
 end
 

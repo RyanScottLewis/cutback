@@ -1,4 +1,6 @@
-class Cutback::Command::Progress < Cutback::Command
+require "./system"
+
+class Cutback::Command::Progress < Cutback::Command::System
 
   getter arguments : Array(String)
 

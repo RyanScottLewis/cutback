@@ -1,4 +1,6 @@
-abstract class Cutback::Command::Search < Cutback::Command
+require "./system"
+
+abstract class Cutback::Command::Search < Cutback::Command::System
 
   protected def formatted_paths
     @options.paths.map { |path| "'#{path}'" }
