@@ -1,11 +1,12 @@
 class Cutback::Metadata::Archive::Compression
 
   Cutback.mapping({
-    tool:    { type: String },
-    enabled: { type: Bool },
+    tool:    String,
+    enabled: Bool,
+    ratio:   Float64,
   })
 
-  def initialize(@tool, @enabled)
+  def initialize(@tool, @enabled, @ratio)
   end
 
 end

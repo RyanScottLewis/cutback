@@ -1,8 +1,8 @@
 class Cutback::Metadata::Size
 
   Cutback.mapping({
-    bytes: { type: UInt64 },
-    human: { type: String },
+    bytes: UInt64,
+    human: String,
   })
 
   def initialize(@bytes, @human)

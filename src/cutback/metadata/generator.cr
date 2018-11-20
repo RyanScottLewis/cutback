@@ -18,7 +18,7 @@ class Cutback::Metadata::Generator
     backup   = create_backup_metadata
     manifest = create_file_list_metadata(@paths.manifest)
     records  = create_file_list_metadata(@paths.records)
-    archive  = create_archive_metadata
+    archive  = create_archive_metadata(manifest)
 
     Metadata.new(backup, manifest, records, archive)
   end
@@ -37,10 +37,11 @@ class Cutback::Metadata::Generator
     FileList.new(count, size)
   end
 
-  protected def create_archive_metadata
-    compression = Archive::Compression.new(@options.toolchain.compress, @options.compress) # TODO: Option for compression enabled
+  protected def create_archive_metadata(manifest)
     bytes       = File.size(@paths.archive)
     size        = Size.new(bytes)
+    ratio       = bytes.to_f / manifest.size.bytes.to_f
+    compression = Archive::Compression.new(@options.toolchain.compress, @options.compress, ratio)
 
     Archive.new(compression, size)
   end
