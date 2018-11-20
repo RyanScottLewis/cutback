@@ -1,6 +1,13 @@
 # TOOD
 
+* Logger
+* CommandBuilder
+* Rename Command to Route, Commands to Route::List
 * Options
+  * `--verbose [LEVEL]`
+    * Level 0: Display nothing
+    * Level 1: Display logger messages
+    * Level 2: Display system commands
   * `--dry`
     * See `Cutback::Command#execute`
 * Commands
@@ -17,5 +24,6 @@
       * Size
     * `metadata`
       * Print the metadata
+    * `options`
   * `checksum`
 
