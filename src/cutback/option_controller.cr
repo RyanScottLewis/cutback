@@ -27,10 +27,11 @@ class Cutback::OptionController
 
   def execute
     parse_options
-    update_from_config_option?
+    update_options_from_config
     preprocess_options
     validate_options
     update_identifier
+    update_paths
   end
 
   protected def define_options
@@ -50,22 +51,12 @@ class Cutback::OptionController
     @option_parser.parse(@arguments)
   end
 
-  protected def update_from_config_option?
-    unless @options.config.nil?
-      path = @options.config.not_nil!
-      config_options = Options.load(path)
+  protected def update_options_from_config
+    return if @options.config.nil?
 
-      @options.paths    = config_options.paths    if @options.paths.empty?
-      @options.excludes = config_options.excludes if @options.excludes.empty?
-      @options.records  = config_options.records  if @options.records.empty?
-      @options.progress = config_options.progress if @options.progress.nil?
-      @options.format   = config_options.format   if @options.format.nil?
+    config = Config.load(@options.config.not_nil!)
 
-      @options.progress ||= false
-      @options.format   ||= "yaml"
-
-      @paths.update
-    end
+    config.update_options(@options)
   end
 
   protected def preprocess_options
@@ -78,6 +69,10 @@ class Cutback::OptionController
 
   protected def update_identifier
     @identifier.update(@options)
+  end
+
+  protected def update_paths
+    @paths.update
   end
 
   protected def parse_list(value)
