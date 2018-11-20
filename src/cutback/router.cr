@@ -1,29 +1,13 @@
 class Cutback::Router
 
   @arguments            : Array(String)
-  @options              : Options
   @generator_controller : GeneratorController
 
-  def initialize(@arguments, @options, @generator_controller)
+  def initialize(@arguments, @generator_controller)
   end
 
   def execute
-    preprocess_arguments
-    validate_options
-    validate_arguments
     perform_action
-  end
-
-  protected def preprocess_arguments
-    @arguments.map! { |argument| argument.strip.downcase }
-  end
-
-  protected def validate_options
-    OptionValidator.execute(@options)
-  end
-
-  protected def validate_arguments
-    ArgumentValidator.execute(@arguments)
   end
 
   protected def perform_action

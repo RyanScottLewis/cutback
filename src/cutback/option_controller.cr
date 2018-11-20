@@ -27,6 +27,8 @@ class Cutback::OptionController
   def execute
     parse_options
     update_from_config_option?
+    preprocess_options
+    validate_options
     update_identifier
   end
 
@@ -62,6 +64,14 @@ class Cutback::OptionController
 
       @paths.update
     end
+  end
+
+  protected def preprocess_options
+    @options.format = @options.format.strip.downcase
+  end
+
+  protected def validate_options
+    OptionValidator.execute(@options)
   end
 
   protected def update_identifier
