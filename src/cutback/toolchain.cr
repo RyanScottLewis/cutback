@@ -4,7 +4,7 @@ class Cutback::Toolchain
   TAR      = "tar"
   PV       = "pv"
   FIND     = "find"
-  SUM      = "sha512sum"
+  CHECKSUM = "sha512sum"
   COMPRESS = "xz"
 
   Cutback.mapping({
@@ -12,7 +12,7 @@ class Cutback::Toolchain
     tar:      { type: String, default: TAR },
     pv:       { type: String, default: PV },
     find:     { type: String, default: FIND },
-    sum:      { type: String, default: SUM },
+    checksum: { type: String, default: CHECKSUM },
     compress: { type: String, default: COMPRESS },
   })
 
@@ -20,7 +20,7 @@ class Cutback::Toolchain
   property tar      : String = TAR
   property pv       : String = PV
   property find     : String = FIND
-  property sum      : String = SUM
+  property checksum : String = CHECKSUM
   property compress : String = COMPRESS
 
   def initialize
