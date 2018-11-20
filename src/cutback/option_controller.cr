@@ -25,11 +25,28 @@ class Cutback::OptionController
   end
 
   def execute
-    @option_parser.parse(@arguments)
-    @identifier.update(@options)
+    parse_options
+    update_from_config_option?
+    update_identifier
   end
 
-  def update_from_config?
+  protected def define_options
+    @option_parser.on( *OPTIONS[:help],     "" ) {         @options.help     = true }
+    @option_parser.on( *OPTIONS[:version],  "" ) {         @options.version  = true }
+    @option_parser.on( *OPTIONS[:config],   "" ) { |value| @options.config   = value }
+    @option_parser.on( *OPTIONS[:output],   "" ) { |value| @options.output   = value }
+    @option_parser.on( *OPTIONS[:paths],    "" ) { |value| @options.paths    = parse_list(value) }
+    @option_parser.on( *OPTIONS[:excludes], "" ) { |value| @options.excludes = parse_list(value) }
+    @option_parser.on( *OPTIONS[:records],  "" ) { |value| @options.records  = parse_list(value) }
+    @option_parser.on( *OPTIONS[:format],   "" ) { |value| @options.format   = value }
+    @option_parser.on( *OPTIONS[:progress], "" ) { |value| @options.progress = true }
+  end
+
+  protected def parse_options
+    @option_parser.parse(@arguments)
+  end
+
+  protected def update_from_config_option?
     unless @options.config.nil?
       path = @options.config.not_nil!
       config_options = Options.load(path)
@@ -47,16 +64,8 @@ class Cutback::OptionController
     end
   end
 
-  protected def define_options
-    @option_parser.on( *OPTIONS[:help],     "" ) {         @options.help     = true }
-    @option_parser.on( *OPTIONS[:version],  "" ) {         @options.version  = true }
-    @option_parser.on( *OPTIONS[:config],   "" ) { |value| @options.config   = value }
-    @option_parser.on( *OPTIONS[:output],   "" ) { |value| @options.output   = value }
-    @option_parser.on( *OPTIONS[:paths],    "" ) { |value| @options.paths    = parse_list(value) }
-    @option_parser.on( *OPTIONS[:excludes], "" ) { |value| @options.excludes = parse_list(value) }
-    @option_parser.on( *OPTIONS[:records],  "" ) { |value| @options.records  = parse_list(value) }
-    @option_parser.on( *OPTIONS[:format],   "" ) { |value| @options.format   = value }
-    @option_parser.on( *OPTIONS[:progress], "" ) { |value| @options.progress = true }
+  protected def update_identifier
+    @identifier.update(@options)
   end
 
   protected def parse_list(value)

@@ -12,13 +12,13 @@ class Cutback::Application
     @commands             = Commands.new(@options, @paths)
     @option_controller    = OptionController.new(arguments, @option_parser, @options, @identifier, @paths)
     @generator_controller = GeneratorController.new(@commands)
-    @router               = Router.new(@options, @option_controller, @generator_controller)
+    @router               = Router.new(arguments, @options, @generator_controller)
   end
 
   def execute
     @option_controller.execute
     @router.execute
-  rescue error
+  rescue error : Cutback::Error
     STDERR.puts "Error: #{error}"
     exit 1
   end
