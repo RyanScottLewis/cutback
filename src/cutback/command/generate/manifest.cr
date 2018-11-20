@@ -8,7 +8,7 @@ class Cutback::Command::Generate::Manifest < Cutback::Command::Generate
       exclude_flags(@options.records)
     )
 
-    pipe_to(io, progress("Generating Manifest")) if @options.progress
+    pipe_to(io, progress) if @options.progress
 
     output_to(io, @paths.manifest)
   end

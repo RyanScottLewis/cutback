@@ -11,7 +11,7 @@ class Cutback::Command::Generate::Records < Cutback::Command::Generate
       bracketed(exclude_flags(@options.excludes)),
     )
 
-    pipe_to(io, progress("Generating Records")) if @options.progress
+    pipe_to(io, progress) if @options.progress
 
     output_to(io, @paths.records)
   end
