@@ -29,7 +29,7 @@ class Cutback::RouteList
       if type.nil?
         @routes.values.each(&.{{name}})
       else
-        @routes[type].inspect
+        @routes[type].{{name}}
       end
     end
   end
