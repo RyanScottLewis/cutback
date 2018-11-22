@@ -7,8 +7,8 @@ class Cutback::Application
   def initialize(@arguments : Array(String) = ARGV)
     @options    = Options.new
     @identifier = Identifier.new(@options)
-    @paths      = Paths.new(@options, @identifier)
-    @routes     = Routes.new(@options, @paths)
+    @paths      = PathList.new(@options, @identifier)
+    @routes     = RouteList.new(@options, @paths)
     @router     = Router.new(arguments, @routes)
   end
 

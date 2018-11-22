@@ -1,6 +1,6 @@
 abstract class Cutback::Command::Inspect < Cutback::Command::Base
 
-  @paths : Paths
+  @paths : PathList
 
   def initialize(@options, @paths)
   end

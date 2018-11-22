@@ -5,7 +5,7 @@ class Cutback::Metadata::Generator
   end
 
   @options : Options
-  @paths   : Paths
+  @paths   : PathList
 
   def initialize(@options, @paths)
   end

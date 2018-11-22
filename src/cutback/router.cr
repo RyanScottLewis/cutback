@@ -1,7 +1,7 @@
 class Cutback::Router
 
   @arguments : Array(String)
-  @routes    : Routes
+  @routes    : RouteList
 
   def initialize(@arguments, @routes)
   end

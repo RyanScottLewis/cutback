@@ -1,7 +1,7 @@
 abstract class Cutback::Route::Base
 
   @options : Options
-  @paths   : Paths
+  @paths   : PathList
 
   def initialize(@options, @paths)
   end

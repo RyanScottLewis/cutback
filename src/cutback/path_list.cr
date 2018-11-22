@@ -1,4 +1,4 @@
-class Cutback::Paths
+class Cutback::PathList
 
   getter log      = ""
   getter manifest = ""

@@ -1,7 +1,7 @@
-class Cutback::Routes
+class Cutback::RouteList
 
   @options : Options
-  @paths   : Paths
+  @paths   : PathList
 
   getter manifest
   getter records
