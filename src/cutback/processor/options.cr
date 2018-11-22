@@ -21,7 +21,9 @@ class Cutback::Processor::Options < Cutback::Processor::Base
   @identifier    : Identifier
   @paths         : Paths
 
-  def initialize(@arguments, @option_parser, @options, @identifier, @paths)
+  def initialize(@arguments, @options, @identifier, @paths)
+    @option_parser = OptionParser.new
+
     define_options
   end
 
