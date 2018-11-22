@@ -5,6 +5,10 @@ class Cutback::Route::Checksum < Cutback::Route
   end
 
   def inspect
+    result = Command::Inspect::Checksum.execute(@options, @paths)
+    result = result.split(" ").last
+
+    puts result
   end
 
 end
