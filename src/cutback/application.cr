@@ -9,7 +9,6 @@ class Cutback::Application
     @identifier = Identifier.new(@options)
     @paths      = PathList.new(@options, @identifier)
     @routes     = RouteList.new(@options, @paths)
-    @router     = Router.new(arguments, @routes)
   end
 
   def execute
@@ -49,7 +48,7 @@ class Cutback::Application
   end
 
   protected def execute_route
-    @router.execute
+    Router.route(@arguments, @routes)
   end
 
   protected def display_error(error)

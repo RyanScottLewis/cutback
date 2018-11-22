@@ -5,14 +5,14 @@ class Cutback::Router
   @action    : String?
   @type      : String?
 
-  def self.execute(*arguments)
-    new(*arguments).execute
+  def self.route(*arguments)
+    new(*arguments).route
   end
 
   def initialize(@arguments, @routes)
   end
 
-  def execute
+  def route
     get_action
     get_type
     perform_action
