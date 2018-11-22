@@ -2,54 +2,47 @@ class Cutback::Router
 
   @arguments : Array(String)
   @routes    : RouteList
+  @action    : String?
+  @type      : String?
+
+  def self.execute(*arguments)
+    new(*arguments).execute
+  end
 
   def initialize(@arguments, @routes)
   end
 
   def execute
+    get_action
+    get_type
     perform_action
   end
 
+  protected def get_action
+    @action = @arguments[0]?
+  end
+
+  protected def get_type
+    @type = @arguments[1]?
+  end
+
   protected def perform_action
-    case @arguments[0]?
-    when nil        then perform_generate
+    case @action
+    when nil
+      perform_generate
+      perform_inspect
     when "generate" then perform_generate
     when "inspect"  then perform_inspect
     end
   end
 
-  # TODO: These should be more pragmatic
-
   protected def perform_generate
-    case @arguments[1]?
-    when nil
-      @routes.manifest.generate
-      @routes.records.generate
-      @routes.archive.generate
-      @routes.checksum.generate
-      @routes.metadata.generate
-    when "manifest" then @routes.manifest.generate
-    when "records"  then @routes.records.generate
-    when "archive"  then @routes.archive.generate
-    when "checksum" then @routes.checksum.generate
-    when "metadata" then @routes.metadata.generate
-    end
+    @routes.generate(@type)
   end
 
   protected def perform_inspect
-    case @arguments[1]?
-    when nil
-      @routes.manifest.inspect
-      @routes.records.inspect
-      @routes.archive.inspect
-      @routes.checksum.inspect
-      @routes.metadata.inspect
-    when "manifest" then @routes.manifest.inspect
-    when "records"  then @routes.records.inspect
-    when "archive"  then @routes.archive.inspect
-    when "checksum" then @routes.checksum.inspect
-    when "metadata" then @routes.metadata.inspect
-    end
+    @routes.inspect(@type)
   end
 
 end
+

@@ -2,20 +2,40 @@ class Cutback::RouteList
 
   @options : Options
   @paths   : PathList
+  @routes  = {} of String => Route::Base
 
-  getter manifest
-  getter records
-  getter archive
-  getter checksum
-  getter metadata
+  macro add_route(name)
+    @routes["{{name}}"] = Route::{{name.id.capitalize}}.new(@options, @paths)
+  end
 
   def initialize(@options, @paths)
-    @manifest = Route::Manifest.new(@options, @paths)
-    @records  = Route::Records.new(@options, @paths)
-    @archive  = Route::Archive.new(@options, @paths)
-    @checksum = Route::Checksum.new(@options, @paths)
-    @metadata = Route::Metadata.new(@options, @paths)
+    add_route manifest
+    add_route records
+    add_route archive
+    add_route checksum
+    add_route metadata
   end
+
+  def valid?(name)
+    @routes.key?(name)
+  end
+
+  def all
+    @routes.values
+  end
+
+  macro define_delegate(name)
+    def {{name}}(type)
+      if type.nil?
+        @routes.values.each(&.{{name}})
+      else
+        @routes[type].inspect
+      end
+    end
+  end
+
+  define_delegate generate
+  define_delegate inspect
 
 end
 
