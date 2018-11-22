@@ -30,5 +30,5 @@
   progress: true
 
   # Format of the archive metadata
-  format: "json"
+  format: "yaml"
 
