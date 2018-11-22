@@ -12,10 +12,6 @@ class Cutback::Command::Generate::Archive < Cutback::Command::Generate
 
     error_to(io, @paths.log)
 
-    # TODO:
-    # -s  Size of tar
-    # -e  Show ETA
-    # -p  Show progress bar
     pipe_to(io, progress) if @options.progress
 
     pipe_to(io, compress) if @options.compress
