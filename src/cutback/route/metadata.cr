@@ -13,7 +13,7 @@ class Cutback::Route::Metadata < Cutback::Route::Base
   end
 
   protected def create_metadata
-    Cutback::Metadata.create(@options, @paths)
+    Cutback::Metadata::Root.new(@options, @paths)
   end
 
 end
