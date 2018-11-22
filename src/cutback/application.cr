@@ -1,27 +1,33 @@
 class Cutback::Application
 
-  def self.execute(arguments=ARGV)
-    new(arguments).execute
+  def self.execute(*arguments)
+    new(*arguments).execute
   end
 
-  def initialize(arguments=ARGV)
-    @options            = Options.new
-    @option_parser      = OptionParser.new
-    @identifier         = Identifier.new(@options)
-    @paths              = Paths.new(@options, @identifier)
-    @routes             = Routes.new(@options, @paths)
-    @option_processor   = Processor::Options.new(arguments, @option_parser, @options, @identifier, @paths)
-    @argument_processor = Processor::Arguments.new(arguments)
-    @router             = Router.new(arguments, @routes)
+  def initialize(@arguments : Array(String) = ARGV)
+    @options       = Options.new
+    @option_parser = OptionParser.new
+    @identifier    = Identifier.new(@options)
+    @paths         = Paths.new(@options, @identifier)
+    @routes        = Routes.new(@options, @paths)
+    @router        = Router.new(arguments, @routes)
   end
 
   def execute
-    @option_processor.execute
-    @argument_processor.execute
+    process_options
+    process_arguments
     @router.execute
   rescue error : Cutback::Error
     STDERR.puts "Error: #{error}"
     exit 1
+  end
+
+  protected def process_options
+    Processor::Options.process(@arguments, @option_parser, @options, @identifier, @paths)
+  end
+
+  protected def process_arguments
+    Processor::Arguments.process(@arguments)
   end
 
 end
