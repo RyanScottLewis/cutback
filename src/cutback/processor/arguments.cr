@@ -1,4 +1,4 @@
-class Cutback::ArgumentController
+class Cutback::Processor::Arguments < Cutback::Processor::Base
 
   @arguments : Array(String)
 
@@ -15,7 +15,7 @@ class Cutback::ArgumentController
   end
 
   protected def validate_arguments
-    ArgumentValidator.execute(@arguments)
+    Validator::Arguments.validate(@arguments)
   end
 
 end

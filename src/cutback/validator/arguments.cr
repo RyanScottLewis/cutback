@@ -1,18 +1,14 @@
-class Cutback::ArgumentValidator
+class Cutback::Validator::Arguments < Cutback::Validator::Base
 
   ACTIONS = %w[generate inspect]
   TYPES   = %w[manifest records archive checksum metadata]
-
-  def self.execute(arguments : Array(String))
-    new(arguments).execute
-  end
 
   @arguments : Array(String)
 
   def initialize(@arguments)
   end
 
-  def execute
+  def validate
     validate_size
     validate_action
     validate_type

@@ -1,17 +1,13 @@
-class Cutback::OptionValidator
+class Cutback::Validator::Options < Cutback::Validator::Base
 
   FORMATS = %w[json yaml]
 
-  def self.execute(options : Options)
-    new(options).execute
-  end
-
-  @options : Options
+  @options : Cutback::Options
 
   def initialize(@options)
   end
 
-  def execute
+  def validate
     validate_help
     validate_version
     validate_output

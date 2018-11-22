@@ -1,4 +1,4 @@
-class Cutback::OptionController
+class Cutback::Processor::Options < Cutback::Processor::Base
 
   PATH_DELIMITER = ";"
 
@@ -17,7 +17,7 @@ class Cutback::OptionController
 
   @arguments     : Array(String)
   @option_parser : OptionParser
-  @options       : Options
+  @options       : Cutback::Options
   @identifier    : Identifier
   @paths         : Paths
 
@@ -64,7 +64,7 @@ class Cutback::OptionController
   end
 
   protected def validate_options
-    OptionValidator.execute(@options)
+    Validator::Options.validate(@options)
   end
 
   protected def update_identifier

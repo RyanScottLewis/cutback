@@ -17,7 +17,9 @@ module Cutback
 end
 
 require "./cutback/command/base"
+require "./cutback/processor/base"
 require "./cutback/route/base"
+require "./cutback/validator/base"
 
 require "./cutback/**"
 
