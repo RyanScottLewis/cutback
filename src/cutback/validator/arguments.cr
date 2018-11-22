@@ -4,8 +4,9 @@ class Cutback::Validator::Arguments < Cutback::Validator::Base
   TYPES   = %w[manifest records archive checksum metadata]
 
   @arguments : Array(String)
+  @routes    : RouteList
 
-  def initialize(@arguments)
+  def initialize(@arguments, @routes)
   end
 
   def validate
@@ -22,13 +23,13 @@ class Cutback::Validator::Arguments < Cutback::Validator::Base
   protected def validate_action
     action = @arguments[0]?
 
-    raise Error::InvalidArguments.new unless ACTIONS.includes?(action) || action.nil?
+    raise Error::InvalidAction.new unless ACTIONS.includes?(action) || action.nil?
   end
 
   protected def validate_type
     type = @arguments[1]?
 
-    raise Error::InvalidArguments.new unless TYPES.includes?(type) || type.nil?
+    raise Error::InvalidType.new unless @routes.valid?(type) || type.nil?
   end
 
 end

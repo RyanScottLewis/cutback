@@ -17,7 +17,11 @@ class Cutback::RouteList
   end
 
   def valid?(name)
-    @routes.key?(name)
+    @routes.has_key?(name)
+  end
+
+  def names
+    @routes.keys
   end
 
   def all
