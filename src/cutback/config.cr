@@ -23,14 +23,18 @@ class Cutback::Config
     progress: Bool?,
   })
 
-  def update_options(options : Options) # TODO: Macro for these..
-    options.output   = @output.not_nil!   unless @output.nil?
-    options.paths    = @paths.not_nil!    unless @paths.nil?
-    options.excludes = @excludes.not_nil! unless @excludes.nil?
-    options.records  = @records.not_nil!  unless @records.nil?
-    options.format   = @format.not_nil!   unless @format.nil?
-    options.compress = @compress.not_nil! unless @compress.nil?
-    options.progress = @progress.not_nil! unless @progress.nil?
+  macro update_option(options, name)
+    options.{{name}} = @{{name}}.not_nil! unless @{{name}}.nil?
+  end
+
+  def update_options(options : Options)
+    update_option(options, output)
+    update_option(options, paths)
+    update_option(options, excludes)
+    update_option(options, records)
+    update_option(options, format)
+    update_option(options, compress)
+    update_option(options, progress)
   end
 
 end

@@ -28,7 +28,7 @@ class Cutback::Processor::Options < Cutback::Processor::Base
     {% end %}
   end
 
-  protected def define_options # TODO: Macro for these.. use `value` for all then do parse_list on options after
+  protected def define_options
     define_option(help,     h, bool)
     define_option(version,  v, bool)
     define_option(config,   c, string)
