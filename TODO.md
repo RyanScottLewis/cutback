@@ -27,4 +27,4 @@
       * Print the metadata
     * `options`
   * `checksum`
-
+* Check for binaries in toolset before executing them in command

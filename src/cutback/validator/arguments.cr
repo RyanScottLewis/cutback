@@ -18,6 +18,7 @@ class Cutback::Validator::Arguments < Cutback::Validator::Base
     raise Error::InvalidArguments.new if @arguments.size > 2
   end
 
+  # TODO: More specific errors
   protected def validate_action
     action = @arguments[0]?
 
