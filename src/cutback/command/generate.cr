@@ -1,4 +1,4 @@
-abstract class Cutback::Command::Generate < Cutback::Command
+abstract class Cutback::Command::Generate < Cutback::Command::Base
 
   @paths : Paths
 

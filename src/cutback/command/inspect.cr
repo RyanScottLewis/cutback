@@ -1,4 +1,4 @@
-abstract class Cutback::Command::Inspect < Cutback::Command
+abstract class Cutback::Command::Inspect < Cutback::Command::Base
 
   @paths : Paths
 

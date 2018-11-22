@@ -1,4 +1,4 @@
-abstract class Cutback::Command
+abstract class Cutback::Command::Base
 
   def self.execute(*arguments)
     new(*arguments).execute
@@ -15,6 +15,7 @@ abstract class Cutback::Command
     command = to_s
 
     puts command # TODO: Verbose option
+    File.open(@paths.log, "a+") { |file| file.puts(command) }
 
     `#{command}`
   end

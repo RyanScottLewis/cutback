@@ -1,4 +1,4 @@
-class Cutback::Command::Progress < Cutback::Command
+class Cutback::Command::Progress < Cutback::Command::Base
 
   @arguments = [] of String
 

@@ -1,4 +1,4 @@
-class Cutback::Command::Compress < Cutback::Command
+class Cutback::Command::Compress < Cutback::Command::Base
 
   def initialize(@options)
   end
