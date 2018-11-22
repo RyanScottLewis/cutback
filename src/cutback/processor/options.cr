@@ -25,7 +25,7 @@ class Cutback::Processor::Options < Cutback::Processor::Base
     define_options
   end
 
-  def execute
+  def process
     parse_options
     update_options_from_config
     preprocess_options
