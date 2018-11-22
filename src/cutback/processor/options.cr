@@ -16,12 +16,10 @@ class Cutback::Processor::Options < Cutback::Processor::Base
   }
 
   @arguments     : Array(String)
-  @option_parser : OptionParser
   @options       : Cutback::Options
-  @identifier    : Identifier
-  @paths         : Paths
+  @option_parser : OptionParser
 
-  def initialize(@arguments, @options, @identifier, @paths)
+  def initialize(@arguments, @options)
     @option_parser = OptionParser.new
 
     define_options
@@ -32,8 +30,6 @@ class Cutback::Processor::Options < Cutback::Processor::Base
     update_options_from_config
     preprocess_options
     validate_options
-    update_identifier
-    update_paths
   end
 
   protected def define_options # TODO: Macro for these.. use `value` for all then do parse_list on options after
@@ -67,14 +63,6 @@ class Cutback::Processor::Options < Cutback::Processor::Base
 
   protected def validate_options
     Validator::Options.validate(@options)
-  end
-
-  protected def update_identifier
-    @identifier.update(@options)
-  end
-
-  protected def update_paths
-    @paths.update
   end
 
   protected def parse_list(value)
