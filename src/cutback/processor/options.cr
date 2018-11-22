@@ -29,7 +29,6 @@ class Cutback::Processor::Options < Cutback::Processor::Base
     parse_options
     update_options_from_config
     preprocess_options
-    validate_options
   end
 
   protected def define_options # TODO: Macro for these.. use `value` for all then do parse_list on options after
@@ -59,10 +58,6 @@ class Cutback::Processor::Options < Cutback::Processor::Base
 
   protected def preprocess_options
     @options.format = @options.format.strip.downcase
-  end
-
-  protected def validate_options
-    Validator::Options.validate(@options)
   end
 
   protected def parse_list(value)

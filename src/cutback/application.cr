@@ -15,6 +15,8 @@ class Cutback::Application
   def execute
     process_options
     process_arguments
+    validate_options
+    validate_arguments
     update_identifier
     update_paths
     execute_route
@@ -28,6 +30,14 @@ class Cutback::Application
 
   protected def process_arguments
     Processor::Arguments.process(@arguments)
+  end
+
+  protected def validate_arguments
+    Validator::Arguments.validate(@arguments, @routes)
+  end
+
+  protected def validate_options
+    Validator::Options.validate(@options)
   end
 
   protected def update_identifier
