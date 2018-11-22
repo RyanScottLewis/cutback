@@ -12,21 +12,7 @@
   * `output` option, when from config, should be relative to the config file
   * Bool options should toggle known value (from default or config value)
 * Commands
-  * `generate [TYPE]`
-    * `archive`
-    * `metadata`
-  * `inspect [TYPE]`
-    * `manifest`/`records`
-      * Path count
-      * Total size of app files
-      * Biggest and smallest files
-    * `archive`
-      * Compression type & level
-      * Size
-    * `metadata`
-      * Print the metadata
-    * `options`
-  * `checksum`
+  * `generate/inspect config`
 * Check for binaries in toolset before executing them in command
 * embed/i18n.yml
   * Error messages
@@ -34,3 +20,4 @@
   * `-s` Size of tar
   * `-e` Show ETA
   * `-p` Show progress bar
+
