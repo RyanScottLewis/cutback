@@ -1,4 +1,4 @@
-class Cutback::Route::Metadata < Cutback::Route
+class Cutback::Route::Metadata < Cutback::Route::Base
 
   def initialize(@options, @paths)
   end

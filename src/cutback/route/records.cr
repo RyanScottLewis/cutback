@@ -1,4 +1,4 @@
-class Cutback::Route::Records < Cutback::Route
+class Cutback::Route::Records < Cutback::Route::Base
 
   def generate
     Command::Generate::Records.execute(@options, @paths)

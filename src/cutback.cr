@@ -16,6 +16,9 @@ module Cutback
 
 end
 
+require "./cutback/command/base"
+require "./cutback/route/base"
+
 require "./cutback/**"
 
 Cutback::Application.execute

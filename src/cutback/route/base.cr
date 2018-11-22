@@ -1,4 +1,4 @@
-abstract class Cutback::Route
+abstract class Cutback::Route::Base
 
   @options : Options
   @paths   : Paths

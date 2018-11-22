@@ -1,4 +1,4 @@
-class Cutback::Route::Checksum < Cutback::Route
+class Cutback::Route::Checksum < Cutback::Route::Base
 
   def generate
     Command::Generate::Checksum.execute(@options, @paths)
