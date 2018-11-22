@@ -52,7 +52,7 @@ class Cutback::Application
   end
 
   protected def display_error(error)
-    STDERR.puts "Error: #{error}"
+    STDERR.puts "Error: #{error.class} - #{error}"
 
     exit 1
   end
