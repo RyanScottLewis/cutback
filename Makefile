@@ -57,7 +57,7 @@ CLEAN         ?= $(DIR_BLD) $(DIR_MAN) $(DIR_EMB) $(GENERATE_EXE) $(DOCS)
 
 all: docs build
 
-build: $(GENERATE_EXE) $(CUTBACK_EXE)
+build: $(CUTBACK_EXE) $(README_MD)
 
 docs: $(DOCS)
 
