@@ -60,6 +60,7 @@ class Cutback::Processor::Options < Cutback::Processor::Base
   end
 
   protected def preprocess_options
+    @options.index    = Identifier.largest(@options.output, @options.date) if @prototype.index.nil?
     @options.format = @options.format.strip.downcase
     @options.progress = !@options.progress if @prototype.progress
     @options.compress = !@options.compress if @prototype.compress
