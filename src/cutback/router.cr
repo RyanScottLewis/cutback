@@ -28,9 +28,7 @@ class Cutback::Router
 
   protected def perform_action
     case @action
-    when nil
-      perform_generate
-      perform_inspect
+    when nil        then perform_generate
     when "generate" then perform_generate
     when "inspect"  then perform_inspect
     end
