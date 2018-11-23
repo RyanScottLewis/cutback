@@ -41,7 +41,11 @@ class Cutback::Router
   end
 
   protected def perform_inspect
-    @routes.inspect(@type)
+    if @type.nil?
+      @routes["metadata"].inspect
+    else
+      @routes.inspect(@type)
+    end
   end
 
 end

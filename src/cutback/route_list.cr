@@ -16,6 +16,8 @@ class Cutback::RouteList
     add_route metadata
   end
 
+  delegate :[], to: @routes
+
   def valid?(name)
     @routes.has_key?(name)
   end
