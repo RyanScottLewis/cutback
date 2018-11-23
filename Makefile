@@ -30,6 +30,7 @@ CUTBACK_EXE   ?= $(DIR_BLD)/$(NAME)
 
 GENERATE_CR   ?= $(DIR_SRC)/generate.cr
 GENERATE_EXE  ?= $(DIR_BIN)/generate
+GENERATE_DEST ?= $(DESTDIR)/usr/bin/cutback
 
 README_TMPL   ?= $(DIR_TMPL)/README.md
 README_MD     ?= README.md
@@ -58,6 +59,12 @@ CLEAN         ?= $(DIR_BLD) $(DIR_MAN) $(DIR_EMB) $(GENERATE_EXE) $(DOCS)
 all: docs build
 
 build: $(CUTBACK_EXE) $(README_MD)
+
+install: $(CUTBACK_EXE)
+	install -m 755 -D $(GENERATE_EXE) $(GENERATE_DEST)
+
+uninstall:
+	$(RM) $(GENERATE_DEST)
 
 docs: $(DOCS)
 
