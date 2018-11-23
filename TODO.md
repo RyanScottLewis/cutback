@@ -11,8 +11,6 @@
   * CLI options should override config options
   * `output` option, when from config, should be relative to the config file
   * Bool options should toggle known value (from default or config value)
-  * `--output` should only have a default for manifest, records, archive, and checksum
-    but not config since without an output, it will print
   * Paths should only be invalid when used in a generate manifest/records
 * Commands
   * `generate/inspect config`
