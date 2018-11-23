@@ -13,6 +13,8 @@ class Cutback::Config
     end
   end
 
+  include Helpers::Dumpable
+
   Cutback.mapping({
     output:   String?,
     paths:    Array(String)?,
