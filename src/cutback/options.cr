@@ -4,6 +4,7 @@ class Cutback::Options
 
     property help             : Bool?
     property version          : Bool?
+    property dry              : Bool?
     property config           : String?
     property output           : String?
     property date             : Time?
@@ -21,6 +22,7 @@ class Cutback::Options
 
   property help             = false
   property version          = false
+  property dry              = false
   property config           : String?
   property output           = "."
   property date             = Time.utc_now
@@ -54,6 +56,7 @@ class Cutback::Options
   def update(prototype : Prototype)
     update_option(prototype, help)
     update_option(prototype, version)
+    update_option(prototype, dry)
     update_option(prototype, config)
     update_option(prototype, output)
     update_option(prototype, date)

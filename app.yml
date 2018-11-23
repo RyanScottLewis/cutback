@@ -40,6 +40,7 @@ mit_license: This program is available as open source under the terms of the MIT
 options:
   help:     Display help
   version:  Display version
+  dry:      Do not run system commands (dry run)
   output:   Output path
   date:     Date for the backup in YYYY-MM-DD format
   index:    Index for the backup

@@ -17,7 +17,7 @@ abstract class Cutback::Command::Base
     puts command # TODO: Verbose option
     File.open(@paths.log, "a+") { |file| file.puts(command) }
 
-    `#{command}`
+    @options.dry ? "" : `#{command}`
   end
 
   protected def pipe_to(io, command)

@@ -32,6 +32,7 @@ class Cutback::Processor::Options < Cutback::Processor::Base
   protected def define_options
     define_option(help,     h, bool)
     define_option(version,  v, bool)
+    define_option(dry,      d, bool)
     define_option(config,   c, string)
     define_option(output,   o, string)
     define_option(paths,    p, list)

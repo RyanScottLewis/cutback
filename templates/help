@@ -6,6 +6,7 @@ Options:
   -h, --help               <%= options["help"] %>
   -v, --version            <%= options["version"] %>
   -c, --config             <%= options["config"] %>
+  -d, --dry                <%= options["dry"] %>
   -o, --output   PATH      <%= options["output"] %>
   -d, --date     DATE      <%= options["date"] %>
   -i, --index    INDEX     <%= options["index"] %>
