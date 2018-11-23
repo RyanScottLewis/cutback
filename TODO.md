@@ -1,5 +1,7 @@
 # TODO
 
+* Config man page
+* Tests
 * Options
   * `--verbose [LEVEL]`
     * Level 0: Display nothing
