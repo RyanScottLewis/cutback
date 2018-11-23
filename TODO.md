@@ -1,5 +1,6 @@
 # TODO
 
+* When generating, the index should be incremented by 1 if no --index was given
 * Logger
 * Options
   * `--verbose [LEVEL]`
