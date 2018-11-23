@@ -5,8 +5,10 @@ abstract class Cutback::Command::Base
   end
 
   @options : Options
+  @paths   : PathList
+  @logger  : Logger
 
-  def initialize(@options)
+  def initialize(@options, @paths, @logger)
   end
 
   abstract def to_s(io)
@@ -14,8 +16,7 @@ abstract class Cutback::Command::Base
   def execute
     command = to_s
 
-    puts command # TODO: Verbose option
-    File.open(@paths.log, "a+") { |file| file.puts(command) }
+    @logger.info(command)
 
     @options.dry ? "" : `#{command}`
   end
@@ -40,7 +41,7 @@ abstract class Cutback::Command::Base
   end
 
   protected def progress(*arguments)
-    Progress.new(@options, *arguments)
+    Progress.new(@options, @paths, @logger, *arguments)
   end
 
 end

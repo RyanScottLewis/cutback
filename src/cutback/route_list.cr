@@ -2,13 +2,16 @@ class Cutback::RouteList
 
   @options : Options
   @paths   : PathList
+  @logger  : Logger
   @routes  = {} of String => Route::Base
 
+  property logger
+
   macro add_route(name)
-    @routes["{{name}}"] = Route::{{name.id.capitalize}}.new(@options, @paths)
+    @routes["{{name}}"] = Route::{{name.id.capitalize}}.new(@options, @paths, @logger)
   end
 
-  def initialize(@options, @paths)
+  def initialize(@options, @paths, @logger)
     add_route config
     add_route manifest
     add_route records

@@ -1,8 +1,5 @@
 class Cutback::Command::Compress < Cutback::Command::Base
 
-  def initialize(@options)
-  end
-
   def to_s(io)
     join(io,
       @options.toolchain.compress,

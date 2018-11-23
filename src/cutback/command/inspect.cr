@@ -1,10 +1,5 @@
 abstract class Cutback::Command::Inspect < Cutback::Command::Base
 
-  @paths : PathList
-
-  def initialize(@options, @paths)
-  end
-
   protected def progress(*arguments)
     name = self.class.name.split("::").last
 

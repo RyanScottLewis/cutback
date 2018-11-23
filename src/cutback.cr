@@ -1,10 +1,16 @@
-require "yaml"
 require "json"
+require "logger"
 require "option_parser"
+require "yaml"
 
 require "baked_file_system"
 
 require "./cutback/embed"
+
+# HAX
+class Logger
+  property io
+end
 
 module Cutback
 

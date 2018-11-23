@@ -1,7 +1,7 @@
 class Cutback::Route::Records < Cutback::Route::Base
 
   def generate
-    Command::Generate::Records.execute(@options, @paths)
+    execute_generate(records)
   end
 
   def inspect

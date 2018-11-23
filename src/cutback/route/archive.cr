@@ -1,7 +1,7 @@
 class Cutback::Route::Archive < Cutback::Route::Base
 
   def generate
-    Command::Generate::Archive.execute(@options, @paths)
+    execute_generate(archive)
   end
 
   def inspect

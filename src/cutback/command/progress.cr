@@ -2,7 +2,7 @@ class Cutback::Command::Progress < Cutback::Command::Base
 
   @arguments = [] of String
 
-  def initialize(@options, *arguments)
+  def initialize(@options, @paths, @logger, *arguments)
     arguments.each { |argument| @arguments << argument }
   end
 

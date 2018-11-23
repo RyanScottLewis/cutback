@@ -20,7 +20,7 @@ class Cutback::Command::Generate::Archive < Cutback::Command::Generate
   end
 
   protected def compress
-    Compress.new(@options)
+    Compress.new(@options, @paths, @logger)
   end
 
   protected def progress(*arguments)

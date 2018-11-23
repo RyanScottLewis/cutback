@@ -2,9 +2,6 @@ class Cutback::Command::Generate::Records < Cutback::Command::Generate
 
   include Helpers::Search
 
-  def initialize(@options, @paths)
-  end
-
   def to_s(io)
     find_files(io,
       bracketed(include_flags(@options.records)),

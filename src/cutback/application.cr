@@ -5,10 +5,11 @@ class Cutback::Application
   end
 
   def initialize(@arguments : Array(String) = ARGV)
+    @logger     = Logger.new(STDOUT)
     @options    = Options.new
     @identifier = Identifier.new(@options)
     @paths      = PathList.new(@options, @identifier)
-    @routes     = RouteList.new(@options, @paths)
+    @routes     = RouteList.new(@options, @paths, @logger)
   end
 
   def execute
@@ -18,6 +19,7 @@ class Cutback::Application
     validate_arguments
     update_identifier
     update_paths
+    setup_logger
     execute_route
   rescue error : Cutback::Error
     display_error(error)
@@ -45,6 +47,12 @@ class Cutback::Application
 
   protected def update_paths
     @paths.update
+  end
+
+  protected def setup_logger
+    file = File.open(@paths.log, "a+")
+
+    @logger.io = IO::MultiWriter.new(STDOUT, file) # TODO: This is totally borked as `@logger.io = file` works just fine
   end
 
   protected def execute_route
