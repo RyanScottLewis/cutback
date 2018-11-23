@@ -29,22 +29,8 @@ class Cutback::Config
     update(options)
   end
 
-  macro update_option(options, name)
-    options.{{name}} = @{{name}}.not_nil! unless @{{name}}.nil?
-  end
-
-  def update_options(options : Options)
-    update_option(options, output)
-    update_option(options, paths)
-    update_option(options, excludes)
-    update_option(options, records)
-    update_option(options, format)
-    update_option(options, compress)
-    update_option(options, progress)
-  end
-
-  macro update_config(options, name)
-    @{{name}} = options.{{name}}
+  macro update_config(parent, name)
+    @{{name}} = {{parent}}.{{name}}
   end
 
   def update(options : Options)

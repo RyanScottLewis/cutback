@@ -2,29 +2,30 @@ class Cutback::Processor::Options < Cutback::Processor::Base
 
   PATH_DELIMITER = ";"
 
-  @arguments     : Array(String)
-  @options       : Cutback::Options
-  @option_parser : OptionParser
+  @arguments : Array(String)
+  @options   : Cutback::Options
 
   def initialize(@arguments, @options)
     @option_parser = OptionParser.new
+    @prototype     = Cutback::Options::Prototype.new
 
     define_options
   end
 
   def process
-    parse_options
+    parse_options_into_prototype
     update_options_from_config
+    update_options_from_prototype
     preprocess_options
   end
 
   macro define_option(name, short, type)
     {% if type.id == "bool" %}
-      @option_parser.on("-{{short}}", "--{{name}}", "") { @options.{{name.id}} = true }
+      @option_parser.on("-{{short}}", "--{{name}}", "") { @prototype.{{name.id}} = true }
     {% elsif type.id == "string" %}
-      @option_parser.on("-{{short}}", "--{{name}} VALUE", "") { |value| @options.{{name.id}} = value }
+      @option_parser.on("-{{short}}", "--{{name}} VALUE", "") { |value| @prototype.{{name.id}} = value }
     {% elsif type.id == "list" %}
-      @option_parser.on("-{{short}}", "--{{name}} VALUE", "") { |value| @options.{{name.id}} = parse_list(value) }
+      @option_parser.on("-{{short}}", "--{{name}} VALUE", "") { |value| @prototype.{{name.id}} = parse_list(value) }
     {% end %}
   end
 
@@ -41,16 +42,20 @@ class Cutback::Processor::Options < Cutback::Processor::Base
     define_option(progress, P, bool)
   end
 
-  protected def parse_options
+  protected def parse_options_into_prototype
     @option_parser.parse(@arguments)
   end
 
   protected def update_options_from_config
-    return if @options.config.nil?
+    return if @prototype.nil?
 
-    config = Config.load(@options.config.not_nil!)
+    config = Config.load(@prototype.config.not_nil!)
 
-    config.update_options(@options)
+    @options.update(config)
+  end
+
+  protected def update_options_from_prototype
+    @options.update(@prototype)
   end
 
   protected def preprocess_options
