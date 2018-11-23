@@ -1,6 +1,6 @@
 class Cutback::Command::Generate::Records < Cutback::Command::Generate
 
-  include SearchHelpers
+  include Helpers::Search
 
   def initialize(@options, @paths)
   end

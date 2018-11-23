@@ -18,6 +18,8 @@ module Cutback
 
 end
 
+require "./cutback/helpers/**"
+
 require "./cutback/command/base"
 require "./cutback/metadata/base"
 require "./cutback/processor/base"

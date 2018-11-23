@@ -1,6 +1,6 @@
 class Cutback::Command::Generate::Manifest < Cutback::Command::Generate
 
-  include SearchHelpers
+  include Helpers::Search
 
   def to_s(io)
     find_files(io,
