@@ -20,7 +20,9 @@ CR_EXE        ?= crystal
 CR_FLAGS      ?= build
 CR            ?= $(CR_EXE) $(CR_FLAGS)
 
-GZ            ?= gzip
+GZ_EXE        ?= gzip
+GZ_FLAGS      ?= -f
+GZ            ?= $(GZ_EXE) $(GZ_FLAGS)
 
 APP_YML       ?= app.yml shard.yml
 
@@ -41,10 +43,12 @@ README_HTML   ?= $(DIR_DOC)/README.html
 MAN_EXE_TMPL  ?= $(DIR_TMPL)/$(NAME).1
 MAN_EXE_ROFF  ?= $(DIR_MAN)/$(NAME).1
 MAN_EXE_GZ    ?= $(DIR_MAN)/$(NAME).1.gz
+MAN_EXE_DEST  ?= $(DESTDIR)/usr/share/man/man1/$(NAME).1.gz
 
 MAN_CFG_TMPL  ?= $(DIR_TMPL)/$(NAME).5
 MAN_CFG_ROFF  ?= $(DIR_MAN)/$(NAME).5
 MAN_CFG_GZ    ?= $(DIR_MAN)/$(NAME).5.gz
+MAN_CFG_DEST  ?= $(DESTDIR)/usr/share/man/man5/$(NAME).5.gz
 
 HELP_TMPL     ?= $(DIR_TMPL)/help
 HELP_OUT      ?= $(DIR_EMB)/help
@@ -66,9 +70,13 @@ build: $(CUTBACK_EXE) $(README_MD)
 
 install: $(CUTBACK_EXE)
 	install -m 755 -D $(GENERATE_EXE) $(GENERATE_DEST)
+	install -m 644 -D $(MAN_EXE_GZ) $(MAN_EXE_DEST)
+	install -m 644 -D $(MAN_CFG_GZ) $(MAN_CFG_DEST)
 
 uninstall:
 	$(RM) $(GENERATE_DEST)
+	$(RM) $(MAN_EXE_DEST)
+	$(RM) $(MAN_CFG_DEST)
 
 docs: $(DOCS)
 
