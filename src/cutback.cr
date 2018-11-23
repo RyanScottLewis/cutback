@@ -1,3 +1,5 @@
+# Point of entry to the cutback application
+
 require "json"
 require "logger"
 require "option_parser"

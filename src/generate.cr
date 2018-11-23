@@ -1,3 +1,5 @@
+# Template generator built to bin/generate for internal file generation
+
 require "yaml"
 require "ecr/macros"
 
