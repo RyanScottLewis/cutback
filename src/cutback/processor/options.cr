@@ -48,7 +48,7 @@ class Cutback::Processor::Options < Cutback::Processor::Base
   end
 
   protected def update_options_from_config
-    return if @prototype.nil?
+    return if @prototype.config.nil?
 
     config = Config.load(@prototype.config.not_nil!)
 
