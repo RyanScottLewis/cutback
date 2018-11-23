@@ -2,6 +2,8 @@ require "yaml"
 require "json"
 require "option_parser"
 
+require "baked_file_system"
+
 require "./cutback/embed"
 
 module Cutback
