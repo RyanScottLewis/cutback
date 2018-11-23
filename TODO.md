@@ -16,8 +16,3 @@
 * Check for binaries in toolset before executing them in command
 * embed/i18n.yml
   * Error messages
-* pv show progress bar for generating archive
-  * `-s` Size of tar
-  * `-e` Show ETA
-  * `-p` Show progress bar
-

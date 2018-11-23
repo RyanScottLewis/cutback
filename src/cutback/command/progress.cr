@@ -22,5 +22,13 @@ class Cutback::Command::Progress < Cutback::Command::Base
     self
   end
 
+  def with_size(size)
+    @arguments << "-s #{size}" # Total ize
+    @arguments << "-e"         # Show ETA
+    @arguments << "-p"         # Show progress bar
+
+    self
+  end
+
 end
 

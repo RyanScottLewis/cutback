@@ -23,5 +23,12 @@ class Cutback::Command::Generate::Archive < Cutback::Command::Generate
     Compress.new(@options)
   end
 
+  protected def progress(*arguments)
+    manifest = Metadata::Manifest.new(@paths)
+    size     = manifest.size.bytes
+
+    super(*arguments).with_size(size)
+  end
+
 end
 

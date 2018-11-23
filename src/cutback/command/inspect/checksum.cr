@@ -26,5 +26,11 @@ class Cutback::Command::Inspect::Checksum < Cutback::Command::Inspect
     end
   end
 
+  protected def progress(*arguments)
+    size = File.size(@paths.archive)
+
+    super(*arguments).with_size(size)
+  end
+
 end
 
