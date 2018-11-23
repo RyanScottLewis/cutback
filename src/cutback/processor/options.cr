@@ -60,6 +60,8 @@ class Cutback::Processor::Options < Cutback::Processor::Base
 
   protected def preprocess_options
     @options.format = @options.format.strip.downcase
+    @options.progress = !@options.progress if @prototype.progress
+    @options.compress = !@options.compress if @prototype.compress
   end
 
   protected def parse_list(value)
