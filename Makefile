@@ -22,11 +22,13 @@ CR            ?= $(CR_EXE) $(CR_FLAGS)
 
 APP_YML       ?= app.yml shard.yml
 
-CUTBACK_CR    ?= $(DIR_SRC)/$(NAME).cr $(wildcard $(DIR_SRC)/$(NAME)/*.cr)
+find = $(shell find ./$1 -path '$2')
+
+CUTBACK_CR    ?= $(DIR_SRC)/$(NAME).cr $(call find,$(DIR_SRC)/$(NAME),*.cr)
 CUTBACK_EXE   ?= $(DIR_BLD)/$(NAME)
 #CUTBACK_FLAGS ?= --release # TODO: DONT FORGET ABOUT ME~! CHECK for DEBUG for this
 
-GENERATE_CR   ?= $(DIR_SRC)/generate.cr $(wildcard $(DIR_SRC)/generate/*.cr)
+GENERATE_CR   ?= $(DIR_SRC)/generate.cr
 GENERATE_EXE  ?= $(DIR_BIN)/generate
 
 README_TMPL   ?= $(DIR_TMPL)/README.md
@@ -45,7 +47,7 @@ HELP_OUT      ?= $(DIR_EMB)/help
 VERSION_TMPL  ?= $(DIR_TMPL)/version
 VERSION_OUT   ?= $(DIR_EMB)/version
 
-TEMPLATES     ?= $(wildcard $(DIR_TMPL)/*)
+TEMPLATES     ?= $(call find,$(DIR_TMPL),*)
 DOCS          ?= $(README_MD) $(README_HTML) $(MAN_EXE_ROFF) $(MAN_CFG_ROFF)
 EMBEDS        ?= $(HELP_OUT) $(VERSION_OUT)
 
