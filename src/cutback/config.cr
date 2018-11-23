@@ -25,6 +25,10 @@ class Cutback::Config
     progress: Bool?,
   })
 
+  def initialize(options : Options)
+    update(options)
+  end
+
   macro update_option(options, name)
     options.{{name}} = @{{name}}.not_nil! unless @{{name}}.nil?
   end
@@ -37,6 +41,20 @@ class Cutback::Config
     update_option(options, format)
     update_option(options, compress)
     update_option(options, progress)
+  end
+
+  macro update_config(options, name)
+    @{{name}} = options.{{name}}
+  end
+
+  def update(options : Options)
+    update_config(options, output)
+    update_config(options, paths)
+    update_config(options, excludes)
+    update_config(options, records)
+    update_config(options, format)
+    update_config(options, compress)
+    update_config(options, progress)
   end
 
 end

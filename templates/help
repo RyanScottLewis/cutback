@@ -22,6 +22,7 @@ Actions:
   inspect                  <%= actions["inspect"] %>
 
 Types:
+  config                   <%= types["config"] %>
   manifest                 <%= types["manifest"] %>
   records                  <%= types["records"] %>
   archive                  <%= types["archive"] %>

@@ -9,6 +9,7 @@ class Cutback::RouteList
   end
 
   def initialize(@options, @paths)
+    add_route config
     add_route manifest
     add_route records
     add_route archive
