@@ -11,7 +11,7 @@ $ make
 $ sudo make install
 
 # Or
-$ make DESTDIR="/" install
+$ sudo make DESTDIR="/" install
 ```
 
 ## Strategy
@@ -35,6 +35,10 @@ easily reaquirable (from external media, internet, etc.)
 
 The (optionally compressed) archive created from the file list within the manifest.
 
+### Checksum
+
+The checksum of the archive, for verification purposes.
+
 ### Metadata
 
 The list of all files in the backup (manifest, records, archive, checksum) as well as information
@@ -42,21 +46,19 @@ about each of them:
 
 * Backup
   * Datetime (UTC)
-  * Paths to backup files (manifest, records, archive)
+  * Search paths
 * Manifest
   * Number of files
-  * Total sum of the size of files
+  * Total sum of the size of files in list
 * Records
   * Number of files
-  * Total sum of the size of files
+  * Total sum of the size of files in list
 * Archive
   * Compression
-    * Enabled
     * Tool (gz, xz, etc)
-    * Flags
-  * Checksum
-    * Method
-    * Value
+    * Enabled
+    * Compression ratio
+  * Archive size
 
 ## Usage
 
@@ -66,9 +68,9 @@ The following will backup all files in the current user's home directory as well
 All nodes with the `node_modules`, `.bundle`, and `.cache` name will not be included in the file list
 or the archive.
 
-In addition, public `Songs` and `Videos` directory at any depth will not be included, but will have
-a record kept of alongside the archive.  
-This will cut the archive size down significantly, as the songs and videos can easily be reaquired.
+In addition, public `Videos` directory at any depth will not be included, but will have a record kept
+of alongside the archive.  
+This will cut the archive size down significantly, as the videos can easily be reacquired.
 
 ```sh
 $ cutback --paths '~;/srv/public' --excludes 'node_modules;.bundle;.cache' --records '/srv/public/*/{Songs,Videos}'
@@ -83,7 +85,7 @@ $ cutback --config backup.yaml
 `backup.yaml`
 
 > Note that paths do not have to be surrounded by quotation marks but every now and then YAML doesn't
-> assume the value is a String.
+> assume the value is a String, so we stick to surrounding with quotations every time.
 
 ```yaml
 paths:             # Paths to search for files
@@ -94,7 +96,7 @@ excludes:          # Paths to exclude from the file list
   - ".bundle"
   - ".cache"
 records:           # Paths to keep a record of, also excluded from the file list
-  - "/srv/public/*/{Songs,Videos}"
+  - "/srv/public/*/Videos"
 ```
 
 ### Viewing Progress

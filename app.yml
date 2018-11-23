@@ -19,7 +19,8 @@ strategy: |
     * Only
       * Files within the manifest
     * Save to `ID.tar[.COMPRESSION-SUFFIX]`
-  4. Gather metadata
+  4. Create checksum
+  5. Gather metadata
     * Backup
       * Date & time (UTC)
       * Search paths
