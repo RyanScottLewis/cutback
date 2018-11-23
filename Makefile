@@ -30,11 +30,11 @@ find = $(shell find ./$1 -path '$2')
 
 CUTBACK_CR    ?= $(DIR_SRC)/$(NAME).cr $(call find,$(DIR_SRC)/$(NAME),*.cr)
 CUTBACK_EXE   ?= $(DIR_BLD)/$(NAME)
-#CUTBACK_FLAGS ?= --release # TODO: DONT FORGET ABOUT ME~! CHECK for DEBUG for this
+CUTBACK_FLAGS ?= --release # TODO: Check DEBUG
+CUTBACK_DEST ?= $(DESTDIR)/usr/bin/cutback
 
 GENERATE_CR   ?= $(DIR_SRC)/generate.cr
 GENERATE_EXE  ?= $(DIR_BIN)/generate
-GENERATE_DEST ?= $(DESTDIR)/usr/bin/cutback
 
 README_TMPL   ?= $(DIR_TMPL)/README.md
 README_MD     ?= README.md
@@ -69,12 +69,12 @@ all: docs build
 build: $(CUTBACK_EXE) $(README_MD)
 
 install: $(CUTBACK_EXE)
-	install -m 755 -D $(GENERATE_EXE) $(GENERATE_DEST)
+	install -m 755 -D $(CUTBACK_EXE) $(CUTBACK_DEST)
 	install -m 644 -D $(MAN_EXE_GZ) $(MAN_EXE_DEST)
 	install -m 644 -D $(MAN_CFG_GZ) $(MAN_CFG_DEST)
 
 uninstall:
-	$(RM) $(GENERATE_DEST)
+	$(RM) $(CUTBACK_DEST)
 	$(RM) $(MAN_EXE_DEST)
 	$(RM) $(MAN_CFG_DEST)
 
