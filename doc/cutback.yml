@@ -1,6 +1,9 @@
+# Copy to /mnt/backup/cutback.yml
+# *Replace /mnt/backup with your backup location*
+
 ---
   # Output path for backup
-  output: "./tmp"
+  output: "/mnt/backup"
 
   # The list of paths to search for files to backup
   paths:

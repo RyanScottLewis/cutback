@@ -1,0 +1,10 @@
+# Copy to /etc/systemd/system/cutback.service
+# *Replace /mnt/backup with your backup location*
+
+[Unit]
+Description=Perform system backup
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/cutback -c /mnt/backup/cutback.yml
+
