@@ -43,7 +43,7 @@ class Cutback::Application
 
   protected def update_identifier
     # TODO: I hate this fyi
-    @options.index += 1 if (@arguments.empty? || @arguments[0] == "generate")
+    @options.index += 1 if @arguments.empty? || @arguments[0] == "generate"
 
     @identifier.update(@options)
   end
