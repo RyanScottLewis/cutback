@@ -21,20 +21,26 @@ class Cutback::Processor::Options < Cutback::Processor::Base
 
   macro define_option(name, short, type)
     {% if type.id == "bool" %}
-      @option_parser.on("-{{short}}", "--{{name}}", "") { @prototype.{{name.id}} = true }
+      @option_parser.on("-{{short}}", "--{{name}}", "")       {         @prototype.{{name.id}} = true }
     {% elsif type.id == "string" %}
       @option_parser.on("-{{short}}", "--{{name}} VALUE", "") { |value| @prototype.{{name.id}} = value }
     {% elsif type.id == "list" %}
-      @option_parser.on("-{{short}}", "--{{name}} VALUE", "") { |value| @prototype.{{name.id}} = parse_list(value) }
+      @option_parser.on("-{{short}}", "--{{name}} VALUE", "") { |value| @prototype.{{name.id}} = value.split(/#{PATH_DELIMITER}+/) }
+    {% elsif type.id == "date" %}
+      @option_parser.on("-{{short}}", "--{{name}} VALUE", "") { |value| @prototype.{{name.id}} = Time.parse_utc(value, "%F") } # TODO: Helper for this
+    {% elsif type.id == "integer" %}
+      @option_parser.on("-{{short}}", "--{{name}} VALUE", "") { |value| @prototype.{{name.id}} = value.to_i }
     {% end %}
   end
 
   protected def define_options
     define_option(help,     h, bool)
     define_option(version,  v, bool)
-    define_option(dry,      d, bool)
     define_option(config,   c, string)
+    define_option(dry,      D, bool)
     define_option(output,   o, string)
+    define_option(date,     d, date)
+    define_option(index,    i, integer)
     define_option(paths,    p, list)
     define_option(excludes, e, list)
     define_option(records,  r, list)
@@ -63,10 +69,6 @@ class Cutback::Processor::Options < Cutback::Processor::Base
     @options.format   = @options.format.strip.downcase
     @options.progress = !@options.progress if @prototype.progress
     @options.compress = !@options.compress if @prototype.compress
-  end
-
-  protected def parse_list(value)
-    value.split(/#{PATH_DELIMITER}+/)
   end
 
 end

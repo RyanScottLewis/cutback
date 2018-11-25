@@ -6,14 +6,13 @@ Options:
   -h, --help               <%= options["help"] %>
   -v, --version            <%= options["version"] %>
   -c, --config             <%= options["config"] %>
-  -d, --dry                <%= options["dry"] %>
+  -D, --dry                <%= options["dry"] %>
   -o, --output   PATH      <%= options["output"] %>
   -d, --date     DATE      <%= options["date"] %>
   -i, --index    INDEX     <%= options["index"] %>
   -p, --paths    DIRS      <%= options["paths"] %>
   -e, --excludes PATTERNS  <%= options["excludes"] %>
   -r, --records  PATTERNS  <%= options["records"] %>
-  -f, --format   FORMAT    <%= options["format"] %>
   -f, --format   FORMAT    <%= options["format"] %>
   -C, --compress           <%= options["compress"] %>
   -P, --progress           <%= options["progress"] %>
