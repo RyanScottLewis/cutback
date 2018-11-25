@@ -5,7 +5,7 @@ class Cutback::Application
   end
 
   def initialize(@arguments : Array(String) = ARGV)
-    @logger     = Logger.new(STDOUT)
+    @logger     = Logger.new(nil)
     @options    = Options.new
     @identifier = Identifier.new(@options)
     @paths      = PathList.new(@options, @identifier)
@@ -53,9 +53,7 @@ class Cutback::Application
   end
 
   protected def setup_logger
-    file = File.open(@paths.log, "a+")
-
-    @logger.io = IO::MultiWriter.new(STDOUT, file) # TODO: This is totally borked as `@logger.io = file` works just fine
+    @logger.io = File.open(@paths.log, "a+")
   end
 
   protected def execute_route
@@ -63,7 +61,10 @@ class Cutback::Application
   end
 
   protected def display_error(error)
-    STDERR.puts "Error: #{error.class} - #{error}"
+    message = "Error: #{error.class} - #{error}"
+
+    STDERR.puts(message)
+    @logger.error(message)
 
     exit 1
   end

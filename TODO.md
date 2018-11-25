@@ -18,4 +18,5 @@
     For example if the last archive was 30GB and the output dir can hold 1.2TB
     then it can hold 40 backups. If the backup threshold is at 50 then the output
     directory will run out of space before that threshold is ever met
+* `IO::MultiWriter` is screwy, but log to both STDOUT and log files
 
