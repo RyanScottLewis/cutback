@@ -14,8 +14,8 @@ Options:
   -e, --excludes PATTERNS  <%= options["excludes"] %>
   -r, --records  PATTERNS  <%= options["records"] %>
   -f, --format   FORMAT    <%= options["format"] %>
-  -C, --compress           <%= options["compress"] %>
   -P, --progress           <%= options["progress"] %>
+  -C, --compress           <%= options["compress"] %>
 
 Actions:
   generate                 <%= actions["generate"] %>

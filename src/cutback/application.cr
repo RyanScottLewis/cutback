@@ -19,6 +19,7 @@ class Cutback::Application
     validate_options
     validate_arguments
     update_identifier
+    update_tools
     update_paths
     setup_logger
     execute_route
@@ -51,6 +52,10 @@ class Cutback::Application
 
   protected def update_paths
     @paths.update
+  end
+
+  protected def update_tools
+    @tools.update(@options)
   end
 
   protected def setup_logger

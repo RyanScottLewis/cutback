@@ -34,19 +34,20 @@ class Cutback::Processor::Options < Cutback::Processor::Base
   end
 
   protected def define_options
-    define_option(help,     h, bool)
-    define_option(version,  v, bool)
-    define_option(config,   c, string)
-    define_option(dry,      D, bool)
-    define_option(output,   o, string)
-    define_option(date,     d, date)
-    define_option(index,    i, integer)
-    define_option(paths,    p, list)
-    define_option(excludes, e, list)
-    define_option(records,  r, list)
-    define_option(format,   f, string)
-    define_option(compress, C, bool)
-    define_option(progress, P, bool)
+    define_option(help,       h, bool)
+    define_option(version,    v, bool)
+    define_option(config,     c, string)
+    define_option(dry,        D, bool)
+    define_option(output,     o, string)
+    define_option(date,       d, date)
+    define_option(index,      i, integer)
+    define_option(paths,      p, list)
+    define_option(excludes,   e, list)
+    define_option(records,    r, list)
+    define_option(format,     f, string)
+    define_option(progress,   P, bool)
+    define_option(compress,   C, bool)
+    define_option(compressor, x, string)
   end
 
   protected def parse_options_into_prototype

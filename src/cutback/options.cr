@@ -13,10 +13,11 @@ class Cutback::Options
     property excludes         : Array(String)?
     property records          : Array(String)?
     property format           : String?
+    property progress         : Bool?
     property compress         : Bool?
     property compress_level   : Int32?
     property compress_threads : Int32?
-    property progress         : Bool?
+    property compressor       : String?
 
   end
 
@@ -31,10 +32,11 @@ class Cutback::Options
   property excludes         = [] of String
   property records          = [] of String
   property format           = "yaml"
+  property progress         = false
   property compress         = false
   property compress_level   = 3
   property compress_threads = 0
-  property progress         = false
+  property compressor       = "xz"
 
   macro update_option(parent, name)
     @{{name}} = {{parent}}.{{name}}.not_nil! unless {{parent}}.{{name}}.nil?
@@ -46,8 +48,8 @@ class Cutback::Options
     update_option(config, excludes)
     update_option(config, records)
     update_option(config, format)
-    update_option(config, compress)
     update_option(config, progress)
+    update_option(config, compress)
   end
 
   def update(prototype : Prototype)
@@ -62,10 +64,11 @@ class Cutback::Options
     update_option(prototype, excludes)
     update_option(prototype, records)
     update_option(prototype, format)
+    update_option(prototype, progress)
     update_option(prototype, compress)
     update_option(prototype, compress_level)
     update_option(prototype, compress_threads)
-    update_option(prototype, progress)
+    update_option(prototype, compressor)
   end
 
 end

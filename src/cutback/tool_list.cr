@@ -39,5 +39,13 @@ class Cutback::ToolList
     end
   end
 
+  macro update_tool(name)
+    @{{name}} = options.{{name}}.not_nil! unless options.{{name}}.nil?
+  end
+
+  def update(options : Options)
+    update_tool(compressor)
+  end
+
 end
 
