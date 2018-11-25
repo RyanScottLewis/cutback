@@ -20,7 +20,7 @@ class Cutback::Command::Progress < Cutback::Command::Base
     append "-a" # Show average rate
     append "-t" # Show timer
 
-    append "-N '#{@name}'" if @name # Show name
+    append "-N '#{@message.to_s.ljust(20)}'" if @message # Show name
 
     if @size
       append "-s", @size # Total size
