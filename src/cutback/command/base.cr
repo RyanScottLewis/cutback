@@ -4,10 +4,11 @@ abstract class Cutback::Command::Base
   @paths    : PathList
   @tools    : ToolList
   @logger   : Logger
+  @message  : String?
 
   @partials = [] of String
 
-  def initialize(@options, @paths, @tools, @logger)
+  def initialize(@options, @paths, @tools, @logger, @message=nil)
   end
 
   abstract def generate
@@ -70,8 +71,8 @@ abstract class Cutback::Command::Base
     append "2>>", @paths.log
   end
 
-  protected def progress(name=nil, size=nil, path=nil)
-    Progress.new(@options, @paths, @tools, @logger, name, size, path)
+  protected def progress(size=nil, path=nil)
+    Progress.new(@options, @paths, @tools, @logger, @message, size, path)
   end
 
   protected def checksum(check=false)

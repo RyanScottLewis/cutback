@@ -2,7 +2,7 @@ class Cutback::Command::Find < Cutback::Command::Base
 
   @output : String?
 
-  def initialize(@options, @paths, @tools, @logger, @output=nil, @includes=[] of String, @excludes=[] of String)
+  def initialize(@options, @paths, @tools, @logger, @message=nil, @output=nil, @includes=[] of String, @excludes=[] of String)
   end
 
   def generate

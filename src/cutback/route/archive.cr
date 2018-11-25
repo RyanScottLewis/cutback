@@ -1,7 +1,7 @@
 class Cutback::Route::Archive < Cutback::Route::Base
 
   def generate
-    command = Command::Archive.new(@options, @paths, @tools, @logger)
+    command = Command::Archive.new(@options, @paths, @tools, @logger, message: "Generating archive")
 
     command.execute
   end

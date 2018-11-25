@@ -1,7 +1,7 @@
 class Cutback::Route::Records < Cutback::Route::Base
 
   def generate
-    command = Command::Find.new(@options, @paths, @tools, @logger, includes: @options.records, output: @paths.records)
+    command = Command::Find.new(@options, @paths, @tools, @logger, includes: @options.records, output: @paths.records, message: "Generating records")
 
     command.execute
   end

@@ -2,7 +2,7 @@ class Cutback::Command::Checksum < Cutback::Command::Base
 
   @check : Bool
 
-  def initialize(@options, @paths, @tools, @logger, @check=false)
+  def initialize(@options, @paths, @tools, @logger, @message=nil, @check=false)
   end
 
   def generate

@@ -4,7 +4,13 @@ class Cutback::Command::Progress < Cutback::Command::Base
   @size : UInt64?
   @path : String?
 
-  def initialize(@options, @paths, @tools, @logger, @name=nil, @size=nil, @path=nil)
+  def initialize(@options, @paths, @tools, @logger, @message=nil, @size=nil, @path=nil)
+  end
+
+  def execute
+    @logger.info(@message) if @message
+
+    super
   end
 
   def generate
