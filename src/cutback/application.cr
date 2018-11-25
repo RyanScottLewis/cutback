@@ -43,10 +43,10 @@ class Cutback::Application
   end
 
   protected def update_identifier
-    # TODO: I hate this fyi
-    @options.index += 1 if @arguments.empty? || @arguments[0] == "generate"
-
     @identifier.update(@options)
+
+    # TODO: Better place for this
+    @identifier.increment_largest(@options) if @options.index.nil? && (@arguments.empty? || @arguments[0] == "generate")
   end
 
   protected def update_paths

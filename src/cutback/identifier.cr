@@ -9,14 +9,14 @@ class Cutback::Identifier
     instance
   end
 
-  def self.largest(path : String, date : Time)
+  def self.largest_index(path : String, date : Time)
     paths    = Dir.glob(File.join(path, date.to_s("%F") + "*"))
     ids      = paths.map { |path| parse(path) }
     indicies = ids.map(&.index)
 
-    return 0 if indicies.empty?
+    return nil if indicies.empty?
 
-    indicies.max || 0
+    indicies.max
   end
 
   property date  = Time.utc_now
@@ -31,7 +31,13 @@ class Cutback::Identifier
 
   def update(options : Options)
     @date  = options.date
-    @index = options.index
+    @index = options.index || 0
+  end
+
+  def increment_largest(options : Options)
+    index = self.class.largest_index(options.output, options.date)
+
+    @index = index.as(Int32) + 1 unless index.nil?
   end
 
   def parse(value : String)
@@ -41,7 +47,7 @@ class Cutback::Identifier
 
     match = match.not_nil!
 
-    @date  = Time.parse_utc(match[1], "%F")
+    @date  = Time.parse_utc(match[1], "%F") # TODO: Helper for this
     @index = match[2].to_i
   end
 

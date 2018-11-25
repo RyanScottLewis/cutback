@@ -26,7 +26,7 @@ class Cutback::Options
   property config           : String?
   property output           = "."
   property date             = Time.utc_now
-  property index            = -1
+  property index            : Int32?
   property paths            = [] of String
   property excludes         = [] of String
   property records          = [] of String
