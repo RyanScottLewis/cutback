@@ -2,18 +2,18 @@ abstract class Cutback::Route::Base
 
   @options : Options
   @paths   : PathList
+  @tools   : ToolList
   @logger  : Logger
 
-  def initialize(@options, @paths, @logger)
+  def initialize(@options, @paths, @tools, @logger)
   end
 
   abstract def generate
 
   abstract def inspect
 
-  macro execute_generate(command)
-    @logger.info("Generating {{command}}")
-    Command::Generate::{{command.id.capitalize}}.execute(@options, @paths, @logger)
+  macro execute(type, *arguments)
+    type.execute(@options, @paths, @tools, @logger, {{*arguments}})
   end
 
 end

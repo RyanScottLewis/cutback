@@ -36,9 +36,6 @@ class Cutback::Options
   property compress_threads = 0
   property progress         = false
 
-  # TODO: MOVE ME
-  property toolchain        = Toolchain.new
-
   macro update_option(parent, name)
     @{{name}} = {{parent}}.{{name}}.not_nil! unless {{parent}}.{{name}}.nil?
   end

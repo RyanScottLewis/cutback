@@ -1,7 +1,9 @@
 class Cutback::Route::Manifest < Cutback::Route::Base
 
   def generate
-    execute_generate(manifest)
+    command = Command::Find.new(@options, @paths, @tools, @logger, excludes: @options.records, output: @paths.manifest)
+
+    command.execute
   end
 
   def inspect

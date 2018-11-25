@@ -1,14 +1,15 @@
 class Cutback::Route::Checksum < Cutback::Route::Base
 
   def generate
-    execute_generate(checksum)
+    command = Command::Checksum.new(@options, @paths, @tools, @logger, check: false)
+
+    command.execute
   end
 
   def inspect
-    result = Command::Inspect::Checksum.execute(@options, @paths, @logger)
-    result = result.split(" ").last
+    command = Command::Checksum.new(@options, @paths, @tools, @logger, check: true)
 
-    puts result
+    puts command.execute.split(" ").last
   end
 
 end

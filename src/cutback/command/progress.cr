@@ -1,33 +1,28 @@
 class Cutback::Command::Progress < Cutback::Command::Base
 
-  @arguments = [] of String
+  @name : String?
+  @size : UInt64?
+  @path : String?
 
-  def initialize(@options, @paths, @logger, *arguments)
-    arguments.each { |argument| @arguments << argument }
+  def initialize(@options, @paths, @tools, @logger, @name=nil, @size=nil, @path=nil)
   end
 
-  def to_s(io)
-    join(io,
-      @options.toolchain.pv,
-      "-r", # Show current rate
-      "-a", # Show average rate
-      "-t", # Show timer
-      @arguments
-    )
-  end
+  def generate
+    append @tools.viewer
 
-  def with_name(name)
-    @arguments << "-N '#{name}'" # Show name
+    append "-r" # Show current rate
+    append "-a" # Show average rate
+    append "-t" # Show timer
 
-    self
-  end
+    append "-N '#{@name}'" if @name # Show name
 
-  def with_size(size)
-    @arguments << "-s #{size}" # Total ize
-    @arguments << "-e"         # Show ETA
-    @arguments << "-p"         # Show progress bar
+    if @size
+      append "-s", @size # Total size
+      append "-e"        # Show ETA
+      append "-p"        # Show progress bar
+    end
 
-    self
+    append @path if @path
   end
 
 end

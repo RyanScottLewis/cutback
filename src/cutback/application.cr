@@ -8,8 +8,9 @@ class Cutback::Application
     @logger     = Logger.new(nil)
     @options    = Options.new
     @identifier = Identifier.new(@options)
-    @paths      = PathList.new(@options, @identifier)
-    @routes     = RouteList.new(@options, @paths, @logger)
+    @tools      = ToolList.new
+    @paths      = PathList.new(@options, @tools, @identifier)
+    @routes     = RouteList.new(@options, @paths, @tools, @logger)
   end
 
   def execute

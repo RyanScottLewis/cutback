@@ -1,7 +1,9 @@
 class Cutback::Route::Records < Cutback::Route::Base
 
   def generate
-    execute_generate(records)
+    command = Command::Find.new(@options, @paths, @tools, @logger, includes: @options.records, output: @paths.records)
+
+    command.execute
   end
 
   def inspect

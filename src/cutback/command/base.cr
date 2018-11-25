@@ -1,47 +1,90 @@
 abstract class Cutback::Command::Base
 
-  def self.execute(*arguments)
-    new(*arguments).execute
+  @options  : Options
+  @paths    : PathList
+  @tools    : ToolList
+  @logger   : Logger
+
+  @partials = [] of String
+
+  def initialize(@options, @paths, @tools, @logger)
   end
 
-  @options : Options
-  @paths   : PathList
-  @logger  : Logger
+  abstract def generate
 
-  def initialize(@options, @paths, @logger)
+  def to_s(io)
+    generate
+
+    data = @partials.to_a.flatten.compact.join(" ")
+    @partials.clear
+
+    io << data
   end
-
-  abstract def to_s(io)
 
   def execute
     command = to_s
 
     @logger.info(command)
+    puts command
 
     @options.dry ? "" : `#{command}`
   end
 
-  protected def pipe_to(io, command)
-    io << " | "
-    io << command
+  protected def append(value : String)
+    @partials << value
   end
 
-  protected def output_to(io, path)
-    io << " > "
-    io << path
+  protected def append(value : Array(String))
+    @partials += value
   end
 
-  protected def error_to(io, path)
-    io << " 2>> "
-    io << path
+  protected def append(*partials)
+    @partials += partials.to_a.map(&.to_s)
   end
 
-  protected def join(io, *partials)
-    io << partials.to_a.flatten.compact.join(" ")
+  protected def append(value : self.class)
+    append command(value)
   end
 
-  protected def progress(*arguments)
-    Progress.new(@options, @paths, @logger, *arguments)
+  protected def append(value : Command)
+    append value.to_s
+  end
+
+  protected def append_pipe(command=nil)
+    append "|"
+    append command unless command.nil?
+  end
+
+  protected def append_pipe(type : self.class)
+    append_pipe command(type)
+  end
+
+  protected def append_output(path : String)
+    append ">", path
+  end
+
+  protected def append_output(type : self.class)
+    append_output command(type)
+  end
+
+  protected def append_error
+    append "2>>", @paths.log
+  end
+
+  protected def progress(name=nil, size=nil, path=nil)
+    Progress.new(@options, @paths, @tools, @logger, name, size, path)
+  end
+
+  protected def checksum(check=false)
+    Checksum.new(@options, @paths, @tools, @logger, check)
+  end
+
+  protected def find(output=nil, includes=[] of String, excludes=[] of String)
+    Find.new(@options, @paths, @tools, @logger, output, includes, excludes)
+  end
+
+  protected def compress
+    Compress.new(@options, @paths, @tools, @logger)
   end
 
 end
