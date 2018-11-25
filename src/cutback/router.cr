@@ -39,8 +39,9 @@ class Cutback::Router
   end
 
   protected def perform_inspect
-    if @type.nil?
+    if @type.nil? # TODO: A flag within the route or something
       @routes["metadata"].inspect
+      @routes["checksum"].inspect
     else
       @routes.inspect(@type)
     end
