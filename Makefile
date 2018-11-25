@@ -9,19 +9,20 @@ DIR_MAN       ?= $(DIR_DOC)/man
 DIR_EMB       ?= $(DIR_SRC)/$(NAME)/embed
 
 MKDIR_EXE     ?= mkdir
-MKDIR_FLAGS   ?= -p
+MKDIR_FLAGS   += -p
 MKDIR         ?= $(MKDIR_EXE) $(MKDIR_FLAGS)
 
 MD_EXE        ?= markdown
-MD_FLAGS      ?= -f fencedcode,toc
+MD_FLAGS      += -f fencedcode,toc
 MD            ?= $(MD_EXE) $(MD_FLAGS)
 
 CR_EXE        ?= crystal
-CR_FLAGS      ?= build
+CR_FLAGS      += build
 CR            ?= $(CR_EXE) $(CR_FLAGS)
 
 GZ_EXE        ?= gzip
-GZ_FLAGS      ?= -f
+GZ_FLAGS      += -f
+GZ_FLAGS      += -k
 GZ            ?= $(GZ_EXE) $(GZ_FLAGS)
 
 APP_YML       ?= app.yml shard.yml
@@ -31,7 +32,7 @@ find = $(shell find ./$1 -path '$2')
 CUTBACK_CR    ?= $(DIR_SRC)/$(NAME).cr $(call find,$(DIR_SRC)/$(NAME),*.cr)
 CUTBACK_EXE   ?= $(DIR_BLD)/$(NAME)
 ifndef DEBUG
-CUTBACK_FLAGS ?= --release
+CUTBACK_FLAGS += --release
 endif
 CUTBACK_DEST  ?= $(DESTDIR)/usr/bin/cutback
 
