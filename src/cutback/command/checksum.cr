@@ -13,7 +13,7 @@ class Cutback::Command::Checksum < Cutback::Command::Base
 
     append @tools.checker
 
-    append "-b" # Read in binary mode
+    append "-b" unless @check # Read in binary mode
     append "-c", @paths.checksum if @check
 
     append @paths.archive unless @options.progress
