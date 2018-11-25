@@ -1,5 +1,4 @@
 # Copy to /etc/systemd/system/cutback.service
-# *Replace /mnt/backup with your backup location*
 
 [Unit]
 Description=Perform system backup
