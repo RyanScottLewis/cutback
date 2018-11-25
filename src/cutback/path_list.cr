@@ -16,7 +16,7 @@ class Cutback::PathList
   end
 
   def update
-    tar_ext = @tools.compressor # TODO: Not really true since gzip will be gz and so fourth
+    tar_ext = ArchiveSuffix.for(@tools.compressor)
 
     @log      = File.join(@options.output, "#{@identifier}.log")
     @manifest = File.join(@options.output, "#{@identifier}.manifest")

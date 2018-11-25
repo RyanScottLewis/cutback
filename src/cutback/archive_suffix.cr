@@ -1,0 +1,22 @@
+class Cutback::ArchiveSuffix
+
+  # List of compressors with suffixes that are not identical to their command name
+  TOOL_SUFFIXES = {
+    "bzip2" => "bz2",
+    "gzip"  => "gz",
+    "lzip"  => "lz",
+    "lzop"  => "lzo",
+    "lrzip" => "lrz",
+  }
+
+  def self.for(tool)
+    new.for(tool)
+  end
+
+  def for(tool)
+    return TOOL_SUFFIXES[tool] if TOOL_SUFFIXES.has_key?(tool)
+
+    return tool
+  end
+
+end
