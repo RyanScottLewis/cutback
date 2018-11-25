@@ -12,9 +12,5 @@ abstract class Cutback::Route::Base
 
   abstract def inspect
 
-  macro execute(type, *arguments)
-    type.execute(@options, @paths, @tools, @logger, {{*arguments}})
-  end
-
 end
 

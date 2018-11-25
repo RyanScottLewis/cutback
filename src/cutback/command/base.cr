@@ -24,8 +24,7 @@ abstract class Cutback::Command::Base
   def execute
     command = to_s
 
-    @logger.info(command)
-    puts command
+    @logger.info("Command: #{command}")
 
     @options.dry ? "" : `#{command}`
   end

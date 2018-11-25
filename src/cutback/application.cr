@@ -5,7 +5,7 @@ class Cutback::Application
   end
 
   def initialize(@arguments : Array(String) = ARGV)
-    @logger     = Logger.new(nil)
+    @logger     = Logger.new(STDOUT)
     @options    = Options.new
     @identifier = Identifier.new(@options)
     @tools      = ToolList.new
@@ -54,7 +54,7 @@ class Cutback::Application
   end
 
   protected def setup_logger
-    @logger.io = File.open(@paths.log, "a+")
+    @logger.io = File.open(@paths.log, "a+") unless @options.dry
   end
 
   protected def execute_route
