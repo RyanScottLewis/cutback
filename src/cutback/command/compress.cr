@@ -30,7 +30,7 @@ class Cutback::Command::Compress < Cutback::Command::Base
   end
 
   protected def append_threads_flag
-    append "--threads #{@options.compress_threads}"
+    append "--threads #{@options.compress_threads}" unless @tools.compressor == "lrzip"
   end
 
   protected def append_threaded_arguments

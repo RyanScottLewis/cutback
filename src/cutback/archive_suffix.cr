@@ -14,9 +14,10 @@ class Cutback::ArchiveSuffix
   end
 
   def for(tool)
-    return TOOL_SUFFIXES[tool] if TOOL_SUFFIXES.has_key?(tool)
+    suffix = TOOL_SUFFIXES[tool]? || tool
 
-    return tool
+    ".#{suffix}"
   end
 
 end
+

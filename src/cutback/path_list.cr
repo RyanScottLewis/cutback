@@ -16,14 +16,19 @@ class Cutback::PathList
   end
 
   def update
-    tar_ext = ArchiveSuffix.for(@tools.compressor)
-
     @log      = File.join(@options.output, "#{@identifier}.log")
     @manifest = File.join(@options.output, "#{@identifier}.manifest")
     @records  = File.join(@options.output, "#{@identifier}.records")
-    @archive  = File.join(@options.output, "#{@identifier}.tar.#{tar_ext}")
+    @archive  = File.join(@options.output, "#{@identifier}.#{archive_ext}")
     @checksum = File.join(@options.output, "#{@identifier}.checksum")
     @metadata = File.join(@options.output, "#{@identifier}.#{@options.format}")
+  end
+
+  protected def archive_ext
+    result = "tar"
+    result += ArchiveSuffix.for(@tools.compressor) if @options.compress
+
+    result.to_s
   end
 
 end
