@@ -1,6 +1,8 @@
 # TODO
 
-* Config man page
+* Documentation
+  * Config man page
+  * Man/help for --compressor/-x
 * Tests
 * Options
   * `--verbose [LEVEL]`
@@ -12,11 +14,17 @@
 * Check for binaries in toolset before executing them in command
 * embed/i18n.yml
   * Error messages
-* Index is starting at 1, not 0
 * Auto-remove oldest after certain backup count threshold
   * Warn if threshold is larger than the output directory can hold
     For example if the last archive was 30GB and the output dir can hold 1.2TB
     then it can hold 40 backups. If the backup threshold is at 50 then the output
     directory will run out of space before that threshold is ever met
 * `IO::MultiWriter` is screwy, but log to both STDOUT and log files
+* Command
+  * Use `Process.new` to run commands somehow, this will allow me to get the process ID in order to
+    gather process stats while it is running and report to logger after it is finished
+    See: `Process#terminated?`
+    * Stats which are YAML parsable:
+      * /proc/PID/io
+      * /proc/PID/status
 
