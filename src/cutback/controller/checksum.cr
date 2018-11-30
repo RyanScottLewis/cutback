@@ -1,4 +1,4 @@
-class Cutback::Route::Checksum < Cutback::Route::Base
+class Cutback::Controller::Checksum < Cutback::Controller
 
   def generate
     command = Command::Checksum.new(@options, @paths, @tools, @logger, check: false, message: "Generating checksum")

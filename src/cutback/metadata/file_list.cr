@@ -1,4 +1,4 @@
-abstract class Cutback::Metadata::FileList < Cutback::Metadata::Base
+abstract class Cutback::Metadata::FileList < Cutback::Metadata
 
   Cutback.mapping({
     count: Int32,

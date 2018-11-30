@@ -1,4 +1,4 @@
-class Cutback::Processor::Options < Cutback::Processor::Base
+class Cutback::Processor::Options < Cutback::Processor
 
   PATH_DELIMITER = ";"
 

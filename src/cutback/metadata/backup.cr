@@ -1,4 +1,4 @@
-class Cutback::Metadata::Backup < Cutback::Metadata::Base
+class Cutback::Metadata::Backup < Cutback::Metadata
 
   Cutback.mapping({
     date:  Time,

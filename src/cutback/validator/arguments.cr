@@ -1,7 +1,4 @@
-class Cutback::Validator::Arguments < Cutback::Validator::Base
-
-  ACTIONS = %w[generate inspect]
-  TYPES   = %w[manifest records archive checksum metadata]
+class Cutback::Validator::Arguments < Cutback::Validator
 
   @arguments : Array(String)
   @routes    : RouteList

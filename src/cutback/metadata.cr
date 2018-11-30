@@ -1,4 +1,4 @@
-class Cutback::Metadata::Base
+class Cutback::Metadata
 
   include Helpers::Dumpable
 

@@ -1,4 +1,4 @@
-class Cutback::Command::Archive < Cutback::Command::Base
+class Cutback::Command::Archive < Cutback::Command
 
   def generate
     append @tools.archiver

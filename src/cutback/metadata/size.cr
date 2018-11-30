@@ -1,4 +1,4 @@
-class Cutback::Metadata::Size < Cutback::Metadata::Base
+class Cutback::Metadata::Size < Cutback::Metadata
 
   Cutback.mapping({
     bytes: UInt64,

@@ -1,4 +1,4 @@
-abstract class Cutback::Processor::Base
+abstract class Cutback::Processor
 
   def self.process(*arguments)
     new(*arguments).process

@@ -1,4 +1,4 @@
-class Cutback::Metadata::Archive::Compression < Cutback::Metadata::Base
+class Cutback::Metadata::Compression < Cutback::Metadata
 
   Cutback.mapping({
     tool:    String,

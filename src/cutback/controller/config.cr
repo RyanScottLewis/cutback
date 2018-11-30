@@ -1,7 +1,4 @@
-class Cutback::Route::Config < Cutback::Route::Base
-
-  def generate
-  end
+class Cutback::Controller::Config < Cutback::Controller
 
   def inspect
     config = Cutback::Config.new(@options)

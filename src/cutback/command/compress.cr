@@ -1,4 +1,4 @@
-class Cutback::Command::Compress < Cutback::Command::Base
+class Cutback::Command::Compress < Cutback::Command
 
   def generate
     append @tools.compressor

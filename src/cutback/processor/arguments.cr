@@ -1,4 +1,4 @@
-class Cutback::Processor::Arguments < Cutback::Processor::Base
+class Cutback::Processor::Arguments < Cutback::Processor
 
   @arguments : Array(String)
 

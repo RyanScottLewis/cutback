@@ -1,4 +1,4 @@
-class Cutback::Validator::Options < Cutback::Validator::Base
+class Cutback::Validator::Options < Cutback::Validator
 
   FORMATS = %w[json yaml]
 

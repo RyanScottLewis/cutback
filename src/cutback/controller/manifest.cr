@@ -1,4 +1,4 @@
-class Cutback::Route::Manifest < Cutback::Route::Base
+class Cutback::Controller::Manifest < Cutback::Controller
 
   def generate
     command = Command::Find.new(@options, @paths, @tools, @logger, excludes: @options.records, output: @paths.manifest, message: "Generating manifest")

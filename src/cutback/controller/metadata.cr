@@ -1,4 +1,4 @@
-class Cutback::Route::Metadata < Cutback::Route::Base
+class Cutback::Controller::Metadata < Cutback::Controller
 
   def generate
     return if @options.dry

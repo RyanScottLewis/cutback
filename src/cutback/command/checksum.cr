@@ -1,4 +1,4 @@
-class Cutback::Command::Checksum < Cutback::Command::Base
+class Cutback::Command::Checksum < Cutback::Command
 
   @check : Bool
 

@@ -1,4 +1,4 @@
-class Cutback::Command::Find < Cutback::Command::Base
+class Cutback::Command::Find < Cutback::Command
 
   @output : String?
 

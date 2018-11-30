@@ -1,4 +1,4 @@
-abstract class Cutback::Command::Base
+abstract class Cutback::Command
 
   @options  : Options
   @paths    : PathList

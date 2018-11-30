@@ -1,4 +1,4 @@
-class Cutback::Command::Progress < Cutback::Command::Base
+class Cutback::Command::Progress < Cutback::Command
 
   @name : String?
   @size : UInt64?

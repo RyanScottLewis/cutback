@@ -1,4 +1,4 @@
-class Cutback::Metadata::Root < Cutback::Metadata::Base
+class Cutback::Metadata::Root < Cutback::Metadata
 
   Cutback.mapping({
     backup:   { type: Backup },

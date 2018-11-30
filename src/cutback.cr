@@ -28,13 +28,13 @@ end
 
 require "./cutback/helpers/**"
 
-require "./cutback/command/base"
-require "./cutback/metadata/base"
-require "./cutback/processor/base"
-require "./cutback/route/base"
-require "./cutback/validator/base"
+require "./cutback/*"
 
-require "./cutback/**"
+require "./cutback/metadata/**"
+require "./cutback/processor/**"
+require "./cutback/validator/**"
+require "./cutback/command/**"
+require "./cutback/controller/**"
 
 Cutback::Application.execute
 
