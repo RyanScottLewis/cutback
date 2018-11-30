@@ -1,7 +1,8 @@
 # Template generator built to bin/generate for internal file generation
 
-require "yaml"
 require "ecr/macros"
+
+require "./setup"
 
 macro generate(path)
   String.build { |io| ECR.embed({{path}}, io) }
@@ -42,8 +43,7 @@ mit_license = app["mit_license"]
 description = app["description"].as_s.chomp
 strategy    = app["strategy"].as_s.chomp
 options     = app["options"]
-actions     = app["actions"]
-types       = app["types"]
+controllers = app["controllers"]
 
 files = {} of String => String
 generate_templates(files, [

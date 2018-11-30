@@ -1,6 +1,6 @@
 <%= name %> v<%= version %> - <%= summary %>
 
-Usage: <%= name %> [OPTIONS] [ACTION] [TYPE]
+Usage: <%= name %> [OPTIONS] [CONTROLLER] [ACTION]
 
 Options:
   -h, --help               <%= options["help"] %>
@@ -17,17 +17,15 @@ Options:
   -P, --progress           <%= options["progress"] %>
   -C, --compress           <%= options["compress"] %>
 
-Actions:
-  generate                 <%= actions["generate"] %>
-  inspect                  <%= actions["inspect"] %>
-
-Types:
-  config                   <%= types["config"] %>
-  manifest                 <%= types["manifest"] %>
-  records                  <%= types["records"] %>
-  archive                  <%= types["archive"] %>
-  checksum                 <%= types["checksum"] %>
-  metadata                 <%= types["metadata"] %>
+Controllers & Actions:
+<% Cutback::Controller.all.sort_by(&.name).each do |controller| -%>
+  <%= controller.name.ljust(23) -%>
+  <%= controllers[controller.name]["description"] -%>
+  <% controller.actions.each do |action| %>
+    <%= action.ljust(21) -%>
+    <%= controllers[controller.name]["actions"][action] -%>
+  <% end %>
+<% end -%>
 
 See `man 1 cutback` for more detailed information.
 See `man 5 cutback` for configuration file information.
