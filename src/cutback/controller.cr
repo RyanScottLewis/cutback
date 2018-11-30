@@ -1,9 +1,15 @@
 abstract class Cutback::Controller
 
-  @@actions = [] of Symbol
+  def self.subclasses
+    {{ @type.subclasses }}
+  end
 
-  def self.actions
-    @@actions
+  def self.name
+    {{ @type.id.stringify }}.split("::").last.underscore
+  end
+
+  def self.[](name)
+    subclasses.find { |subclass| subclass.name == name }
   end
 
   @options : Options
@@ -14,14 +20,15 @@ abstract class Cutback::Controller
   def initialize(@options, @paths, @tools, @logger)
   end
 
-  macro action(name)
-    @@actions << {{name.id}}
+  def generate; end
+  def inspect; end
 
-    def {{name.id}}; end
+  def execute(name)
+    case name.strip.downcase
+    when "generate" then generate
+    when "inspect"  then inspect
+    end
   end
-
-  action generate
-  action inspect
 
 end
 
