@@ -8,7 +8,7 @@ class Cutback::ControllerList
   @all = {} of String => Controller
 
   def initialize(@options, @paths, @tools, @logger)
-    Controller.subclasses.each do |controller|
+    Controller.all.each do |controller|
       @all[controller.name] = controller.new(@options, @paths, @tools, @logger)
     end
   end
