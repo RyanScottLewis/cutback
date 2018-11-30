@@ -5,7 +5,7 @@ module Cutback::Helpers::ClassTraversal
   end
 
   def name
-    {{ @type.id.stringify }}.split("::").last.underscore
+    {{ @type.id.split("::").last.underscore }}
   end
 
   def names
