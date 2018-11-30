@@ -10,12 +10,16 @@ abstract class Cutback::Controller
     {{ @type.id.stringify }}.split("::").last.underscore
   end
 
-  def self.[](name)
+  def self.names
+    all.map(&.name)
+  end
+
+  def self.[]?(name)
     all.find { |subclass| subclass.name == name }
   end
 
-  def self.actions
-    @@actions
+  def self.valid?(name)
+    names.includes?(name)
   end
 
   def self.action?(name)

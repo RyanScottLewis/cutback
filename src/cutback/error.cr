@@ -11,8 +11,9 @@ class Cutback::Error < Exception
   class InvalidFormat < InvalidOption; end
 
   class InvalidArguments < Error; end
+
+  class InvalidController < InvalidArguments; end
   class InvalidAction < InvalidArguments; end
-  class InvalidType < InvalidArguments; end
 
 end
 

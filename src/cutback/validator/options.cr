@@ -15,6 +15,7 @@ class Cutback::Validator::Options < Cutback::Validator
     validate_format
   end
 
+  # TODO: Should be in a before_action type of callback in a base controller
   protected def validate_help
     return unless @options.help
 
@@ -22,6 +23,7 @@ class Cutback::Validator::Options < Cutback::Validator
     exit
   end
 
+  # TODO: Should be in a before_action type of callback in a base controller
   protected def validate_version
     return unless @options.version
 
