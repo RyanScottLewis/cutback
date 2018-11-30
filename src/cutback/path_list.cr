@@ -1,28 +1,44 @@
 class Cutback::PathList
 
-  getter log      = ""
-  getter manifest = ""
-  getter records  = ""
-  getter archive  = ""
-  getter checksum = ""
-  getter metadata = ""
-
   @options    : Options
   @tools      : ToolList
   @identifier : Identifier
+
+  @all = {} of String => String
 
   def initialize(@options, @tools, @identifier)
     update
   end
 
-  def update
-    @log      = File.join(@options.output, "#{@identifier}.log")
-    @manifest = File.join(@options.output, "#{@identifier}.manifest")
-    @records  = File.join(@options.output, "#{@identifier}.records")
-    @archive  = File.join(@options.output, "#{@identifier}.#{archive_ext}")
-    @checksum = File.join(@options.output, "#{@identifier}.checksum")
-    @metadata = File.join(@options.output, "#{@identifier}.#{@options.format}")
+  getter all
+
+  delegate :[], to: @all
+
+  macro update_path(name, extname)
+    @all[{{name.id.stringify}}] = File.join(@options.output, "#{@identifier}.%s" % {{extname}})
   end
+
+  macro def_path(name)
+    def {{name.id}}
+      @all[{{name.id.stringify}}]
+    end
+  end
+
+  def update
+    update_path(log,      "log")
+    update_path(manifest, "manifest")
+    update_path(records,  "records")
+    update_path(archive,  archive_ext)
+    update_path(checksum, "checksum")
+    update_path(metadata, "metadata.#{@options.format}")
+  end
+
+  def_path(log)
+  def_path(manifest)
+  def_path(records)
+  def_path(archive)
+  def_path(checksum)
+  def_path(metadata)
 
   protected def archive_ext
     result = "tar"
