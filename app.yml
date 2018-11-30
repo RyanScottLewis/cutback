@@ -39,27 +39,55 @@ strategy: |
     * Save to `ID.{yaml,json}`
 mit_license: This program is available as open source under the terms of the MIT License <http://opensource.org/licenses/MIT>.
 options:
-  help:     Display help
-  version:  Display version
-  dry:      Do not run system commands (dry run)
-  output:   Output path
-  date:     Date for the backup in YYYY-MM-DD format
-  index:    Index for the backup
-  config:   Configuration file path
-  paths:    Search paths
-  excludes: Exclusion path patterns
-  records:  Record path patterns
-  format:   Format of the metadata file
-  compress: Enable archive compression
-  progress: Enable viewing progress
-actions:
-  generate: Generate a file of the given type, or all types if none is given
-  inspect:  Inspect a file of the given type, or all types if none is given
-types:
-  config:   Current configuration
-  manifest: List of all files in the archive
-  records:  List of files excluded from the archive, but kept a record of
-  archive:  Archive of files in the manifest
-  checksum: Archive checksum
-  metadata: Information about the backup
+  help:       Display help
+  version:    Display version
+  dry:        Do not run system commands (dry run)
+  output:     Output path
+  date:       Date for the backup in YYYY-MM-DD format
+  index:      Index for the backup
+  config:     Configuration file path
+  paths:      Search paths
+  excludes:   Exclusion path patterns
+  records:    Record path patterns
+  format:     Format of the metadata file
+  progress:   View progress
+  compress:   Compress archive
+  compressor: Compressor binary
+controllers:
+  application:
+    description: Application actions
+    actions:
+      create:    Create all backup files
+      help:      Display help
+      version:   Display version
+  manifest:
+    description: List of all files in the archive
+    actions:
+      create:    Create the manifest
+      read:      View manifest metadata
+  records:
+    description: List of files excluded from the archive, but kept a record of
+    actions:
+      create:    Create the records
+      read:      View records metadata
+  archive:
+    description: Archive of files in the manifest
+    actions:
+      create:    Create the archive
+      read:      View archive metadata
+  checksum:
+    description: Archive checksum
+    actions:
+      create:    Create the checksum
+      read:      Verify the checksum
+  metadata:
+    description: Information about the backup
+    actions:
+      create:    Create the metadata
+      read:      View the metadata
+  config:
+    description: Current configuration
+    actions:
+      create:    Dump the current configuration to file
+      read:      View the current configuration
 
