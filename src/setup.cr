@@ -13,13 +13,6 @@ require "baked_file_system"
 # Application
 require "./cutback/embed"
 
-module Cutback
-
-  HELP    = Embed.get("help").gets_to_end
-  VERSION = Embed.get("version").gets_to_end
-
-end
-
 require "./cutback/helpers/**"
 
 require "./cutback/*"
