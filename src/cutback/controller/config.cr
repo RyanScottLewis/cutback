@@ -6,5 +6,9 @@ class Cutback::Controller::Config < Cutback::Controller::Resource
     puts config.dump(@options.format)
   end
 
+  protected def create_resource
+    # TODO
+  end
+
 end
 

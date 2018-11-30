@@ -4,7 +4,7 @@ class Cutback::Controller::Application < Cutback::Controller
 
   def create
     # TODO: Something like
-    #@controllers["backup"].create
+    @controllers["backup"].create
     # Or
     #redirect_to "backup#create"
   end
