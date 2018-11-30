@@ -86,47 +86,43 @@ docs: $(DOCS)
 clean:
 	$(RM) -r $(CLEAN)
 
-$(HELP_OUT): $(HELP_TMPL) $(APP_YML) $(GENERATE_EXE) $(DIR_EMB)/
+$(HELP_OUT): $(HELP_TMPL) $(APP_YML) $(GENERATE_EXE)
+	@$(MKDIR) $(@D)
 	$(GENERATE_EXE) $< $@
 
-$(VERSION_OUT): $(VERSION_TMPL) $(APP_YML) $(GENERATE_EXE) $(DIR_EMB)/
+$(VERSION_OUT): $(VERSION_TMPL) $(APP_YML) $(GENERATE_EXE)
+	@$(MKDIR) $(@D)
 	$(GENERATE_EXE) $< $@
 
 $(README_MD): $(README_TMPL) $(APP_YML) $(GENERATE_EXE)
+	@$(MKDIR) $(@D)
 	$(GENERATE_EXE) $< $@
 
-$(MAN_EXE_ROFF): $(MAN_EXE_TMPL) $(APP_YML) $(GENERATE_EXE) $(DIR_MAN)/
+$(MAN_EXE_ROFF): $(MAN_EXE_TMPL) $(APP_YML) $(GENERATE_EXE)
+	@$(MKDIR) $(@D)
 	$(GENERATE_EXE) $< $@
 
 $(MAN_EXE_GZ): $(MAN_EXE_ROFF)
+	@$(MKDIR) $(@D)
 	$(GZ) $<
 
-$(MAN_CFG_ROFF): $(MAN_CFG_TMPL) $(APP_YML) $(GENERATE_EXE) $(DIR_MAN)/
+$(MAN_CFG_ROFF): $(MAN_CFG_TMPL) $(APP_YML) $(GENERATE_EXE)
+	@$(MKDIR) $(@D)
 	$(GENERATE_EXE) $< $@
 
 $(MAN_CFG_GZ): $(MAN_CFG_ROFF)
+	@$(MKDIR) $(@D)
 	$(GZ) $<
 
-$(README_HTML): $(README_MD) $(DIR_DOC)/
+$(README_HTML): $(README_MD)
+	@$(MKDIR) $(@D)
 	$(MD) -o $@ $<
 
-$(CUTBACK_EXE): $(CUTBACK_CR) $(TEMPLATES) $(EMBEDS) $(DIR_BLD)/
+$(CUTBACK_EXE): $(CUTBACK_CR) $(TEMPLATES) $(EMBEDS)
+	@$(MKDIR) $(@D)
 	$(CR) $(CUTBACK_FLAGS) -o $@ $<
 
-$(GENERATE_EXE): $(GENERATE_CR) $(TEMPLATES) $(DIR_BIN)/
+$(GENERATE_EXE): $(GENERATE_CR) $(TEMPLATES)
+	@$(MKDIR) $(@D)
 	$(CR) -o $@ $<
 
-$(DIR_BLD)/:
-	$(MKDIR) $@
-
-$(DIR_DOC)/:
-	$(MKDIR) $@
-
-$(DIR_MAN)/:
-	$(MKDIR) $@
-
-$(DIR_BIN)/:
-	$(MKDIR) $@
-
-$(DIR_EMB)/:
-	$(MKDIR) $@
