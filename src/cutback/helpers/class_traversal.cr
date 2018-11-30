@@ -1,7 +1,7 @@
 module Cutback::Helpers::ClassTraversal
 
   def all
-    {{ @type.all_subclasses }}
+    {{ @type.all_subclasses.reject(&.abstract?) }}
   end
 
   def name
