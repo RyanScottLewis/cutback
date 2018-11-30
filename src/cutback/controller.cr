@@ -6,6 +6,10 @@ abstract class Cutback::Controller
     @@actions.includes?(name)
   end
 
+  def self.actions
+    @@actions
+  end
+
   extend Helpers::ClassTraversal
 
   include Helpers::CommandExecution
