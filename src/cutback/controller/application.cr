@@ -3,10 +3,13 @@ class Cutback::Controller::Application < Cutback::Controller
   actions create, help, version
 
   def create
-    # TODO: Something like
-    @controllers["backup"].create
-    # Or
-    #redirect_to "backup#create"
+    #@controllers["backup"].create
+
+    @controllers["manifest"].create
+    @controllers["records"].create
+    @controllers["archive"].create
+    @controllers["checksum"].create
+    @controllers["metadata"].create
   end
 
   def help
