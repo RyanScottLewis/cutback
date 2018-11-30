@@ -8,9 +8,7 @@ class Cutback::Controller::Archive < Cutback::Controller::Resource
   end
 
   protected def create_resource
-    command = Command::Archive.new(@options, @paths, @tools, @logger, message: "Generating archive")
-
-    command.execute
+    run(:archive, message: "Generating archive")
   end
 
 end

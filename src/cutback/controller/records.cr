@@ -7,9 +7,7 @@ class Cutback::Controller::Records < Cutback::Controller::Resource
   end
 
   protected def create_resource
-    command = Command::Find.new(@options, @paths, @tools, @logger, includes: @options.records, output: @paths.records, message: "Generating records")
-
-    command.execute
+    run(:find, includes: @options.records, output: @paths.records, message: "Generating records")
   end
 
 end
