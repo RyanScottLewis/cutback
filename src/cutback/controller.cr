@@ -2,29 +2,13 @@ abstract class Cutback::Controller
 
   @@actions = [] of String
 
-  def self.all
-    {{ @type.all_subclasses }}
-  end
-
-  def self.name
-    {{ @type.id.stringify }}.split("::").last.underscore
-  end
-
-  def self.names
-    all.map(&.name)
-  end
-
-  def self.[]?(name)
-    all.find { |subclass| subclass.name == name }
-  end
-
-  def self.valid?(name)
-    names.includes?(name)
-  end
-
   def self.action?(name)
     @@actions.includes?(name)
   end
+
+  extend Helpers::ClassTraversal
+
+  include Helpers::Command
 
   @options     : Options
   @paths       : PathList
