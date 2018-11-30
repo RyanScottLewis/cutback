@@ -13,11 +13,11 @@ class Cutback::Controller::Application < Cutback::Controller
   end
 
   def help
-    puts HELP
+    puts Embed["help"]
   end
 
   def version
-    puts VERSION
+    puts Embed["version"]
   end
 
 end

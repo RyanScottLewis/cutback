@@ -19,7 +19,7 @@ class Cutback::Validator::Options < Cutback::Validator
   protected def validate_help
     return unless @options.help
 
-    puts HELP
+    puts Embed["help"]
     exit
   end
 
@@ -27,7 +27,7 @@ class Cutback::Validator::Options < Cutback::Validator
   protected def validate_version
     return unless @options.version
 
-    puts VERSION
+    puts Embed["version"]
     exit
   end
 
