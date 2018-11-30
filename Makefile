@@ -63,7 +63,7 @@ TEMPLATES     ?= $(call find,$(DIR_TMPL),*)
 DOCS          ?= $(README_MD) $(README_HTML) $(MAN_EXE_GZ) $(MAN_CFG_GZ)
 EMBEDS        ?= $(HELP_OUT) $(VERSION_OUT)
 
-CLEAN         ?= $(DIR_BLD) $(DIR_MAN) $(DIR_EMB) $(GENERATE_EXE) $(DOCS)
+CLEAN         ?= $(DIR_BLD) $(DIR_MAN) $(GENERATE_EXE) $(DOCS) $(EMBEDS)
 
 .PHONY: all build docs clean
 

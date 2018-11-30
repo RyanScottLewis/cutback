@@ -6,4 +6,5 @@
 *.dwarf
 doc/README.html
 doc/man/
-src/cutback/embed/
+src/cutback/embed/*
+!src/cutback/embed/.gitkeep
