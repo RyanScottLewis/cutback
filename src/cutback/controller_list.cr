@@ -1,15 +1,16 @@
 class Cutback::ControllerList
 
-  @options : Options
-  @paths   : PathList
-  @tools   : ToolList
-  @logger  : Logger
+  @options    : Options
+  @paths      : PathList
+  @tools      : ToolList
+  @identifier : Identifier
+  @logger     : Logger
 
   @all = {} of String => Controller
 
-  def initialize(@options, @paths, @tools, @logger)
+  def initialize(@options, @paths, @tools, @identifier, @logger)
     Controller.all.each do |controller|
-      @all[controller.name] = controller.new(@options, @paths, @tools, @logger)
+      @all[controller.name] = controller.new(@options, @paths, @tools, @identifier, @logger, self)
     end
   end
 
@@ -19,10 +20,6 @@ class Cutback::ControllerList
 
   def valid?(name)
     @all.has_key?(name)
-  end
-
-  def names
-    @all.keys
   end
 
 end

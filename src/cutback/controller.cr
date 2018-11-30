@@ -26,12 +26,14 @@ abstract class Cutback::Controller
     @@actions.includes?(name)
   end
 
-  @options : Options
-  @paths   : PathList
-  @tools   : ToolList
-  @logger  : Logger
+  @options     : Options
+  @paths       : PathList
+  @tools       : ToolList
+  @identifier  : Identifier
+  @logger      : Logger
+  @controllers : ControllerList
 
-  def initialize(@options, @paths, @tools, @logger)
+  def initialize(@options, @paths, @tools, @identifier, @logger, @controllers)
   end
 
   macro actions(*names)
