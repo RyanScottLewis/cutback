@@ -8,7 +8,7 @@ abstract class Cutback::Controller
 
   extend Helpers::ClassTraversal
 
-  include Helpers::Command
+  include Helpers::CommandExecution
 
   @options     : Options
   @paths       : PathList
