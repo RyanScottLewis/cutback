@@ -1,6 +1,6 @@
 class Cutback::Metadata::Size < Cutback::Metadata
 
-  Cutback.mapping({
+  mapping({
     bytes: UInt64,
     human: String,
   })

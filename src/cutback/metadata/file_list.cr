@@ -1,6 +1,6 @@
 abstract class Cutback::Metadata::FileList < Cutback::Metadata
 
-  Cutback.mapping({
+  mapping({
     count: Int32,
     size:  Size,
   })

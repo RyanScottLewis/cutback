@@ -1,6 +1,6 @@
 class Cutback::Metadata::Compression < Cutback::Metadata
 
-  Cutback.mapping({
+  mapping({
     tool:    String,
     enabled: Bool,
     ratio:   Float64,

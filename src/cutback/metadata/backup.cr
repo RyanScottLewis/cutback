@@ -1,6 +1,6 @@
 class Cutback::Metadata::Backup < Cutback::Metadata
 
-  Cutback.mapping({
+  mapping({
     date:  Time,
     paths: Array(String),
   })

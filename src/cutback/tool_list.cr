@@ -9,7 +9,9 @@ class Cutback::ToolList
     viewer:     "pv",
   }
 
-  Cutback.mapping({
+  include Helpers::Mapping
+
+  mapping({
     archiver:   { type: String, getter: false, setter: false, default: TOOLS[:archiver] },
     checker:    { type: String, getter: false, setter: false, default: TOOLS[:checker] },
     compressor: { type: String, getter: false, setter: false, default: TOOLS[:compressor] },

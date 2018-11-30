@@ -1,6 +1,6 @@
 class Cutback::Metadata::Root < Cutback::Metadata
 
-  Cutback.mapping({
+  mapping({
     backup:   { type: Backup },
     manifest: { type: Manifest },
     records:  { type: Records },

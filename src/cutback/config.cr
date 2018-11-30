@@ -14,8 +14,9 @@ class Cutback::Config
   end
 
   include Helpers::Dumpable
+  include Helpers::Mapping
 
-  Cutback.mapping({
+  mapping({
     output:   String?,
     paths:    Array(String)?,
     excludes: Array(String)?,
