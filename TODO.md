@@ -36,6 +36,7 @@
 * Controllers
   * `.all` should not return abstract classes
   * Helper for running commands
+  * Resource file dependencies
 * Commands and controllers both pass around the same set of variables, it'd be nice to group them
   into like a State or Environment class
 
