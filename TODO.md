@@ -34,9 +34,15 @@
       * /proc/PID/io
       * /proc/PID/status
 * Controllers
+  * Default action
   * `.all` should not return abstract classes
   * Helper for running commands
-  * Resource file dependencies
+  * Resource
+    * File dependencies
+    * `read` for most things should actually read resource and not show metadata
+    * `update`
+    * `destroy`
+    * `metadata` (Which is what `read` does now)
 * Commands and controllers both pass around the same set of variables, it'd be nice to group them
   into like a State or Environment class
 
