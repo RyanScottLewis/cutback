@@ -5,12 +5,12 @@ class Cutback::Application
   end
 
   def initialize(@arguments : Array(String) = ARGV)
-    @logger     = Logger.new(STDOUT)
-    @options    = Options.new
-    @identifier = Identifier.new(@options)
-    @tools      = ToolList.new
-    @paths      = PathList.new(@options, @tools, @identifier)
-    @routes     = RouteList.new(@options, @paths, @tools, @logger)
+    @logger      = Logger.new(STDOUT)
+    @options     = Options.new
+    @identifier  = Identifier.new(@options)
+    @tools       = ToolList.new
+    @paths       = PathList.new(@options, @tools, @identifier)
+    @controllers = ControllerList.new(@options, @paths, @tools, @logger)
   end
 
   def execute
