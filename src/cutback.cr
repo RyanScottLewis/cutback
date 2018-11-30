@@ -34,6 +34,8 @@ require "./cutback/metadata/**"
 require "./cutback/processor/**"
 require "./cutback/validator/**"
 require "./cutback/command/**"
+
+require "./cutback/controller/resource"
 require "./cutback/controller/**"
 
 Cutback::Application.execute

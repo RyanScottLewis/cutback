@@ -1,6 +1,6 @@
-class Cutback::Controller::Config < Cutback::Controller
+class Cutback::Controller::Config < Cutback::Controller::Resource
 
-  def inspect
+  def read
     config = Cutback::Config.new(@options)
 
     puts config.dump(@options.format)

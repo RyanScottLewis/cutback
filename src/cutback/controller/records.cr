@@ -1,12 +1,12 @@
-class Cutback::Controller::Records < Cutback::Controller
+class Cutback::Controller::Records < Cutback::Controller::Resource
 
-  def generate
+  def create
     command = Command::Find.new(@options, @paths, @tools, @logger, includes: @options.records, output: @paths.records, message: "Generating records")
 
     command.execute
   end
 
-  def inspect
+  def read
     metadata = Cutback::Metadata::Records.new(@paths)
 
     puts metadata.dump(@options.format)

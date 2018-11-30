@@ -1,6 +1,6 @@
-class Cutback::Controller::Metadata < Cutback::Controller
+class Cutback::Controller::Metadata < Cutback::Controller::Resource
 
-  def generate
+  def create
     return if @options.dry
 
     metadata = create_metadata
@@ -8,7 +8,7 @@ class Cutback::Controller::Metadata < Cutback::Controller
     metadata.save(@paths.metadata, @options.format)
   end
 
-  def inspect
+  def read
     return if @options.dry
 
     metadata = create_metadata

@@ -1,4 +1,4 @@
-class Cutback::Controller::Backup < Cutback::Controller
+class Cutback::Controller::Backup < Cutback::Controller::Resource
 
 end
 
