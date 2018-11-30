@@ -11,17 +11,23 @@ class Cutback::Application
     @tools       = ToolList.new
     @paths       = PathList.new(@options, @tools, @identifier)
     @controllers = ControllerList.new(@options, @paths, @tools, @logger)
+    @router      = Router.new(@arguments, @controllers)
   end
 
   def execute
     process_options
     process_arguments
+    process_router
+
     validate_options
     validate_arguments
+    validate_router
+
     update_identifier
     update_tools
     update_paths
     update_logger
+
     execute_route
   rescue error : Cutback::Error
     display_error(error)
@@ -35,12 +41,20 @@ class Cutback::Application
     Processor::Arguments.process(@arguments)
   end
 
-  protected def validate_arguments
-    Validator::Arguments.validate(@arguments, @routes)
+  protected def process_router
+    Processor::Router.process(@arguments, @router)
   end
 
   protected def validate_options
     Validator::Options.validate(@options)
+  end
+
+  protected def validate_arguments
+    Validator::Arguments.validate(@arguments)
+  end
+
+  protected def validate_router
+    Validator::Router.validate(@router)
   end
 
   protected def update_identifier
@@ -63,7 +77,7 @@ class Cutback::Application
   end
 
   protected def execute_route
-    Router.route(@arguments, @routes)
+    @router.execute
   end
 
   protected def display_error(error)
