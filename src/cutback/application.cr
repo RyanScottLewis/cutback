@@ -21,7 +21,7 @@ class Cutback::Application
     update_identifier
     update_tools
     update_paths
-    setup_logger
+    update_logger
     execute_route
   rescue error : Cutback::Error
     display_error(error)
@@ -58,7 +58,7 @@ class Cutback::Application
     @tools.update(@options)
   end
 
-  protected def setup_logger
+  protected def update_logger
     @logger.io = File.open(@paths.log, "a+") unless @options.dry
   end
 
