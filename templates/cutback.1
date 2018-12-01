@@ -9,6 +9,11 @@
 <% app.arguments.each do |argument| -%>
   <%-= argument %>
 <% end -%>
+.TP
+\fBDefaults\fR
+When only a single argument is given, the controller is `application`.
+.br
+When no arguments are given, the controller is `backup` and the action is `create`.
 .SH OPTIONS
 <% app.options.each do |option| -%>
   <%-= option %>

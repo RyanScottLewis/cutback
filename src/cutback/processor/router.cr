@@ -7,22 +7,16 @@ class Cutback::Processor::Router < Cutback::Processor
   end
 
   def process
-    update_controller_name
-    update_action_name
-  end
-
-  macro update_from_argument_at?(name, index)
-    value = @arguments[{{index}}]?
-
-    @router.{{name}} = value unless value.nil?
-  end
-
-  protected def update_controller_name
-    update_from_argument_at?(controller_name, 1)
-  end
-
-  protected def update_action_name
-    update_from_argument_at?(action_name, 0)
+    if @arguments.size == 2
+      @router.controller_name = @arguments[0]
+      @router.action_name     = @arguments[1]
+    elsif @arguments.size == 1
+      @router.controller_name = "application"
+      @router.action_name     = @arguments[0]
+    else
+      @router.controller_name = "backup"
+      @router.action_name     = "create"
+    end
   end
 
 end

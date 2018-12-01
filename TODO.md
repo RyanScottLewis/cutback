@@ -24,8 +24,6 @@
   * `--index +` to increment index
     * So without `--index`, the largest daily index is used so when run twice, the second time will do nothing (similar to make)
       But, with `-i +`, it'll increment the index by 1 and generate
-* Arguments
-  * Swap arguments eg: `generate [archive]` to `archive [generate]`
 * Check for binaries in toolset before executing them in command
 * embed/i18n.yml
   * Error messages
