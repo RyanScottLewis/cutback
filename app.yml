@@ -115,6 +115,11 @@ controllers:
         description: Display help
       - name:        version
         description: Display version
+  - name:            backup
+    description:     The backup
+    actions:
+      - name:        create
+        description: Create the backup
   - name:            manifest
     description:     List of all files in the archive
     actions:
