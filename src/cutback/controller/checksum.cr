@@ -5,6 +5,7 @@ class Cutback::Controller::Checksum < Cutback::Controller::Resource
   end
 
   protected def create_resource
+    call("archive#create")
     run(:checksum, check: false, message: "Generating checksum")
   end
 

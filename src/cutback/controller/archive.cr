@@ -8,6 +8,8 @@ class Cutback::Controller::Archive < Cutback::Controller::Resource
   end
 
   protected def create_resource
+    call("manifest#create")
+    call("records#create")
     run(:archive, message: "Generating archive")
   end
 

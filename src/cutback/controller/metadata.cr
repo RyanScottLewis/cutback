@@ -13,6 +13,7 @@ class Cutback::Controller::Metadata < Cutback::Controller::Resource
   end
 
   protected def create_resource
+    call("checksum#create")
     return if @options.dry
 
     metadata = create_metadata
