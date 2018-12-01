@@ -3,9 +3,11 @@
 
 ---
   # Output path for backup
-  output: "/mnt/backup"
+  #output: "/mnt/backup"
+  output: "./tmp"
 
   # The list of paths to search for files to backup
+  # The more specific these paths, the faster searching will be
   paths:
     - "/home"
 
@@ -35,4 +37,3 @@
   # Format of the archive metadata
   format: "yaml"
 
-  # The more specific these paths, the faster searching will be

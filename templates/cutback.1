@@ -1,62 +1,14 @@
 .TH man 1 "<%= name %>" "<%= version %>" "<%= name %>"
 .SH NAME
 <%= name %> \- <%= summary %>
-.SH SYNOPSIS
-\fB<%= name %>\fR [\fIOPTIONS\fR] [\fIACTION\fR] [\fITYPE\fR]
+.SH USAGE
+\fB<%= name %>\fR [\fIOPTIONS\fR] [\fICONTROLLER\fR] [\fIACTION\fR]
 .SH DESCRIPTION
 <%= description %>
 .SH OPTIONS
-.TP
-\fB\-h\fR, \fB\-\-help\fR
-<%= options["help"] %>
-.TP
-\fB\-v\fR, \fB\-\-version\fR
-<%= options["version"] %>
-.TP
-\fB\-D\fR, \fB\-\-dry\fR
-<%= options["dry"] %>
-.TP
-\fB\-c\fR, \fB\-\-config\fR
-<%= options["config"] %>
-
-See \fI<%= name %>(5)\fR for config file details.
-.TP
-\fB\-o\fR, \fB\-\-output\fR
-<%= options["output"] %>
-
-\fBDefault:\fR \fI"."\fR
-.TP
-\fB\-d\fR, \fB\-\-date\fR
-<%= options["date"] %>
-
-\fBDefault:\fR The current date
-.TP
-\fB\-i\fR, \fB\-\-index\fR
-<%= options["index"] %>
-
-\fBDefault:\fR The largest index for the current date incremented by \fI1\fR or \fI0\fR
-.TP
-\fB\-p\fR, \fB\-\-paths\fR
-<%= options["paths"] %>
-.TP
-\fB\-e\fR, \fB\-\-excludes\fR
-<%= options["excludes"] %>
-.TP
-\fB\-r\fR, \fB\-\-records\fR
-<%= options["records"] %>
-.TP
-\fB\-f\fR, \fB\-\-format\fR
-<%= options["format"] %>
-
-\fBValid:\fR \fI"yaml"\fR or \fI"json"\fR
-
-\fBDefault:\fR \fI"yaml"\fR
-.TP
-\fB\-p\fR, \fB\-\-progress\fR
-<%= options["progress"] %>
-.TP
-\fB\-C\fR, \fB\-\-compress\fR
-<%= options["compress"] %>
+<%- options.each do |option| %>
+<%= man_option(option) -%>
+<% end %>
 .TP
 \fBList Values\fR
 Values passed to the \fB\-\-paths\fR, \fB\-\-excludes\fR, and \fB\-\-records\fR options are paths
@@ -80,6 +32,14 @@ wildcards:
 --excludes "/srv/public/*/Videos/*"
 .RE
 .fi
+.SH CONTROLLERS & ACTIONS
+<% app_controllers.each do |controller| -%>
+.TP
+\fB<%= controller.name %>\fR <%= controllers[controller.name]["description"] %>
+<%- controller.actions.each do |action| %>
+<%-= action.ljust(21) -%>
+<% end %>
+<% end %>
 .SH STRATEGY
 .nf
 <%= strategy %>

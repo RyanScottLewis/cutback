@@ -39,20 +39,62 @@ strategy: |
     * Save to `ID.{yaml,json}`
 mit_license: This program is available as open source under the terms of the MIT License <http://opensource.org/licenses/MIT>.
 options:
-  help:       Display help
-  version:    Display version
-  dry:        Do not run system commands (dry run)
-  output:     Output path
-  date:       Date for the backup in YYYY-MM-DD format
-  index:      Index for the backup
-  config:     Configuration file path
-  paths:      Search paths
-  excludes:   Exclusion path patterns
-  records:    Record path patterns
-  format:     Format of the metadata file
-  progress:   View progress
-  compress:   Compress archive
-  compressor: Compressor binary
+  - long:        help
+    short:       h
+    type:        bool
+    description: Display help
+  - long:        version
+    short:       v
+    type:        bool
+    description: Display version
+  - long:        config
+    short:       c
+    type:        string
+    description: Configuration file path
+  - long:        dry
+    short:       D
+    type:        bool
+    description: Do not run system commands (dry run)
+  - long:        output
+    short:       o
+    type:        string
+    description: Output path
+  - long:        date
+    short:       d
+    type:        date
+    description: Date for the backup in YYYY-MM-DD format
+  - long:        index
+    short:       i
+    type:        integer
+    description: Index for the backup
+  - long:        paths
+    short:       p
+    type:        list
+    description: Search paths
+  - long:        excludes
+    short:       e
+    type:        list
+    description: Exclusion path patterns
+  - long:        paths
+    short:       r
+    type:        list
+    description: Record path patterns
+  - long:        format
+    short:       f
+    type:        string
+    description: Format of the metadata file
+  - long:        progress
+    short:       P
+    type:        bool
+    description: View progress
+  - long:        compress
+    short:       C
+    type:        bool
+    description: Compress archive
+  - long:        compressor
+    short:       c
+    type:        string
+    description: Compressor binary
 controllers:
   application:
     description: Application actions

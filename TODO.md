@@ -4,6 +4,15 @@
   * Config man page
   * Man/help for --compressor/-x
   * Generator reads controllers and their actions pragmatically 
+  * Man
+    ```
+    See \fI<%= name %>(5)\fR for config file details.
+    \fBDefault:\fR \fI"."\fR
+    \fBDefault:\fR The current date
+    \fBDefault:\fR The largest index for the current date incremented by \fI1\fR or \fI0\fR
+    \fBValid:\fR \fI"yaml"\fR or \fI"json"\fR
+    \fBDefault:\fR \fI"yaml"\fR
+    ```
 * Tests
 * Options
   * `--verbose [LEVEL]`

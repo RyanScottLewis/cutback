@@ -21,7 +21,7 @@ class Cutback::Processor::Options < Cutback::Processor
 
   macro define_option(name, short, type)
     {% if type.id == "bool" %}
-      @option_parser.on("-{{short}}", "--{{name}}", "")       {         @prototype.{{name.id}} = true }
+      @option_parser.on("-{{short}}", "--{{name}}",       "") {         @prototype.{{name.id}} = true }
     {% elsif type.id == "string" %}
       @option_parser.on("-{{short}}", "--{{name}} VALUE", "") { |value| @prototype.{{name.id}} = value }
     {% elsif type.id == "list" %}
