@@ -15,6 +15,7 @@
     ```
 * Tests
 * Options
+  * Generate `Cutback::Options` and `Processor::Options#define_options`
   * `--verbose [LEVEL]`
     * Level 0: Display nothing
     * Level 1: Display logger messages
