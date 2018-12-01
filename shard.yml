@@ -1,5 +1,6 @@
-name: cutback
-version: 0.0.1
+# Intentionally left blank, see app.yml
+name:
+version:
 
 crystal: 0.25.0
 

@@ -49,6 +49,7 @@ $ sudo make DESTDIR="/" install
       * Value
   * Save to `ID.{yaml,json}`
 
+
 ### Manifest
 
 The list of all files within the search paths, sans exclusions.

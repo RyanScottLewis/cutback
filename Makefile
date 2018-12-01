@@ -36,7 +36,7 @@ CUTBACK_FLAGS += --release
 endif
 CUTBACK_DEST  ?= $(DESTDIR)/usr/bin/cutback
 
-GENERATE_CR   ?= $(DIR_SRC)/generate.cr
+GENERATE_CR   ?= $(DIR_SRC)/generate.cr $(call find,$(DIR_SRC)/generate,*.cr)
 GENERATE_EXE  ?= $(DIR_BIN)/generate
 
 README_TMPL   ?= $(DIR_TMPL)/README.md

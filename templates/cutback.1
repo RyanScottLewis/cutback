@@ -1,14 +1,18 @@
-.TH man 1 "<%= name %>" "<%= version %>" "<%= name %>"
-.SH NAME
-<%= name %> \- <%= summary %>
+.TH man 1 "<%= app.name %>" "<%= app.version %>" "<%= app.name %>"
+.SH OUTLINE
+<%= app.outline %>
 .SH USAGE
-\fB<%= name %>\fR [\fIOPTIONS\fR] [\fICONTROLLER\fR] [\fIACTION\fR]
+<%= app.usage %>
 .SH DESCRIPTION
-<%= description %>
+<%= app.description -%>
+.SH ARGUMENTS
+<% app.arguments.each do |argument| -%>
+  <%-= argument %>
+<% end -%>
 .SH OPTIONS
-<%- options.each do |option| %>
-<%= man_option(option) -%>
-<% end %>
+<% app.options.each do |option| -%>
+  <%-= option %>
+<% end -%>
 .TP
 \fBList Values\fR
 Values passed to the \fB\-\-paths\fR, \fB\-\-excludes\fR, and \fB\-\-records\fR options are paths
@@ -33,30 +37,29 @@ wildcards:
 .RE
 .fi
 .SH CONTROLLERS & ACTIONS
-<% app_controllers.each do |controller| -%>
-.TP
-\fB<%= controller.name %>\fR <%= controllers[controller.name]["description"] %>
-<%- controller.actions.each do |action| %>
-<%-= action.ljust(21) -%>
-<% end %>
-<% end %>
+<% app.controllers.each do |controller| -%>
+  <%-= controller -%>
+  <% controller.actions.each do |action| %>
+    <%= action -%>
+  <% end %>
+<% end -%>
 .SH STRATEGY
 .nf
-<%= strategy %>
+<%= app.strategy %>
 .fi
 .SH SEE ALSO
 .TP
 \fBHomepage\fR
-<%= homepage %>
+<%= app.homepage %>
 .TP
 \fBRepository\fR
-<%= repository %>
+<%= app.repository %>
 .TP
 \fBIssues/Bugs\fR
-<%= issues %>
+<%= app.issues %>
 .TP
 \fBConfiguration\fR
-\fI<%= name %>(5)\fR
+\fI<%= app.name %>(5)\fR
 .SH LICENSE
-<%= mit_license %>
+<%= app.license %>
 

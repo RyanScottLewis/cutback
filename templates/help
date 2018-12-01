@@ -1,22 +1,27 @@
-<%= name %> v<%= version %> - <%= summary %>
+<%= app.outline %>
 
-Usage: <%= name %> [OPTIONS] [CONTROLLER] [ACTION]
+Usage: <%= app.usage %>
+
+<%= app.description -%>
+
+Arguments:
+<% app.arguments.each do |argument| -%>
+  <%= argument %>
+<% end -%>
 
 Options:
-<% options.each do |option| -%>
-  <%= help_option(option) %>
+<% app.options.each do |option| -%>
+  <%= option %>
 <% end -%>
 
 Controllers & Actions:
-<% app_controllers.each do |controller| -%>
-  <%= controller.name.ljust(23) -%>
-  <%= controllers[controller.name]["description"] -%>
+<% app.controllers.each do |controller| -%>
+  <%= controller -%>
   <% controller.actions.each do |action| %>
-    <%= action.ljust(21) -%>
-    <%= controllers[controller.name]["actions"][action] -%>
+    <%= action -%>
   <% end %>
 <% end -%>
 
-See `man 1 cutback` for more detailed information.
-See `man 5 cutback` for configuration file information.
+See `man 1 <%= app.name %>` for more detailed information.
+See `man 5 <%= app.name %>` for configuration file information.
 

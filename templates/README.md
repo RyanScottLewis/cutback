@@ -1,6 +1,6 @@
-# Cutback
+# <%= app.name.capitalize %>
 
-<%= description %>
+<%= app.description -%>
 
 ## Installation
 
@@ -16,7 +16,7 @@ $ sudo make DESTDIR="/" install
 
 ## Strategy
 
-<%= strategy %>
+<%= app.strategy %>
 
 ### Manifest
 
@@ -117,7 +117,7 @@ TODO: Write development instructions here
 
 ## License
 
-<%= app["mit_license"] %>
+<%= app.license %>
 
 [yaml]:     http://yaml.org/
 [json]:     http://json.org/

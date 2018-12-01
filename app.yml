@@ -1,6 +1,9 @@
+name: cutback
+version: 0.0.1
 homepage: http://RyanScottLewis.github.io/cutback
 repository: https://github.com/RyanScottLewis/cutback
 issues: https://github.com/RyanScottLewis/cutback/issues
+license: This program is available as open source under the terms of the MIT License <http://opensource.org/licenses/MIT>.
 summary: System for smaller, more focused backups
 description: |
   Cutback is a backup system with the goal of creating smaller, more focused backups by generating
@@ -37,99 +40,121 @@ strategy: |
         * Tool (sha256sum, sha512sum, etc.)
         * Value
     * Save to `ID.{yaml,json}`
-mit_license: This program is available as open source under the terms of the MIT License <http://opensource.org/licenses/MIT>.
+arguments:
+  - name:        options
+    description: Command-line options
+    optional:    true
+  - name:        controller # TODO: RENAME TO RESOURCE
+    description: Controller to perform the action for
+    optional:    true
+  - name:        action
+    description: Action to perform
+    optional:    true
 options:
-  - long:        help
+  - name:        help
     short:       h
     type:        bool
     description: Display help
-  - long:        version
+  - name:        version
     short:       v
     type:        bool
     description: Display version
-  - long:        config
+  - name:        config
     short:       c
     type:        string
     description: Configuration file path
-  - long:        dry
+  - name:        dry
     short:       D
     type:        bool
     description: Do not run system commands (dry run)
-  - long:        output
+  - name:        output
     short:       o
     type:        string
     description: Output path
-  - long:        date
+  - name:        date
     short:       d
     type:        date
     description: Date for the backup in YYYY-MM-DD format
-  - long:        index
+  - name:        index
     short:       i
     type:        integer
     description: Index for the backup
-  - long:        paths
+  - name:        paths
     short:       p
     type:        list
     description: Search paths
-  - long:        excludes
+  - name:        excludes
     short:       e
     type:        list
     description: Exclusion path patterns
-  - long:        paths
+  - name:        paths
     short:       r
     type:        list
     description: Record path patterns
-  - long:        format
+  - name:        format
     short:       f
     type:        string
     description: Format of the metadata file
-  - long:        progress
+  - name:        progress
     short:       P
     type:        bool
     description: View progress
-  - long:        compress
+  - name:        compress
     short:       C
     type:        bool
     description: Compress archive
-  - long:        compressor
+  - name:        compressor
     short:       c
     type:        string
     description: Compressor binary
 controllers:
-  application:
-    description: Application actions
+  - name:            application
+    description:     Application actions
     actions:
-      create:    Create all backup files
-      help:      Display help
-      version:   Display version
-  manifest:
-    description: List of all files in the archive
+      - name:        help
+        description: Display help
+      - name:        version
+        description: Display version
+  - name:            manifest
+    description:     List of all files in the archive
     actions:
-      create:    Create the manifest
-      read:      View manifest metadata
-  records:
-    description: List of files excluded from the archive, but kept a record of
+      - name:        create
+        description: Create the manifest
+      - name:        read
+        description: View manifest metadata
+  - name:            records
+    description:     List of files excluded from the archive, but kept a record of
     actions:
-      create:    Create the records
-      read:      View records metadata
-  archive:
-    description: Archive of files in the manifest
+      - name:        create
+        description: Create the records
+      - name:        read
+        description: View records metadata
+  - name:            archive
+    description:     Archive of files in the manifest
     actions:
-      create:    Create the archive
-      read:      View archive metadata
-  checksum:
-    description: Archive checksum
+      - name:        create
+        description: Create the archive
+      - name:        read
+        description: View archive metadata
+  - name:            checksum
+    description:     Archive checksum
     actions:
-      create:    Create the checksum
-      read:      Verify the checksum
-  metadata:
-    description: Information about the backup
+      - name:        create
+        description: Create the checksum
+      - name:        read
+        description: Verify the checksum
+  - name:            metadata
+    description:     Information about the backup
     actions:
-      create:    Create the metadata
-      read:      View the metadata
-  config:
-    description: Current configuration
+      - name:        create
+        description: Create the metadata
+      - name:        read
+        description: View the metadata
+  - name:            config
+    description:     Current configuration
     actions:
-      create:    Dump the current configuration to file
-      read:      View the current configuration
+      - name:        create
+        description: Dump the current configuration to file
+      - name:        read
+        description: View the current configuration
 
