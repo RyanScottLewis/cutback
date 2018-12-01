@@ -42,5 +42,15 @@ abstract class Cutback::Controller
     end
   end
 
+  def call(controller, action)
+    @controllers[controller].execute(action)
+  end
+
+  def call(value)
+    partials = value.split("#")
+
+    call(partials[0], partials[1])
+  end
+
 end
 
