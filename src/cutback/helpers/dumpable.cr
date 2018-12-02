@@ -10,7 +10,7 @@ module Cutback::Helpers::Dumpable
   end
 
   def save(path, format="yaml")
-    File.write(path, dump(format))
+    path.write(dump(format))
   end
 
 end

@@ -9,7 +9,7 @@ class Cutback::Metadata::Archive < Cutback::Metadata
   end
 
   def initialize(options : Options, paths : PathList, tools : ToolList, manifest : Manifest)
-    bytes = File.size(paths.archive)
+    bytes = paths.archive.size
     @size = Size.new(bytes)
 
     ratio        = bytes.to_f / manifest.size.bytes.to_f

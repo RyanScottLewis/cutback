@@ -59,8 +59,8 @@ abstract class Cutback::Command
     append_pipe command(type)
   end
 
-  protected def append_output(path : String)
-    append ">", path
+  protected def append_output(path)
+    append ">", path.to_s
   end
 
   protected def append_output(type : self.class)
@@ -72,7 +72,7 @@ abstract class Cutback::Command
   end
 
   protected def progress(size=nil, path=nil)
-    Progress.new(@options, @paths, @tools, @logger, @message, size, path)
+    Progress.new(@options, @paths, @tools, @logger, @message, size, path.to_s)
   end
 
   protected def checksum(check=false)

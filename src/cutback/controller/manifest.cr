@@ -7,7 +7,7 @@ class Cutback::Controller::Manifest < Cutback::Controller::Resource
   end
 
   protected def create_resource
-    run(:find, excludes: @options.records, output: @paths.manifest, message: "Generating manifest")
+    run(:find, excludes: @options.records, output: @paths.manifest.to_s, message: "Generating manifest")
   end
 
 end

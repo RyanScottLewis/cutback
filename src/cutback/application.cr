@@ -73,7 +73,7 @@ class Cutback::Application
   end
 
   protected def update_logger
-    @logger.io = File.open(@paths.log, "a+") unless @options.dry
+    @logger.io = File.open(@paths.log.to_s, "a+") unless @options.dry
   end
 
   protected def execute_route

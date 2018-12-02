@@ -4,7 +4,7 @@ class Cutback::PathList
   @tools      : ToolList
   @identifier : Identifier
 
-  @all = {} of String => String
+  @all = {} of String => Path
 
   def initialize(@options, @tools, @identifier)
     update
@@ -15,7 +15,7 @@ class Cutback::PathList
   delegate :[], to: @all
 
   macro update_path(name, extname)
-    @all[{{name.id.stringify}}] = File.join(@options.output, "#{@identifier}.%s" % {{extname}})
+    @all[{{name.id.stringify}}] = Path.join(@options.output, "#{@identifier}.%s" % {{extname}})
   end
 
   macro def_path(name)
