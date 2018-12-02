@@ -55,7 +55,9 @@ abstract class Cutback::Controller::Resource < Cutback::Controller
   end
 
   protected def update_dependencies
-    dependency_controllers.each(&.update)
+    dependency_controllers.each do |controller|
+      controller.update unless controller.resource_exists?
+    end
   end
 
   protected def dependencies_modified?
