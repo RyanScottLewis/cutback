@@ -9,5 +9,10 @@ class Cutback::Controller::Checksum < Cutback::Controller::Resource
     run(:checksum, check: false, message: "Generating checksum")
   end
 
+  protected def resource_should_update?
+    super ||
+      @paths.archive.modified_after?(@paths.checksum)
+  end
+
 end
 
