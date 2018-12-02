@@ -1,38 +1,73 @@
 abstract class Cutback::Controller::Resource < Cutback::Controller
 
-  actions create, read
+  @@dependencies = [] of String
 
-  protected abstract def create_resource
-  protected abstract def read_resource
+  macro depends_on(*names)
+    @@dependencies = [{{*names.map(&.id.stringify)}}]
+  end
+
+  actions create, read, update, destroy
 
   def create
-    if resource_should_update?
-      create_resource
-    else
-      @logger.warn("Resource '%s' for %s already exists: %s" % [resource_name, @identifier, resource_path])
-    end
+    create_dependencies
+    create_resource if resource_stale?
   end
 
   def read
-    create_resource if resource_should_update?
-
     read_resource
   end
 
-  protected def resource_name
+  def update
+    update_dependencies
+    create_resource
+  end
+
+  def destroy
+    destroy_resource if resource_exists?
+  end
+
+  protected def create_resource; end
+  protected def read_resource; end
+  protected def destroy_resource; end
+
+  def resource_name
     self.class.name
   end
 
-  protected def resource_path
+  def resource_path
     @paths[resource_name]
   end
 
-  protected def resource_exists?
+  def resource_exists?
     resource_path.exists?
   end
 
-  protected def resource_should_update?
-    @options.force || !resource_exists?
+  protected def dependency_controllers
+    @@dependencies.map { |name| @controllers[name].as(Controller::Resource) }
+  end
+
+  protected def dependency_paths
+    @@dependencies.map { |name| @paths[name] }
+  end
+
+  protected def create_dependencies
+    dependency_controllers.each(&.create)
+  end
+
+  protected def update_dependencies
+    dependency_controllers.each(&.update)
+  end
+
+  protected def dependencies_modified?
+    dependency_paths.any?(&.modified_after?(resource_path))
+  end
+
+  protected def dependencies_stale?
+    dependency_controllers.any?(&.resource_stale?)
+  end
+
+  def resource_stale?
+    @options.force || !resource_exists? || dependencies_modified? || dependencies_stale?
   end
 
 end

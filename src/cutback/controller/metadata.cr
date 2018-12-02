@@ -1,24 +1,17 @@
 class Cutback::Controller::Metadata < Cutback::Controller::Resource
 
+  depends_on checksum
+
+  protected def create_resource
+    create_metadata.save(@paths.metadata, @options.format)
+  end
+
   protected def read_resource
-    return if @options.dry
-
-    metadata = create_metadata
-
-    puts metadata.dump(@options.format)
+    puts create_metadata.dump(@options.format)
   end
 
   protected def create_metadata
     Cutback::Metadata::Root.new(@options, @paths, @tools)
-  end
-
-  protected def create_resource
-    call("checksum#create")
-    return if @options.dry
-
-    metadata = create_metadata
-
-    metadata.save(@paths.metadata, @options.format)
   end
 
 end
