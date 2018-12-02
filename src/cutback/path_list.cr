@@ -28,9 +28,10 @@ class Cutback::PathList
     update_path(log,      "log")
     update_path(manifest, "manifest")
     update_path(records,  "records")
-    update_path(archive,  archive_ext)
+    update_path(archive,  "archive.#{archive_ext}")
     update_path(checksum, "checksum")
     update_path(metadata, "metadata.#{@options.format}")
+    update_path(config,   "config.#{@options.format}")
   end
 
   def_path(log)
@@ -39,6 +40,7 @@ class Cutback::PathList
   def_path(archive)
   def_path(checksum)
   def_path(metadata)
+  def_path(config)
 
   protected def archive_ext
     result = "tar"
