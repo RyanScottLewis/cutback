@@ -1,6 +1,6 @@
 class Cutback::Controller::Metadata < Cutback::Controller::Resource
 
-  def read
+  protected def read_resource
     return if @options.dry
 
     metadata = create_metadata

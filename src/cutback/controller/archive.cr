@@ -1,8 +1,6 @@
 class Cutback::Controller::Archive < Cutback::Controller::Resource
 
-  def read
-    call("archive#create")
-
+  protected def read_resource
     manifest = Cutback::Metadata::Manifest.new(@paths)
     metadata = Cutback::Metadata::Archive.new(@options, @paths, @tools, manifest)
 

@@ -1,6 +1,6 @@
 class Cutback::Controller::Records < Cutback::Controller::Resource
 
-  def read
+  protected def read_resource
     metadata = Cutback::Metadata::Records.new(@paths)
 
     puts metadata.dump(@options.format)

@@ -1,6 +1,6 @@
 class Cutback::Controller::Manifest < Cutback::Controller::Resource
 
-  def read
+  protected def read_resource
     metadata = Cutback::Metadata::Manifest.new(@paths)
 
     puts metadata.dump(@options.format)
