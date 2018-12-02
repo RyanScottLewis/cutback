@@ -27,10 +27,6 @@ abstract class Cutback::Controller
   macro actions(*names)
     @@actions = [{{*names.map(&.id.stringify)}}]
 
-    {% for name, index in names %}
-      def {{name.id}}; end
-    {% end %}
-
     def execute(action)
       {% begin %}
         case action.strip.downcase
