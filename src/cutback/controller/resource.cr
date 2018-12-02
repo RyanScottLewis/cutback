@@ -14,6 +14,7 @@ abstract class Cutback::Controller::Resource < Cutback::Controller
   end
 
   def read
+    create
     read_resource
   end
 
