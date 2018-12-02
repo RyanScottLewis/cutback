@@ -48,5 +48,13 @@ abstract class Cutback::Controller
     call(partials[0], partials[1])
   end
 
+  macro delegate_action(*names, to controller)
+    {% for name, index in names %}
+      def {{name.id}}
+        call({{controller.id.stringify}}, {{name.id.stringify}})
+      end
+    {% end %}
+  end
+
 end
 
