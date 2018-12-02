@@ -127,6 +127,8 @@ controllers:
         description: See backup#version
       - name:        destroy
         description: See backup#destroy
+      - name:        verify
+        description: See checksum#verify
   - name:            application
     description:     Application actions
     actions:
