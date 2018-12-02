@@ -1,9 +1,14 @@
 class Cutback::Controller::Checksum < Cutback::Controller::Resource
 
   depends_on archive
+  actions create, read, update, destroy, verify
+
+  def verify
+    puts run(:checksum, check: true, message: "Verifying checksum")
+  end
 
   protected def read_resource
-    puts run(:checksum, check: true, message: "Comparing checksum")
+    puts @paths.checksum.read
   end
 
   protected def create_resource
