@@ -7,7 +7,7 @@ class Generate::Formatter::Controller < Generate::Formatter
 
   def to_s(io)
     io << @controller.name.ljust(25)
-    io << @controller.description
+    io << @controller.actions.map(&.name).join(" ")
   end
 
 end

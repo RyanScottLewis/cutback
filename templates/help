@@ -16,10 +16,7 @@ Options:
 
 Controllers & Actions:
 <% app.controllers.each do |controller| -%>
-  <%= controller -%>
-  <% controller.actions.each do |action| %>
-    <%= action -%>
-  <% end %>
+  <%= controller %>
 <% end -%>
 
 See `man 1 <%= app.name %>` for more detailed information.

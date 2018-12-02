@@ -1,7 +1,8 @@
 class Generate::Formatter::Action::Man < Generate::Formatter::Action
 
   def to_s(io)
-    io << String.build { |io| super(io) }.to_roff
+    io << @action.name.ljust(23)
+    io << @action.description
     io << "\n.br"
   end
 

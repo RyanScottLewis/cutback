@@ -6,8 +6,7 @@ class Generate::Formatter::Action < Generate::Formatter
   end
 
   def to_s(io)
-    io << @action.name.ljust(23)
-    io << @action.description
+    io << @action.name
   end
 
 end
