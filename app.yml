@@ -120,50 +120,82 @@ controllers:
       - name:        version
         description: Display version
   - name:            backup
-    description:     The backup
+    description:     The current backup
     actions:
       - name:        create
-        description: Create the backup
+        description: Create backup
+      - name:        read
+        description: View backup
+      - name:        update
+        description: Re-create backup
+      - name:        destroy
+        description: Destroy backup
   - name:            manifest
     description:     List of all files in the archive
     actions:
       - name:        create
-        description: Create the manifest
+        description: Create manifest
       - name:        read
-        description: View manifest metadata
+        description: View manifest
+      - name:        update
+        description: Re-create manifest
+      - name:        destroy
+        description: Destroy manifest
   - name:            records
     description:     List of files excluded from the archive, but kept a record of
     actions:
       - name:        create
-        description: Create the records
+        description: Create records
       - name:        read
-        description: View records metadata
+        description: View records
+      - name:        update
+        description: Re-create records
+      - name:        destroy
+        description: Destroy records
   - name:            archive
     description:     Archive of files in the manifest
     actions:
       - name:        create
-        description: Create the archive
+        description: Create archive
       - name:        read
-        description: View archive metadata
+        description: View archive
+      - name:        update
+        description: Re-create archive
+      - name:        destroy
+        description: Destroy archive
   - name:            checksum
     description:     Archive checksum
     actions:
       - name:        create
-        description: Create the checksum
+        description: Create checksum
       - name:        read
-        description: Verify the checksum
+        description: View checksum
+      - name:        update
+        description: Re-create checksum
+      - name:        verify
+        description: Verify checksum
+      - name:        destroy
+        description: Destroy checksum
   - name:            metadata
     description:     Information about the backup
     actions:
       - name:        create
-        description: Create the metadata
+        description: Create metadata
       - name:        read
-        description: View the metadata
+        description: View metadata
+      - name:        update
+        description: Update metadata
+      - name:        destroy
+        description: Destroy metadata
   - name:            config
     description:     Current configuration
     actions:
       - name:        create
-        description: Dump the current configuration to file
+        description: Create config
       - name:        read
-        description: View the current configuration
+        description: View config
+      - name:        update
+        description: Update config
+      - name:        destroy
+        description: Destroy metadata
 
