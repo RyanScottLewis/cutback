@@ -38,6 +38,7 @@ class Cutback::Processor::Options < Cutback::Processor
     define_option(version,    v, bool)
     define_option(config,     c, string)
     define_option(dry,        D, bool)
+    define_option(force,      F, bool)
     define_option(output,     o, string)
     define_option(date,       d, date)
     define_option(index,      i, integer)

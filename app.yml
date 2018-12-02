@@ -67,6 +67,10 @@ options:
     short:       D
     type:        bool
     description: Do not run system commands (dry run)
+  - name:        force
+    short:       F
+    type:        bool
+    description: Force the action (create even if resource exists, etc)
   - name:        output
     short:       o
     type:        string

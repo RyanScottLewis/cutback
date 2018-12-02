@@ -3,10 +3,10 @@ abstract class Cutback::Controller::Resource < Cutback::Controller
   actions create, read
 
   def create
-    if resource_exists?
-      @logger.warn("Resource '%s' for %s already exists: %s" % [resource_name, @identifier, resource_path])
-    else
+    if resource_should_update?
       create_resource
+    else
+      @logger.warn("Resource '%s' for %s already exists: %s" % [resource_name, @identifier, resource_path])
     end
   end
 
@@ -21,7 +21,11 @@ abstract class Cutback::Controller::Resource < Cutback::Controller
   protected abstract def create_resource
 
   protected def resource_exists?
-    File.exists?(resource_path)
+    resource_path.exists?
+  end
+
+  protected def resource_should_update?
+    @options.force || !resource_exists?
   end
 
 end
