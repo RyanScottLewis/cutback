@@ -28,7 +28,10 @@ abstract class Cutback::Controller::Resource < Cutback::Controller
 
   protected def create_resource; end
   protected def read_resource; end
-  protected def destroy_resource; end
+
+  protected def destroy_resource
+    resource_path.delete # TODO: Are you sure? (unless --force)
+  end
 
   def resource_name
     self.class.name
@@ -43,7 +46,7 @@ abstract class Cutback::Controller::Resource < Cutback::Controller
   end
 
   protected def dependency_controllers
-    @@dependencies.map { |name| @controllers[name].as(Controller::Resource) }
+    @@dependencies.map { |name| @controllers[name].as(Resource) }
   end
 
   protected def dependency_paths

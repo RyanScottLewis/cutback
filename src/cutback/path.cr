@@ -31,6 +31,10 @@ class Cutback::Path
     File.read(@value)
   end
 
+  def delete
+    File.delete(@value)
+  end
+
   def write(data)
     File.write(@value, data)
   end
