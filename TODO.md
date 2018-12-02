@@ -1,5 +1,11 @@
 # TODO
 
+* List classes
+  * Should have a single base class
+  * Should use SYMBOLS instead of strings and convert when needed
+* Metadata
+  * `Metadata::Archive.new(@options, @paths, @tools)`
+  * `save` should check for @options.dry?
 * Documentation
   * Config man page
   * Man/help for --compressor/-x
@@ -16,6 +22,11 @@
 * Tests
 * Options
   * Generate `Cutback::Options` and `Processor::Options#define_options`
+    * Right now when an option needs to be added or modified the following paths have to be edited
+      * `app.yml`
+      * `src/cutback/options.cr`
+      * `src/cutback/processor/options.cr`
+      This should JUST be `app.yml`
   * `--verbose [LEVEL]`
     * Level 0: Display nothing
     * Level 1: Display logger messages
