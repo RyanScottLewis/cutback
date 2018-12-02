@@ -3,7 +3,7 @@ class Cutback::Router
   @arguments   : Array(String)
   @controllers : ControllerList
 
-  property controller_name = "backup"
+  property controller_name = "proxy"
   property action_name     = "create"
 
   def initialize(@arguments, @controllers)

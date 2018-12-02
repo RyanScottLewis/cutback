@@ -11,11 +11,7 @@ class Cutback::Processor::Router < Cutback::Processor
       @router.controller_name = @arguments[0]
       @router.action_name     = @arguments[1]
     elsif @arguments.size == 1
-      @router.controller_name = "application"
       @router.action_name     = @arguments[0]
-    else
-      @router.controller_name = "backup"
-      @router.action_name     = "create"
     end
   end
 
