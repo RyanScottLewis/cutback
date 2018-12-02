@@ -112,6 +112,21 @@ options:
     type:        string
     description: Compressor binary
 controllers:
+  - name:            proxy
+    description:     Proxy actions
+    actions:
+      - name:        help
+        description: See application#help
+      - name:        version
+        description: See application#version
+      - name:        create
+        description: See backup#read
+      - name:        read
+        description: See backup#update
+      - name:        update
+        description: See backup#version
+      - name:        destroy
+        description: See backup#destroy
   - name:            application
     description:     Application actions
     actions:
