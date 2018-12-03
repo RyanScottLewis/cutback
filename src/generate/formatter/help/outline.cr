@@ -1,4 +1,4 @@
-class Generate::Formatter::Outline < Generate::Formatter
+class Generate::Formatter::Help::Outline < Generate::Formatter
 
   @root : App::Root
 

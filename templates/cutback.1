@@ -6,18 +6,14 @@
 .SH DESCRIPTION
 <%= app.description -%>
 .SH ARGUMENTS
-<% app.arguments.each do |argument| -%>
-  <%-= argument %>
-<% end -%>
+<%= app.arguments %>
 .TP
 \fBDefaults\fR
 When only a single argument is given, the controller is `proxy`.
 .br
 When no arguments are given, the controller is `proxy` and the action is `create`.
 .SH OPTIONS
-<% app.options.each do |option| -%>
-  <%-= option %>
-<% end -%>
+<%= app.options %>
 .TP
 \fBList Values\fR
 Values passed to the \fB\-\-paths\fR, \fB\-\-excludes\fR, and \fB\-\-records\fR options are paths
@@ -42,12 +38,7 @@ wildcards:
 .RE
 .fi
 .SH CONTROLLERS & ACTIONS
-<% app.controllers.each do |controller| -%>
-  <%-= controller -%>
-  <% controller.actions.each do |action| %>
-  <%= action -%>
-  <% end %>
-<% end -%>
+<%= app.controllers %>
 .SH STRATEGY
 .nf
 <%= app.strategy %>

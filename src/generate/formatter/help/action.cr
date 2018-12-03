@@ -1,4 +1,4 @@
-class Generate::Formatter::Action < Generate::Formatter
+class Generate::Formatter::Help::Action < Generate::Formatter
 
   @action : App::Action
 

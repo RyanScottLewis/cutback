@@ -1,4 +1,4 @@
-class Generate::Formatter::Controller < Generate::Formatter
+class Generate::Formatter::Help::Controller < Generate::Formatter
 
   @controller : App::Controller
 
@@ -7,7 +7,7 @@ class Generate::Formatter::Controller < Generate::Formatter
 
   def to_s(io)
     io << @controller.name.ljust(25)
-    io << @controller.actions.map(&.name).join(" ")
+    io << @controller.actions.join(" ")
   end
 
 end

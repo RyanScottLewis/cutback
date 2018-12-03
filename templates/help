@@ -2,22 +2,16 @@
 
 Usage: <%= app.usage %>
 
-<%= app.description -%>
+<%= app.description.indent %>
 
 Arguments:
-<% app.arguments.each do |argument| -%>
-  <%= argument %>
-<% end -%>
+<%= app.arguments.to_s.indent %>
 
 Options:
-<% app.options.each do |option| -%>
-  <%= option %>
-<% end -%>
+<%= app.options.to_s.indent %>
 
 Controllers & Actions:
-<% app.controllers.each do |controller| -%>
-  <%= controller %>
-<% end -%>
+<%= app.controllers.to_s.indent %>
 
 See `man 1 <%= app.name %>` for more detailed information.
 See `man 5 <%= app.name %>` for configuration file information.

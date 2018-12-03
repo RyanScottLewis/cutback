@@ -1,4 +1,4 @@
-class Generate::Formatter::Argument < Generate::Formatter
+class Generate::Formatter::Man::Argument < Generate::Formatter
 
   @argument : App::Argument
 
@@ -8,6 +8,7 @@ class Generate::Formatter::Argument < Generate::Formatter
   def to_s(io)
     io << @argument.name.ljust(25)
     io << @argument.description
+    io << "\n.br"
   end
 
 end

@@ -1,6 +1,6 @@
 class Generate::App::Root < Generate::App
 
-  YAML.mapping(
+  mapping(
     name:        String,
     version:     String,
     homepage:    String,
@@ -10,30 +10,35 @@ class Generate::App::Root < Generate::App
     summary:     String,
     description: String,
     strategy:    String,
-    arguments:   Array(Argument),
-    options:     Array(Option),
-    controllers: Array(Controller),
+    arguments:   Collection(Argument),
+    options:     Collection(Option),
+    controllers: Collection(Controller),
   )
 
   def for=(value)
     @for = value
 
-    @arguments.each   { |argument| argument.for = @for }
-    @options.each     { |argument| argument.for = @for }
-    @controllers.each { |argument| argument.for = @for }
+    @arguments.for   = @for
+    @options.for     = @for
+    @controllers.for = @for
 
     @for
   end
 
   def outline
     case @for
-    when :man then Formatter::Outline::Man.format(self)
-    else;          Formatter::Outline.format(self)
+    when :help then Formatter::Help::Outline.format(self)
+    when :man  then Formatter::Man::Outline.format(self)
+    else;           @name
     end
   end
 
   def usage
-    Formatter::Usage.format(self)
+    case @for
+    when :help then Formatter::Help::Usage.format(self)
+    when :man  then Formatter::Man::Usage.format(self)
+    else;           @name
+    end
   end
 
 end

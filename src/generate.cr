@@ -20,6 +20,12 @@ if ARGV.size != 2
   exit 1
 end
 
+class String
+  def indent(level=2)
+    lines.map { |line| "#{" " * level}#{line}" }.join("\n")
+  end
+end
+
 input       = ARGV[0]
 output      = ARGV[1]
 app         = Generate::App::Root.load("app.yml")
@@ -27,7 +33,8 @@ files       = {} of String => String
 path        = File.basename(input)
 controllers = Cutback::Controller.all.sort_by(&.name)
 
-app.for = :man if File.extname(input) =~ /\.\d/
+app.for = :help if File.basename(input) == "help"
+app.for = :man  if File.extname(input) =~ /\.\d/
 
 generate_templates(files, [
   "templates/cutback.1",

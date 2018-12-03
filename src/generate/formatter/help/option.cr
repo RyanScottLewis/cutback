@@ -1,4 +1,4 @@
-class Generate::Formatter::Option < Generate::Formatter
+class Generate::Formatter::Help::Option < Generate::Formatter
 
   @option : App::Option
 
