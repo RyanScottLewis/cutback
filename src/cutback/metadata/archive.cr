@@ -16,5 +16,16 @@ class Cutback::Metadata::Archive < Cutback::Metadata
     @compression = Compression.new(tools.compressor, options.compress, ratio)
   end
 
+  def initialize(options : Options, paths : PathList, tools : ToolList)
+    manifest = Cutback::Metadata::Manifest.new(paths)
+
+    # TODO: CODE IS REPEATED, but crystal doesnt support instance variable initialization in helper methods ='[
+    bytes = paths.archive.size
+    @size = Size.new(bytes)
+
+    ratio        = bytes.to_f / manifest.size.bytes.to_f
+    @compression = Compression.new(tools.compressor, options.compress, ratio)
+  end
+
 end
 

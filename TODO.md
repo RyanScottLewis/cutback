@@ -4,7 +4,6 @@
   * Should have a single base class
   * Should use SYMBOLS instead of strings and convert when needed
 * Metadata
-  * `Metadata::Archive.new(@options, @paths, @tools)`
   * `save` should check for @options.dry?
 * Documentation
   * Document resource dependency graph (creating an archive will create manifest & records if they dont exist, checksum will update when archive is modified after it, etc)
