@@ -4,8 +4,8 @@ class Cutback::Controller::Backup < Cutback::Controller
   actions create, read, update, destroy
 
   def create
-    call("metadata#create")
-    call("config#create")
+    call("metadata", "create")
+    call("config", "create")
   end
 
   def read
@@ -30,17 +30,17 @@ class Cutback::Controller::Backup < Cutback::Controller
   end
 
   def update
-    call("metadata#update")
-    call("config#update")
+    call("metadata", "update")
+    call("config", "update")
   end
 
   def destroy
-    call("manifest#destroy")
-    call("records#destroy")
-    call("archive#destroy")
-    call("checksum#destroy")
-    call("metadata#destroy")
-    call("config#destroy")
+    call("manifest", "destroy")
+    call("records", "destroy")
+    call("archive", "destroy")
+    call("checksum", "destroy")
+    call("metadata", "destroy")
+    call("config", "destroy")
   end
 
 end
