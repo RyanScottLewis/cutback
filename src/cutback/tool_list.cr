@@ -9,25 +9,16 @@ class Cutback::ToolList
     viewer:     "pv",
   }
 
-  include Helpers::Mapping
+  property archiver   : String = TOOLS[:archiver]
+  property checker    : String = TOOLS[:checker]
+  property compressor : String = TOOLS[:compressor]
+  property finder     : String = TOOLS[:finder]
+  property reader     : String = TOOLS[:reader]
+  property viewer     : String = TOOLS[:viewer]
 
-  mapping({
-    archiver:   { type: String, getter: false, setter: false, default: TOOLS[:archiver] },
-    checker:    { type: String, getter: false, setter: false, default: TOOLS[:checker] },
-    compressor: { type: String, getter: false, setter: false, default: TOOLS[:compressor] },
-    finder:     { type: String, getter: false, setter: false, default: TOOLS[:finder] },
-    reader:     { type: String, getter: false, setter: false, default: TOOLS[:reader] },
-    viewer:     { type: String, getter: false, setter: false, default: TOOLS[:viewer] },
-  })
+  @options : Options
 
-  property archiver   = TOOLS[:archiver]
-  property checker    = TOOLS[:checker]
-  property compressor = TOOLS[:compressor]
-  property finder     = TOOLS[:finder]
-  property reader     = TOOLS[:reader]
-  property viewer     = TOOLS[:viewer]
-
-  def initialize
+  def initialize(@options)
   end
 
   def [](name)
@@ -42,11 +33,11 @@ class Cutback::ToolList
   end
 
   macro update_tool(name)
-    @{{name}} = options.{{name}}.not_nil! unless options.{{name}}.nil?
+    @{{name}} = @options.{{name}}.not_nil! unless @options.{{name}}.nil?
   end
 
-  def update(options : Options)
-    update_tool(compressor)
+  def update
+    update_tool(compressor) # TODO: All the tools
   end
 
 end

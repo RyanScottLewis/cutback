@@ -8,7 +8,7 @@ class Cutback::Application
     @arguments   = Arguments.new(arguments)
     @options     = Options.new(@arguments)
     @identifier  = Identifier.new(@options)
-    @tools       = ToolList.new
+    @tools       = ToolList.new(@options)
     @paths       = PathList.new(@options, @tools, @identifier)
     @logger      = Logger.new(@options, @paths)
     @controllers = ControllerList.new(@options, @paths, @tools, @identifier, @logger)
@@ -67,7 +67,7 @@ class Cutback::Application
   end
 
   protected def update_tools
-    @tools.update(@options)
+    @tools.update
   end
 
   protected def update_logger
