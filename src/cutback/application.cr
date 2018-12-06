@@ -47,7 +47,7 @@ class Cutback::Application
   end
 
   protected def validate_options
-    Validator::Options.validate(@options)
+    @options.validate
   end
 
   protected def validate_arguments

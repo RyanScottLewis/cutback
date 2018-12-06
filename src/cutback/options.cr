@@ -83,5 +83,9 @@ class Cutback::Options
     Processor::Options.process(@arguments, self)
   end
 
+  def validate
+    Validator::Options.validate(self)
+  end
+
 end
 
