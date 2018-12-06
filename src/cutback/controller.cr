@@ -54,6 +54,7 @@ abstract class Cutback::Controller
   end
 
   def call(controller, action)
+    @logger.debug("Controller: Calling #{controller}##{action}")
     @controllers[controller].execute(action)
   end
 

@@ -4,9 +4,6 @@ require "logger"
 require "option_parser"
 require "yaml"
 
-# Standard library extensions
-require "./ext/logger"
-
 # Shards
 require "baked_file_system"
 
