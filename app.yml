@@ -127,6 +127,8 @@ controllers:
         description: See backup#version
       - name:        destroy
         description: See backup#destroy
+      - name:        metadata
+        description: See metadata#read
       - name:        verify
         description: See checksum#verify
   - name:            application
@@ -158,6 +160,8 @@ controllers:
         description: Re-create manifest
       - name:        destroy
         description: Destroy manifest
+      - name:        metadata
+        description: View manifest metadata
   - name:            records
     description:     List of files excluded from the archive, but kept a record of
     actions:
@@ -169,6 +173,8 @@ controllers:
         description: Re-create records
       - name:        destroy
         description: Destroy records
+      - name:        metadata
+        description: View records metadata
   - name:            archive
     description:     Archive of files in the manifest
     actions:
@@ -180,6 +186,8 @@ controllers:
         description: Re-create archive
       - name:        destroy
         description: Destroy archive
+      - name:        metadata
+        description: View archive metadata
   - name:            checksum
     description:     Archive checksum
     actions:

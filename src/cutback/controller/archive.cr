@@ -6,10 +6,8 @@ class Cutback::Controller::Archive < Cutback::Controller::Resource
     run(:archive, message: "Generating archive")
   end
 
-  protected def read_resource
-    metadata = Cutback::Metadata::Archive.new(@options, @paths, @tools)
-
-    puts metadata.dump(@options.format)
+  protected def show_metadata
+    show_metadata_for(:archive, @options, @paths, @tools)
   end
 
 end

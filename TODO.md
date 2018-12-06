@@ -55,13 +55,8 @@
 * Controllers
   * Default action
   * `.all` should not return abstract classes
-  * Helper for running commands
-  * Resource
-    * File dependencies
-    * `read` for most things should actually read resource and not show metadata
-    * `update`
-    * `destroy`
-    * `metadata` (Which is what `read` does now)
+  * Delete confirmation
+    * Unless `--force`
 * Commands and controllers both pass around the same set of variables, it'd be nice to group them
   into like a State or Environment class
 

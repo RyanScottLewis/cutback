@@ -1,3 +1,4 @@
+# TODO: Is a resource but with no metadata action, depends on metadata and config
 class Cutback::Controller::Backup < Cutback::Controller
 
   actions create, read, update, destroy

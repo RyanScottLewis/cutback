@@ -6,7 +6,7 @@ abstract class Cutback::Controller::Resource < Cutback::Controller
     @@dependencies = [{{*names.map(&.id.stringify)}}]
   end
 
-  actions create, read, update, destroy
+  actions create, read, update, destroy, metadata
 
   def create
     create_dependencies
@@ -20,19 +20,33 @@ abstract class Cutback::Controller::Resource < Cutback::Controller
 
   def update
     update_dependencies
-    create_resource
+    update_resource
   end
 
   def destroy
     destroy_resource if resource_exists?
   end
 
+  def metadata
+    create
+    show_metadata
+  end
+
   protected def create_resource; end
-  protected def read_resource; end
+
+  protected def read_resource
+    puts run(:read, path: resource_path.to_s)
+  end
+
+  protected def update_resource
+    create_resource
+  end
 
   protected def destroy_resource
-    resource_path.delete # TODO: Are you sure? (unless --force)
+    resource_path.delete
   end
+
+  protected def show_metadata; end
 
   def resource_name
     self.class.name

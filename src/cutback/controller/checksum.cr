@@ -7,10 +7,6 @@ class Cutback::Controller::Checksum < Cutback::Controller::Resource
     puts run(:checksum, check: true, message: "Verifying checksum")
   end
 
-  protected def read_resource
-    puts @paths.checksum.read
-  end
-
   protected def create_resource
     run(:checksum, check: false, message: "Generating checksum")
   end

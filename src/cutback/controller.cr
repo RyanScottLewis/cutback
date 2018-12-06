@@ -10,20 +10,6 @@ abstract class Cutback::Controller
     @@actions
   end
 
-  extend Helpers::ClassTraversal
-
-  include Helpers::CommandExecution
-
-  @options     : Options
-  @paths       : PathList
-  @tools       : ToolList
-  @identifier  : Identifier
-  @logger      : Logger
-  @controllers : ControllerList
-
-  def initialize(@options, @paths, @tools, @identifier, @logger, @controllers)
-  end
-
   macro actions(*names)
     @@actions = [{{*names.map(&.id.stringify)}}]
 
@@ -38,6 +24,35 @@ abstract class Cutback::Controller
     end
   end
 
+  macro delegate_actions(*names, to controller)
+    {% for name, index in names %}
+      def {{name.id}}
+        call({{controller.id.stringify}}, {{name.id.stringify}})
+      end
+    {% end %}
+  end
+
+  macro delegate_action(name, to controller, action action_name)
+    def {{name.id}}
+      call({{controller.id.stringify}}, {{action_name.id.stringify}})
+    end
+  end
+
+  extend Helpers::ClassTraversal
+
+  include Helpers::CommandExecution
+  include Helpers::MetadataCreation
+
+  @options     : Options
+  @paths       : PathList
+  @tools       : ToolList
+  @identifier  : Identifier
+  @logger      : Logger
+  @controllers : ControllerList
+
+  def initialize(@options, @paths, @tools, @identifier, @logger, @controllers)
+  end
+
   def call(controller, action)
     @controllers[controller].execute(action)
   end
@@ -46,14 +61,6 @@ abstract class Cutback::Controller
     partials = value.split("#")
 
     call(partials[0], partials[1])
-  end
-
-  macro delegate_action(*names, to controller)
-    {% for name, index in names %}
-      def {{name.id}}
-        call({{controller.id.stringify}}, {{name.id.stringify}})
-      end
-    {% end %}
   end
 
 end
