@@ -35,10 +35,7 @@ class Cutback::Application
   end
 
   protected def display_error(error)
-    message = "Error: #{error.class} - #{error}"
-
-    STDERR.puts(message)
-    @logger.error(message)
+    @logger.fatal("Error: #{error.class} - #{error}")
 
     exit 1
   end
