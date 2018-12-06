@@ -1,4 +1,4 @@
-module Cutback::Helpers::Mapping
+module Cutback::Helpers::Mappable
 
   macro mapping(value)
     YAML.mapping({{value}})

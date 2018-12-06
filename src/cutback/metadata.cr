@@ -1,7 +1,7 @@
 class Cutback::Metadata
 
   include Helpers::Dumpable
-  include Helpers::Mapping
+  include Helpers::Mappable
 
 end
 

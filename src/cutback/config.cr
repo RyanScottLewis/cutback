@@ -14,7 +14,7 @@ class Cutback::Config
   end
 
   include Helpers::Dumpable
-  include Helpers::Mapping
+  include Helpers::Mappable
 
   mapping({
     output:   String?,
