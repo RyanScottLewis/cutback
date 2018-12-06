@@ -1,4 +1,4 @@
-class Cutback::Controller::Checksum < Cutback::Controller::Resource
+class Cutback::Controller::Resource::Checksum < Cutback::Controller::Resource
 
   depends_on archive
   actions create, read, update, destroy, verify

@@ -1,4 +1,4 @@
-class Cutback::Controller::Config < Cutback::Controller::Resource
+class Cutback::Controller::Resource::Config < Cutback::Controller::Resource
 
   actions create, read, update, destroy
 

@@ -1,4 +1,4 @@
-class Cutback::Controller::Records < Cutback::Controller::Resource
+class Cutback::Controller::Resource::Records < Cutback::Controller::Resource
 
   protected def create_resource
     run(:find, includes: @options.records, output: @paths.records.to_s, message: "Generating records")

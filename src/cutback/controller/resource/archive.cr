@@ -1,4 +1,4 @@
-class Cutback::Controller::Archive < Cutback::Controller::Resource
+class Cutback::Controller::Resource::Archive < Cutback::Controller::Resource
 
   depends_on manifest, records
 

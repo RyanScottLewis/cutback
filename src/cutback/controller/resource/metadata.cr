@@ -1,4 +1,4 @@
-class Cutback::Controller::Metadata < Cutback::Controller::Resource
+class Cutback::Controller::Resource::Metadata < Cutback::Controller::Resource
 
   depends_on checksum
   actions create, read, update, destroy
