@@ -15,5 +15,9 @@ class Cutback::Router
     @controllers[@controller_name].execute(@action_name)
   end
 
+  def process
+    Processor::Router.process(@arguments, self)
+  end
+
 end
 

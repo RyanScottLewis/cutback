@@ -43,7 +43,7 @@ class Cutback::Application
   end
 
   protected def process_router
-    Processor::Router.process(@arguments, @router)
+    @router.process
   end
 
   protected def validate_options
