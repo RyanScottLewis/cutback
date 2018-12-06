@@ -8,7 +8,7 @@ class Cutback::Metadata::Archive < Cutback::Metadata
   def initialize(@compression, @size)
   end
 
-  def initialize(options : Options, paths : PathList, tools : ToolList, manifest : Manifest)
+  def initialize(options : Options, paths : Paths, tools : Tools, manifest : Manifest)
     bytes = paths.archive.size
     @size = Size.new(bytes)
 
@@ -16,7 +16,7 @@ class Cutback::Metadata::Archive < Cutback::Metadata
     @compression = Compression.new(tools.compressor, options.compress, ratio)
   end
 
-  def initialize(options : Options, paths : PathList, tools : ToolList)
+  def initialize(options : Options, paths : Paths, tools : Tools)
     manifest = Cutback::Metadata::Manifest.new(paths)
 
     # TODO: CODE IS REPEATED, but crystal doesnt support instance variable initialization in helper methods ='[

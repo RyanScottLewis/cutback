@@ -1,6 +1,6 @@
 class Cutback::Generator::BackupTable < Cutback::Generator
 
-  @controllers : ControllerList
+  @controllers : Controllers
 
   def initialize(@controllers)
   end

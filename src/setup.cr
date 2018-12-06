@@ -12,6 +12,8 @@ require "./cutback/embed"
 
 require "./cutback/helpers/**"
 
+require "./cutback/list"
+
 require "./cutback/*"
 
 require "./cutback/processor/**"

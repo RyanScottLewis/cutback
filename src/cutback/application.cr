@@ -8,10 +8,10 @@ class Cutback::Application
     @arguments   = Arguments.new(arguments)
     @options     = Options.new(@arguments)
     @identifier  = Identifier.new(@options)
-    @tools       = ToolList.new(@options)
-    @paths       = PathList.new(@options, @tools, @identifier)
+    @tools       = Tools.new(@options)
+    @paths       = Paths.new(@options, @tools, @identifier)
     @logger      = Logger.new(@options, @paths)
-    @controllers = ControllerList.new(@options, @paths, @tools, @identifier, @logger)
+    @controllers = Controllers.new(@options, @paths, @tools, @identifier, @logger)
     @router      = Router.new(@arguments, @controllers, @logger)
   end
 

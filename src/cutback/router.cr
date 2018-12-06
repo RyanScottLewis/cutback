@@ -1,7 +1,7 @@
 class Cutback::Router
 
   @arguments   : Array(String)
-  @controllers : ControllerList
+  @controllers : Controllers
   @logger      : Logger
 
   property controller_name = "proxy"

@@ -44,11 +44,11 @@ abstract class Cutback::Controller
   include Helpers::MetadataCreation
 
   @options     : Options
-  @paths       : PathList
-  @tools       : ToolList
+  @paths       : Paths
+  @tools       : Tools
   @identifier  : Identifier
   @logger      : Logger
-  @controllers : ControllerList
+  @controllers : Controllers
 
   def initialize(@options, @paths, @tools, @identifier, @logger, @controllers)
   end
