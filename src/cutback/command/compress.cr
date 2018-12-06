@@ -8,7 +8,6 @@ class Cutback::Command::Compress < Cutback::Command
 
   protected def append_arguments
     case @tools.compressor
-    when "7z"    then append_7z_arguments # TODO: Does this even work?
     when "bzip2" then append_unthreaded_arguments
     when "gzip"  then append_unthreaded_arguments
     when "lrzip" then append_lrzip_arguments
@@ -17,7 +16,6 @@ class Cutback::Command::Compress < Cutback::Command
     when "lzma"  then append_threaded_arguments
     when "lzop"  then append_unthreaded_arguments
     when "xz"    then append_threaded_arguments
-    when "zip"   then append_unthreaded_arguments # TODO: Does this even work?
     else
       @logger.warn("Using unknown compressor")
 
@@ -42,11 +40,6 @@ class Cutback::Command::Compress < Cutback::Command
     @logger.warn("Using multiple threads is unavailable")
 
     append_level_flag
-  end
-
-  protected def append_7z_arguments
-    append "-mx=#{@options.compress_level}"
-    append "-mmt=#{@options.compress_threads}"
   end
 
   protected def append_lrzip_arguments
