@@ -4,7 +4,8 @@ class Cutback::Application
     new(*arguments).execute
   end
 
-  def initialize(@arguments : Array(String) = ARGV)
+  def initialize(arguments : Array(String) = ARGV)
+    @arguments   = Arguments.new(arguments)
     @options     = Options.new(@arguments)
     @identifier  = Identifier.new(@options)
     @tools       = ToolList.new
@@ -38,7 +39,7 @@ class Cutback::Application
   end
 
   protected def process_arguments
-    Processor::Arguments.process(@arguments)
+    @arguments.process
   end
 
   protected def process_router
