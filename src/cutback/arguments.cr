@@ -12,5 +12,9 @@ class Cutback::Arguments < Array(String)
     Processor::Arguments.process(self)
   end
 
+  def validate
+    Validator::Arguments.validate(self)
+  end
+
 end
 

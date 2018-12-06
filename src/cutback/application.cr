@@ -51,7 +51,7 @@ class Cutback::Application
   end
 
   protected def validate_arguments
-    Validator::Arguments.validate(@arguments)
+    @arguments.validate
   end
 
   protected def validate_router
