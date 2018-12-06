@@ -10,7 +10,7 @@ class Cutback::Controller::Backup < Cutback::Controller
 
   def read
     data = String.build do |io| # TODO: A generator for this sort of jazz
-      io << " Name     | Exists | Clean \n"
+      io << " Name     | Exists | Fresh \n"
       io << "----------|--------|-------\n"
 
       names = %w[manifest records archive checksum metadata config]
