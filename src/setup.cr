@@ -18,6 +18,7 @@ require "./cutback/metadata/**"
 require "./cutback/processor/**"
 require "./cutback/validator/**"
 require "./cutback/command/**"
+require "./cutback/generator/**"
 
 require "./cutback/controller/resource"
 require "./cutback/controller/**"
