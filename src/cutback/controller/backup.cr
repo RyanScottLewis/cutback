@@ -7,24 +7,7 @@ class Cutback::Controller::Backup < Cutback::Controller
   end
 
   def read
-    data = String.build do |io| # TODO: A generator for this sort of jazz
-      io << " Name     | Exists | Fresh \n"
-      io << "----------|--------|-------\n"
-
-      names = %w[manifest records archive checksum metadata config]
-      names.each do |name|
-        controller = @controllers[name].as(Resource)
-        name       = name.capitalize
-        exists     = controller.resource_exists? ? "✓" : "✗"
-        clean      = !controller.resource_stale? ? "✓" : "✗"
-
-        io << " "
-        io << [name.ljust(8), exists.ljust(6), clean].join(" | ")
-        io << "\n"
-      end
-    end
-
-    puts data
+    puts Generator::BackupTable.generate(@controllers)
   end
 
   def update
