@@ -55,7 +55,7 @@ class Cutback::Application
   end
 
   protected def validate_router
-    Validator::Router.validate(@router)
+    @router.validate
   end
 
   protected def update_identifier

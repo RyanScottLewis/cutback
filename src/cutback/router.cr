@@ -19,5 +19,9 @@ class Cutback::Router
     Processor::Router.process(@arguments, self)
   end
 
+  def validate
+    Validator::Router.validate(self)
+  end
+
 end
 
