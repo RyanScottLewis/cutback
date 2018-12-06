@@ -1,9 +1,9 @@
 class Cutback::Metadata::Size < Cutback::Metadata
 
-  mapping({
+  mapping(
     bytes: UInt64,
     human: String,
-  })
+  )
 
   def initialize(@bytes, @human)
   end

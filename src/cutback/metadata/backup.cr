@@ -1,9 +1,9 @@
 class Cutback::Metadata::Backup < Cutback::Metadata
 
-  mapping({
+  mapping(
     date:  Time,
     paths: Array(String),
-  })
+  )
 
   def initialize(@date, @paths)
   end

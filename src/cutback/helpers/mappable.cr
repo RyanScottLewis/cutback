@@ -1,8 +1,8 @@
 module Cutback::Helpers::Mappable
 
-  macro mapping(value)
-    YAML.mapping({{value}})
-    JSON.mapping({{value}})
+  macro mapping(**properties)
+    YAML.mapping({{properties}})
+    JSON.mapping({{properties}})
   end
 
 end

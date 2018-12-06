@@ -1,6 +1,5 @@
 # TODO
 
-* Rename Helpers::Mapping to Mappable, remove all brackets from mapping({})
 * List classes
   * Should have a single base class
   * Should use SYMBOLS instead of strings and convert when needed

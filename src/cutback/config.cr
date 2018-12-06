@@ -16,7 +16,7 @@ class Cutback::Config
   include Helpers::Dumpable
   include Helpers::Mappable
 
-  mapping({
+  mapping(
     output:   String?,
     paths:    Array(String)?,
     excludes: Array(String)?,
@@ -24,7 +24,7 @@ class Cutback::Config
     format:   String?,
     compress: Bool?,
     progress: Bool?,
-  })
+  )
 
   def initialize(options : Options)
     update(options)

@@ -1,11 +1,11 @@
 class Cutback::Metadata::Root < Cutback::Metadata
 
-  mapping({
+  mapping(
     backup:   { type: Backup },
     manifest: { type: Manifest },
     records:  { type: Records },
     archive:  { type: Archive },
-  })
+  )
 
   def initialize(@backup, @manifest, @records, @archive)
   end
