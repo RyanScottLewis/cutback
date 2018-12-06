@@ -1,11 +1,9 @@
-# TODO: Is a resource but with no metadata action, depends on metadata and config
 class Cutback::Controller::Backup < Cutback::Controller
 
   actions create, read, update, destroy
 
   def create
-    call("metadata", "create")
-    call("config", "create")
+    call(%w[metadata config], "create")
   end
 
   def read
@@ -30,17 +28,15 @@ class Cutback::Controller::Backup < Cutback::Controller
   end
 
   def update
-    call("metadata", "update")
-    call("config", "update")
+    call(%w[metadata config], "update")
   end
 
   def destroy
-    call("manifest", "destroy")
-    call("records", "destroy")
-    call("archive", "destroy")
-    call("checksum", "destroy")
-    call("metadata", "destroy")
-    call("config", "destroy")
+    call(%w[manifest records archive checksum metadata config], "destroy")
+  end
+
+  protected def call(controllers : Array(String), action)
+    controllers.each { |controller| call(controller, action) }
   end
 
 end
