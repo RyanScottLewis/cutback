@@ -19,19 +19,18 @@ class Cutback::Identifier
     indicies.max
   end
 
+  @options : Options
+
   property date  = Time.utc_now
   property index = 0
 
-  def initialize(@date, @index)
+  def initialize(@options)
+    update
   end
 
-  def initialize(options : Options)
-    update(options)
-  end
-
-  def update(options : Options)
-    @date  = options.date
-    @index = options.index || 0
+  def update
+    @date  = @options.date
+    @index = @options.index.not_nil! unless @options.index.nil?
   end
 
   def increment_largest(options : Options)

@@ -59,7 +59,7 @@ class Cutback::Application
   end
 
   protected def update_identifier
-    @identifier.update(@options)
+    @identifier.update
   end
 
   protected def update_paths
