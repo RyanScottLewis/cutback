@@ -5,11 +5,11 @@ class Cutback::Application
   end
 
   def initialize(@arguments : Array(String) = ARGV)
-    @logger      = Logger.new
     @options     = Options.new
     @identifier  = Identifier.new(@options)
     @tools       = ToolList.new
     @paths       = PathList.new(@options, @tools, @identifier)
+    @logger      = Logger.new(@options, @paths)
     @controllers = ControllerList.new(@options, @paths, @tools, @identifier, @logger)
     @router      = Router.new(@arguments, @controllers, @logger)
   end
@@ -70,7 +70,7 @@ class Cutback::Application
   end
 
   protected def update_logger
-    @logger.io = File.open(@paths.log.to_s, "a+") unless @options.dry
+    @logger.update
   end
 
   protected def execute_route

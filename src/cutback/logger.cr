@@ -6,10 +6,23 @@ class Cutback::Logger < Logger
     io << message
   end
 
-  property io
+  @options : Options
+  @paths   : PathList
 
-  def initialize
+  def initialize(@options, @paths)
     super(STDOUT, Severity::DEBUG, FORMATTER)
+  end
+
+  # TODO: BROKEN! And let me explain how...
+  #
+  #   @io = file                              # Works fine
+  #   @io = STDOUT                            # Works fine
+  #   @io = IO::MultiWriter.new(STDOUT, file) # Broken
+  #
+  # And it is definitely somehow maybe MultiWriter's fault
+  def update
+    file = @paths.log.open("a+")
+    @io  = IO::MultiWriter.new(STDOUT, file)
   end
 
 end
