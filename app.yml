@@ -120,17 +120,29 @@ controllers:
       - name:        version
         description: See application#version
       - name:        create
-        description: See backup#read
+        description: See backup#create
       - name:        read
-        description: See backup#update
+        description: See backup#read
       - name:        update
-        description: See backup#version
+        description: See backup#update
       - name:        destroy
         description: See backup#destroy
-      - name:        metadata
-        description: See metadata#read
       - name:        verify
         description: See checksum#verify
+      - name:        manifest
+        description: See manifest#create
+      - name:        records
+        description: See records#create
+      - name:        archive
+        description: See archive#create
+      - name:        checksum
+        description: See checksum#create
+      - name:        metadata
+        description: See metadata#create
+      - name:        config
+        description: See config#create
+      - name:        backup
+        description: See backup#read
   - name:            application
     description:     Application actions
     actions:
