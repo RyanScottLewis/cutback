@@ -16,66 +16,22 @@ class Cutback::Application
   end
 
   def execute
-    process_options
-    process_arguments
-    process_router
+    @options.process
+    @arguments.process
+    @router.process
 
-    validate_options
-    validate_arguments
-    validate_router
+    @options.validate
+    @arguments.validate
+    @router.validate
 
-    update_identifier
-    update_tools
-    update_paths
-    update_logger
+    @identifier.update
+    @paths.update
+    @tools.update
+    @logger.update
 
-    execute_route
+    @router.execute
   rescue error : Cutback::Error
     display_error(error)
-  end
-
-  protected def process_options
-    @options.process
-  end
-
-  protected def process_arguments
-    @arguments.process
-  end
-
-  protected def process_router
-    @router.process
-  end
-
-  protected def validate_options
-    @options.validate
-  end
-
-  protected def validate_arguments
-    @arguments.validate
-  end
-
-  protected def validate_router
-    @router.validate
-  end
-
-  protected def update_identifier
-    @identifier.update
-  end
-
-  protected def update_paths
-    @paths.update
-  end
-
-  protected def update_tools
-    @tools.update
-  end
-
-  protected def update_logger
-    @logger.update
-  end
-
-  protected def execute_route
-    @router.execute
   end
 
   protected def display_error(error)
