@@ -9,11 +9,10 @@ abstract class Cutback::Metadata::FileList < Cutback::Metadata
   end
 
   def initialize(path)
-    data   = path.read
-    @count = data.count('\n')
+    size = FileListCalculator.calculate(path)
 
-    bytes = data.lines.sum { |path| File.size(path) }
-    @size = Size.new(bytes)
+    @count = size.count
+    @size  = Size.new(size.bytes)
   end
 
 end

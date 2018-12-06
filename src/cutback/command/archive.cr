@@ -15,9 +15,9 @@ class Cutback::Command::Archive < Cutback::Command
       if @options.dry
         append_pipe progress
       else
-        manifest = Metadata::Manifest.new(@paths) # TODO: Split out size finding functionality from manifest metadata into own class and use that here
+        size = FileListCalculator.calculate(@paths.manifest)
 
-        append_pipe progress(size: manifest.size.bytes)
+        append_pipe progress(size: size.bytes)
       end
     end
 
