@@ -39,4 +39,8 @@ class Cutback::Path
     File.write(@value, data)
   end
 
+  def open(flags = "r")
+    File.open(@value, flags)
+  end
+
 end
