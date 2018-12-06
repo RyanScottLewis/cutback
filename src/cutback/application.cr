@@ -5,7 +5,7 @@ class Cutback::Application
   end
 
   def initialize(@arguments : Array(String) = ARGV)
-    @options     = Options.new
+    @options     = Options.new(@arguments)
     @identifier  = Identifier.new(@options)
     @tools       = ToolList.new
     @paths       = PathList.new(@options, @tools, @identifier)
@@ -34,7 +34,7 @@ class Cutback::Application
   end
 
   protected def process_options
-    Processor::Options.process(@arguments, @options)
+    @options.process
   end
 
   protected def process_arguments

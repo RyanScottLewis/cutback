@@ -22,6 +22,11 @@ class Cutback::Options
 
   end
 
+  @arguments : Array(String)
+
+  def initialize(@arguments)
+  end
+
   property help             = false
   property version          = false
   property dry              = false
@@ -72,6 +77,10 @@ class Cutback::Options
     update_option(prototype, compress_level)
     update_option(prototype, compress_threads)
     update_option(prototype, compressor)
+  end
+
+  def process
+    Processor::Options.process(@arguments, self)
   end
 
 end
