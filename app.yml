@@ -107,10 +107,30 @@ options:
     short:       C
     type:        bool
     description: Compress archive
-  - name:        compressor
-    short:       c
+  - name:        finder
+    short:       S
     type:        string
-    description: Compressor binary
+    description: Finder command
+  - name:        archiver
+    short:       a
+    type:        string
+    description: Archiver command
+  - name:        compressor
+    short:       x
+    type:        string
+    description: Compressor command
+  - name:        checker
+    short:       s
+    type:        string
+    description: Checker (checksum) command
+  - name:        reader
+    short:       R
+    type:        string
+    description: Reader command
+  - name:        viewer
+    short:       w
+    type:        string
+    description: Viewer (progress) command
 controllers:
   - name:            proxy
     description:     Proxy actions

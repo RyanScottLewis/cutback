@@ -48,7 +48,12 @@ class Cutback::Processor::Options < Cutback::Processor
     define_option(format,     f, string)
     define_option(progress,   P, bool)
     define_option(compress,   C, bool)
+    define_option(archiver,   a, string)
+    define_option(checker,    s, string)
     define_option(compressor, x, string)
+    define_option(finder,     S, string)
+    define_option(reader,     R, string)
+    define_option(viewer,     w, string)
   end
 
   protected def parse_options_into_prototype

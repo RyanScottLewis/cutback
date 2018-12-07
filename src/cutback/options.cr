@@ -18,7 +18,12 @@ class Cutback::Options
     property compress         : Bool?
     property compress_level   : Int32?
     property compress_threads : Int32?
+    property archiver         : String?
+    property checker          : String?
     property compressor       : String?
+    property finder           : String?
+    property reader           : String?
+    property viewer           : String?
 
   end
 
@@ -43,7 +48,12 @@ class Cutback::Options
   property compress         = false
   property compress_level   = 3
   property compress_threads = 0
+  property archiver         = "tar"
+  property checker          = "sha512sum"
   property compressor       = "xz"
+  property finder           = "find"
+  property reader           = "cat"
+  property viewer           = "pv"
 
   macro update_option(parent, name)
     @{{name}} = {{parent}}.{{name}}.not_nil! unless {{parent}}.{{name}}.nil?
@@ -76,7 +86,12 @@ class Cutback::Options
     update_option(prototype, compress)
     update_option(prototype, compress_level)
     update_option(prototype, compress_threads)
+    update_option(prototype, archiver)
+    update_option(prototype, checker)
     update_option(prototype, compressor)
+    update_option(prototype, finder)
+    update_option(prototype, reader)
+    update_option(prototype, viewer)
   end
 
   def process

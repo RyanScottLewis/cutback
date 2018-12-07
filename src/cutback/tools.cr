@@ -16,7 +16,12 @@ class Cutback::Tools < Cutback::List(String)
   end
 
   def update
-    update_tool(compressor) # TODO: All the tools
+    update_tool(archiver)
+    update_tool(checker)
+    update_tool(compressor)
+    update_tool(finder)
+    update_tool(reader)
+    update_tool(viewer)
   end
 
   key_delegate("archiver")
