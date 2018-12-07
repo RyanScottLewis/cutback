@@ -16,19 +16,30 @@ class Cutback::Application
   end
 
   def execute
+    @logger.debug("Processor: Options")
     @options.process
+    @logger.debug("Processor: Arguments")
     @arguments.process
+    @logger.debug("Processor: Router")
     @router.process
 
+    @logger.debug("Validator: Options")
     @options.validate
+    @logger.debug("Validator: Arguments")
     @arguments.validate
+    @logger.debug("Validator: Router")
     @router.validate
 
+    @logger.debug("Update: Identifier")
     @identifier.update
+    @logger.debug("Update: Paths")
     @paths.update
+    @logger.debug("Update: Tools")
     @tools.update
+    @logger.debug("Update: Logger")
     @logger.update
 
+    @logger.debug("Router: Execute")
     @router.execute
   rescue error : Cutback::Error
     display_error(error)
