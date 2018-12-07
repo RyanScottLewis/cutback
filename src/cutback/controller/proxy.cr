@@ -1,7 +1,7 @@
 class Cutback::Controller::Proxy < Cutback::Controller
 
   actions help, version, create, read, update, destroy, verify,
-          manifest, records, archive, checksum, metadata, config, backup
+          manifest, records, archive, checksum, metadata, config, backup, log
 
   delegate_actions help, version,                 to: application
   delegate_actions create, read, update, destroy, to: backup
@@ -13,6 +13,7 @@ class Cutback::Controller::Proxy < Cutback::Controller
   delegate_action  metadata,                      to: metadata, action: create
   delegate_action  config,                        to: config,   action: create
   delegate_action  backup,                        to: backup,   action: read
+  delegate_action  log,                           to: log,      action: read
 
 end
 

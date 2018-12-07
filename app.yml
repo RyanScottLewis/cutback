@@ -163,6 +163,8 @@ controllers:
         description: See config#create
       - name:        backup
         description: See backup#read
+      - name:        log
+        description: See log#read
   - name:            application
     description:     Application actions
     actions:
@@ -255,4 +257,11 @@ controllers:
         description: Update config
       - name:        destroy
         description: Destroy metadata
+  - name:            log
+    description:     Log
+    actions:
+      - name:        read
+        description: View log
+      - name:        destroy
+        description: Destroy log
 

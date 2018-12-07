@@ -15,7 +15,7 @@ class Cutback::Controller::Backup < Cutback::Controller
   end
 
   def destroy
-    call(%w[manifest records archive checksum metadata config], "destroy")
+    call(%w[manifest records archive checksum metadata config log], "destroy")
   end
 
   protected def call(controllers : Array(String), action)
