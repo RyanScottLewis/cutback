@@ -17,13 +17,21 @@ class Cutback::Config
   include Helpers::Mappable
 
   mapping(
-    output:   String?,
-    paths:    Array(String)?,
-    excludes: Array(String)?,
-    records:  Array(String)?,
-    format:   String?,
-    compress: Bool?,
-    progress: Bool?,
+    output:           String?,
+    paths:            Array(String)?,
+    excludes:         Array(String)?,
+    records:          Array(String)?,
+    format:           String?,
+    compress:         Bool?,
+    progress:         Bool?,
+    compress_level:   Int32?,
+    compress_threads: Int32?,
+    archiver:         String?,
+    checker:          String?,
+    compressor:       String?,
+    finder:           String?,
+    reader:           String?,
+    viewer:           String?,
   )
 
   def initialize(options : Options)
@@ -42,6 +50,14 @@ class Cutback::Config
     update_config(options, format)
     update_config(options, compress)
     update_config(options, progress)
+    update_config(options, compress_level)
+    update_config(options, compress_threads)
+    update_config(options, archiver)
+    update_config(options, checker)
+    update_config(options, compressor)
+    update_config(options, finder)
+    update_config(options, reader)
+    update_config(options, viewer)
   end
 
 end

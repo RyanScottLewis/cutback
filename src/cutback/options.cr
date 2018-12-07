@@ -67,6 +67,14 @@ class Cutback::Options
     update_option(config, format)
     update_option(config, progress)
     update_option(config, compress)
+    update_option(config, compress_level)
+    update_option(config, compress_threads)
+    update_option(config, archiver)
+    update_option(config, checker)
+    update_option(config, compressor)
+    update_option(config, finder)
+    update_option(config, reader)
+    update_option(config, viewer)
   end
 
   def update(prototype : Prototype)
