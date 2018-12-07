@@ -1,9 +1,7 @@
 # Copy to /mnt/backup/cutback.yml
-# *Replace /mnt/backup with your backup location*
 
 ---
   # Output path for backup
-  #output: "/mnt/backup"
   output: "./tmp"
 
   # The list of paths to search for files to backup
@@ -28,12 +26,36 @@
     - "*/Pictures/*"
     - "*/Documents/Plans/*"
 
+  # Format of the archive metadata
+  format: yaml
+
   # Compress the archive
   compress: true
+
+  # Compression level
+  compress_level: 3
+
+  # Compression threads (0 usually means 1 thread per CPU core, but not always)
+  compress_threads: 0
 
   # Show progress of each step while performing
   progress: true
 
-  # Format of the archive metadata
-  format: "yaml"
+  # Archiver command
+  archiver: tar
+
+  # Checker (checksum) command
+  checker: sha512sum
+
+  # Compressor command
+  compressor: xz
+
+  # Finder command
+  finder: find
+
+  # Reader command
+  reader: cat
+
+  # Viewer (progress) command
+  viewer: pv
 
