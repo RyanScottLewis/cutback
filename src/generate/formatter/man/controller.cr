@@ -10,6 +10,7 @@ class Generate::Formatter::Man::Controller < Generate::Formatter
     io << @controller.description
     io << "\n.br\n"
     io << @controller.actions.join("\n.br\n")
+    io << ".br\n"
   end
 
 end

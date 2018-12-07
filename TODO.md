@@ -8,7 +8,6 @@
 * Documentation
   * Document resource dependency graph (creating an archive will create manifest & records if they dont exist, checksum will update when archive is modified after it, etc)
   * Config man page
-  * Man/help for --compressor/-x
   * Generator reads controllers and their actions pragmatically 
   * Man
     ```
