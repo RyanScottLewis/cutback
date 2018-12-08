@@ -7,9 +7,5 @@ class Cutback::Controller::Resource::Metadata < Cutback::Controller::Resource
     save_metadata_for(:root, @options, @paths, @tools)
   end
 
-  protected def show_metadata
-    show_metadata_for(:root, @options, @paths, @tools)
-  end
-
 end
 
