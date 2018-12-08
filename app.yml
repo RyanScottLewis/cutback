@@ -183,6 +183,8 @@ controllers:
         description: Re-create backup
       - name:        destroy
         description: Destroy backup
+      - name:        metadata
+        description: View backup metadata
   - name:            manifest
     description:     List of all files in the archive
     actions:

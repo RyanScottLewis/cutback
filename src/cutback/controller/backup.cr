@@ -1,6 +1,6 @@
 class Cutback::Controller::Backup < Cutback::Controller
 
-  actions create, read, update, destroy
+  actions create, read, update, destroy, metadata
 
   def create
     call(%w[metadata config], "create")
@@ -16,6 +16,10 @@ class Cutback::Controller::Backup < Cutback::Controller
 
   def destroy
     call(%w[manifest records archive checksum metadata config log], "destroy")
+  end
+
+  def metadata
+    show_metadata_for(:backup, @options)
   end
 
   protected def call(controllers : Array(String), action)
