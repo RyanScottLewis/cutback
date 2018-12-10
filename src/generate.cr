@@ -19,15 +19,9 @@ if ARGV.size != 2
   exit 1
 end
 
-class String
-  def indent(level=2)
-    lines.map { |line| "#{" " * level}#{line}" }.join("\n")
-  end
-end
-
 input       = ARGV[0]
 output      = ARGV[1]
-app         = Cutback::Definition::Root.load("app.yml")
+app         = Cutback::Definition::Root.load
 files       = {} of String => String
 path        = File.basename(input)
 controllers = Cutback::Controller.all.sort_by(&.name)

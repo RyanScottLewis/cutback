@@ -7,6 +7,9 @@ require "yaml"
 # Shards
 require "baked_file_system"
 
+# Standard library extensions
+require "./ext/**"
+
 # Application
 require "./cutback/embed"
 
