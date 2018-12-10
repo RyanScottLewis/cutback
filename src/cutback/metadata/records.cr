@@ -1,6 +1,6 @@
 class Cutback::Metadata::Records < Cutback::Metadata::FileList
 
-  def initialize(paths : Paths)
+  def initialize(paths : List::Path)
     super(paths.records)
   end
 

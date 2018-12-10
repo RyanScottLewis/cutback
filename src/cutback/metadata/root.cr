@@ -10,7 +10,7 @@ class Cutback::Metadata::Root < Cutback::Metadata
   def initialize(@backup, @manifest, @records, @archive)
   end
 
-  def initialize(options : Options, paths : Paths, tools : Tools)
+  def initialize(options : Options, paths : List::Path, tools : List::Tool)
     @backup   = Backup.new(options)
     @manifest = Manifest.new(paths)
     @records  = Records.new(paths)

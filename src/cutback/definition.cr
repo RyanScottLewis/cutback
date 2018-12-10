@@ -6,7 +6,7 @@ abstract class Cutback::Definition
     from_yaml(File.read(path))
   end
 
-  def for(value)
+  def for(value) # TODO: Use .tap
     instance = dup
     instance.for = value
 

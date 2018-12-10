@@ -1,7 +1,7 @@
-class Cutback::Paths < Cutback::List(Cutback::Path)
+class Cutback::List::Path < Cutback::List(Cutback::Path)
 
   @options    : Options
-  @tools      : Tools
+  @tools      : List::Tool
   @identifier : Identifier
 
   def initialize(@options, @tools, @identifier)

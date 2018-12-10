@@ -1,8 +1,8 @@
-class Cutback::Controllers < Cutback::List(Cutback::Controller)
+class Cutback::List::Controller < Cutback::List(Cutback::Controller)
 
   @options    : Options
-  @paths      : Paths
-  @tools      : Tools
+  @paths      : Controller::Path
+  @tools      : Controller::Tool
   @identifier : Identifier
   @logger     : Logger
 

@@ -8,7 +8,7 @@ class Cutback::Logger
 
   @loggers = {} of Symbol => ::Logger
   @options : Options
-  @paths   : Paths
+  @paths   : List::Path
 
   def initialize(@options, @paths)
     @loggers[:stdout] = ::Logger.new(STDOUT, ::Logger::Severity::DEBUG, FORMATTER)

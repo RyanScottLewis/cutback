@@ -1,4 +1,4 @@
-class Cutback::Tools < Cutback::List(String)
+class Cutback::List::Tool < Cutback::List(String)
 
   @options : Options
 

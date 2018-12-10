@@ -1,8 +1,8 @@
 abstract class Cutback::Command
 
   @options  : Options
-  @paths    : Paths
-  @tools    : Tools
+  @paths    : List::Path
+  @tools    : List::Tool
   @logger   : Logger
   @message  : String?
 
