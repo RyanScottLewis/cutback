@@ -6,7 +6,7 @@ class Cutback::Generator::BackupTable < Cutback::Generator
   end
 
   def generate
-    String.build do |io| # TODO: A generator for this sort of jazz
+    String.build do |io|
       io << " Name     | Exists | Fresh \n"
       io << "----------|--------|-------\n"
 
