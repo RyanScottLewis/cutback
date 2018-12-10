@@ -1,8 +1,8 @@
 class Cutback::List::Controller < Cutback::List(Cutback::Controller)
 
   @options    : Options
-  @paths      : Controller::Path
-  @tools      : Controller::Tool
+  @paths      : List::Path
+  @tools      : List::Tool
   @identifier : Identifier
   @logger     : Logger
 
@@ -11,7 +11,7 @@ class Cutback::List::Controller < Cutback::List(Cutback::Controller)
   end
 
   def update
-    Controller.all.each { |controller| update(controller) }
+    Cutback::Controller.all.each { |controller| update(controller) }
   end
 
   protected def update(controller)
