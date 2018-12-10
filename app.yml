@@ -233,10 +233,10 @@ controllers:
         description: View checksum
       - name:        update
         description: Re-create checksum
-      - name:        verify
-        description: Verify checksum
       - name:        destroy
         description: Destroy checksum
+      - name:        verify
+        description: Verify checksum
   - name:            metadata
     description:     Information about the backup
     actions:
