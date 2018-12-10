@@ -9,7 +9,7 @@ class Cutback::List::Path < Cutback::List(Cutback::Path)
   end
 
   def update(name, extname)
-    @all[name] = Path.join(@options.output, "#{@identifier}.%s" % extname)
+    @all[name] = Cutback::Path.join(@options.output, "#{@identifier}.%s" % extname)
   end
 
   def update
