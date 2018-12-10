@@ -3,7 +3,6 @@
 require "ecr"
 
 require "./setup"
-require "./generate/**"
 
 macro generate(path)
   String.build { |io| ECR.embed({{path}}, io) }

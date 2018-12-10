@@ -12,11 +12,12 @@ require "./cutback/embed"
 
 require "./cutback/helpers/**"
 
-require "./cutback/list"
-
 require "./cutback/*"
 
+require "./cutback/list/**"
 require "./cutback/processor/**"
+require "./cutback/formatter/**"
+require "./cutback/definition/**"
 require "./cutback/validator/**"
 require "./cutback/generator/**"
 require "./cutback/command/**"
