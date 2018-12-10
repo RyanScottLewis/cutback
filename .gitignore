@@ -7,4 +7,4 @@
 doc/README.html
 doc/man/
 src/cutback/embed/*
-!src/cutback/embed/.gitkeep
+!src/cutback/embed/app.yml
