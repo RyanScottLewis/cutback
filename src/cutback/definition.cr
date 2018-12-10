@@ -2,10 +2,6 @@ abstract class Cutback::Definition
 
   property for : Symbol?
 
-  def self.load(path)
-    from_yaml(File.read(path))
-  end
-
   def for(value) # TODO: Use .tap
     instance = dup
     instance.for = value

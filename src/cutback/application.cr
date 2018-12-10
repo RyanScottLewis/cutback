@@ -4,14 +4,17 @@ class Cutback::Application
     new(*arguments).execute
   end
 
+  @app : Definition::Root
+
   def initialize(arguments : Array(String) = ARGV)
+    @app         = Definition::Root.load
     @arguments   = Arguments.new(arguments)
     @options     = Options.new(@arguments)
     @identifier  = Identifier.new(@options)
     @tools       = List::Tool.new(@options)
     @paths       = List::Path.new(@options, @tools, @identifier)
     @logger      = Logger.new(@options, @paths)
-    @controllers = List::Controller.new(@options, @paths, @tools, @identifier, @logger)
+    @controllers = List::Controller.new(@app, @options, @paths, @tools, @identifier, @logger)
     @router      = Router.new(@arguments, @controllers, @logger)
   end
 

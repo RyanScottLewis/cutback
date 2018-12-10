@@ -1,5 +1,9 @@
 class Cutback::Definition::Root < Cutback::Definition
 
+  def self.load
+    from_yaml(Embed["app.yml"])
+  end
+
   mapping(
     name:        String,
     version:     String,

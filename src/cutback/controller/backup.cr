@@ -7,7 +7,7 @@ class Cutback::Controller::Backup < Cutback::Controller
   end
 
   def read
-    puts Generator::BackupTable.generate(@controllers)
+    puts Generator::BackupTable.generate(@controllers) # TODO: generate(:backup_table, @controllers)
   end
 
   def update

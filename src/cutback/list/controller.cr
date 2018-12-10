@@ -1,12 +1,13 @@
 class Cutback::List::Controller < Cutback::List(Cutback::Controller)
 
+  @app        : Definition::Root
   @options    : Options
   @paths      : List::Path
   @tools      : List::Tool
   @identifier : Identifier
   @logger     : Logger
 
-  def initialize(@options, @paths, @tools, @identifier, @logger)
+  def initialize(@app, @options, @paths, @tools, @identifier, @logger)
     update
   end
 
@@ -19,7 +20,7 @@ class Cutback::List::Controller < Cutback::List(Cutback::Controller)
   end
 
   protected def create(controller)
-    controller.new(@options, @paths, @tools, @identifier, @logger, self)
+    controller.new(@app, @options, @paths, @tools, @identifier, @logger, self)
   end
 
 end

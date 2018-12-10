@@ -43,6 +43,7 @@ abstract class Cutback::Controller
   include Helpers::CommandExecution
   include Helpers::MetadataCreation
 
+  @app         : Definition::Root
   @options     : Options
   @paths       : List::Path
   @tools       : List::Tool
@@ -50,7 +51,7 @@ abstract class Cutback::Controller
   @logger      : Logger
   @controllers : List::Controller
 
-  def initialize(@options, @paths, @tools, @identifier, @logger, @controllers)
+  def initialize(@app, @options, @paths, @tools, @identifier, @logger, @controllers)
   end
 
   def call(controller, action)
