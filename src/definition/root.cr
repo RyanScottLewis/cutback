@@ -1,4 +1,4 @@
-class Generate::App::Root < Generate::App
+class Generate::Definition::Root < Generate::Definition
 
   mapping(
     name:        String,

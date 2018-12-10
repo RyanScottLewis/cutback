@@ -1,4 +1,4 @@
-class Generate::App::Collection(T) < Array(T)
+class Generate::Definition::Collection(T) < Array(T)
 
   def for=(value)
     #each { |item| item.for = value }

@@ -1,4 +1,4 @@
-abstract class Generate::App
+abstract class Generate::Definition
 
   property for : Symbol?
 

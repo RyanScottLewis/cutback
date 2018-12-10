@@ -1,6 +1,6 @@
 class Generate::Formatter::Help::Outline < Generate::Formatter
 
-  @root : App::Root
+  @root : Definition::Root
 
   def initialize(@root)
   end

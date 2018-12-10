@@ -1,6 +1,6 @@
 class Generate::Formatter::Man::Argument < Generate::Formatter
 
-  @argument : App::Argument
+  @argument : Definition::Argument
 
   def initialize(@argument)
   end

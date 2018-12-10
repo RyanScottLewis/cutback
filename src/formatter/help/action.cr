@@ -1,6 +1,6 @@
 class Generate::Formatter::Help::Action < Generate::Formatter
 
-  @action : App::Action
+  @action : Definition::Action
 
   def initialize(@action)
   end

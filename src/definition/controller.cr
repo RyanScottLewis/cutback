@@ -1,4 +1,4 @@
-class Generate::App::Controller < Generate::App
+class Generate::Definition::Controller < Generate::Definition
 
   mapping(
     name:        String,

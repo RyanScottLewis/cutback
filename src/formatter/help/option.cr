@@ -1,6 +1,6 @@
 class Generate::Formatter::Help::Option < Generate::Formatter
 
-  @option : App::Option
+  @option : Definition::Option
 
   def initialize(@option)
   end

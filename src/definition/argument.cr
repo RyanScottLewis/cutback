@@ -1,4 +1,4 @@
-class Generate::App::Argument < Generate::App
+class Generate::Definition::Argument < Generate::Definition
 
   mapping(
     name:        String,

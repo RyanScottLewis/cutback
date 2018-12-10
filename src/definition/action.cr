@@ -1,4 +1,4 @@
-class Generate::App::Action < Generate::App
+class Generate::Definition::Action < Generate::Definition
 
   mapping(
     name:        String,

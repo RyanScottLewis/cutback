@@ -1,4 +1,4 @@
-class Generate::App::Option < Generate::App
+class Generate::Definition::Option < Generate::Definition
 
   mapping(
     name:        String,

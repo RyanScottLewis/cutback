@@ -1,6 +1,6 @@
 class Generate::Formatter::Man::Controller < Generate::Formatter
 
-  @controller : App::Controller
+  @controller : Definition::Controller
 
   def initialize(@controller)
   end
