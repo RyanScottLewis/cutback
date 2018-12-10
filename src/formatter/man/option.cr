@@ -1,4 +1,4 @@
-class Generate::Formatter::Man::Option < Generate::Formatter::Help::Option
+class Cutback::Formatter::Man::Option < Cutback::Formatter::Help::Option
 
   def to_s(io)
     io << String.build { |io| super(io) }.to_roff

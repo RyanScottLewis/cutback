@@ -1,4 +1,4 @@
-class Generate::Definition::Collection(T) < Array(T)
+class Cutback::Definition::Collection(T) < Array(T)
 
   def for=(value)
     #each { |item| item.for = value }

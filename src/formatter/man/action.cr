@@ -1,4 +1,4 @@
-class Generate::Formatter::Man::Action < Generate::Formatter
+class Cutback::Formatter::Man::Action < Cutback::Formatter
 
   @action : Definition::Action
 

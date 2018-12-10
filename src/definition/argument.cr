@@ -1,4 +1,4 @@
-class Generate::Definition::Argument < Generate::Definition
+class Cutback::Definition::Argument < Cutback::Definition
 
   mapping(
     name:        String,

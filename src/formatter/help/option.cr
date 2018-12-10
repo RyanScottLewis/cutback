@@ -1,4 +1,4 @@
-class Generate::Formatter::Help::Option < Generate::Formatter
+class Cutback::Formatter::Help::Option < Cutback::Formatter
 
   @option : Definition::Option
 

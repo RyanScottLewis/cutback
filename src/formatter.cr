@@ -1,4 +1,4 @@
-class Generate::Formatter
+class Cutback::Formatter
 
   def self.format(*arguments)
     new(*arguments)

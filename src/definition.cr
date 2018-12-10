@@ -1,4 +1,4 @@
-abstract class Generate::Definition
+abstract class Cutback::Definition
 
   property for : Symbol?
 

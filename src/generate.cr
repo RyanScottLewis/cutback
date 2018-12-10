@@ -28,7 +28,7 @@ end
 
 input       = ARGV[0]
 output      = ARGV[1]
-app         = Generate::Definition::Root.load("app.yml")
+app         = Cutback::Definition::Root.load("app.yml")
 files       = {} of String => String
 path        = File.basename(input)
 controllers = Cutback::Controller.all.sort_by(&.name)

@@ -1,4 +1,4 @@
-class Generate::Formatter::Help::Controller < Generate::Formatter
+class Cutback::Formatter::Help::Controller < Cutback::Formatter
 
   @controller : Definition::Controller
 

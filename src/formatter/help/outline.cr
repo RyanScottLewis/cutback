@@ -1,4 +1,4 @@
-class Generate::Formatter::Help::Outline < Generate::Formatter
+class Cutback::Formatter::Help::Outline < Cutback::Formatter
 
   @root : Definition::Root
 

@@ -1,4 +1,4 @@
-class Generate::Formatter::Help::Usage < Generate::Formatter
+class Cutback::Formatter::Help::Usage < Cutback::Formatter
 
   @root : Definition::Root
 

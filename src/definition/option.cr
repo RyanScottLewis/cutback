@@ -1,4 +1,4 @@
-class Generate::Definition::Option < Generate::Definition
+class Cutback::Definition::Option < Cutback::Definition
 
   mapping(
     name:        String,

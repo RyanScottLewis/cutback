@@ -1,4 +1,4 @@
-class Generate::Formatter::Man::Argument < Generate::Formatter
+class Cutback::Formatter::Man::Argument < Cutback::Formatter
 
   @argument : Definition::Argument
 
