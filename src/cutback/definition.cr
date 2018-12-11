@@ -1,5 +1,7 @@
 abstract class Cutback::Definition
 
+  include Helpers::Mappable
+
   property for : Symbol?
 
   def for(value) # TODO: Use .tap
@@ -23,10 +25,6 @@ abstract class Cutback::Definition
       {% end %}
     end
 
-  end
-
-  macro mapping(**properties)
-    YAML.mapping({{properties}})
   end
 
 end
