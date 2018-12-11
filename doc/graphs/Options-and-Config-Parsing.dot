@@ -1,0 +1,26 @@
+digraph G {
+  graph[rankdir="TB"]
+  node[shape="box" fontsize="12" fontname="Rive Pixel"]
+  edge[arrowsize="0.5" fontsize="12" fontname="Rive Pixel"]
+
+  Arguments [label="ARGV"]
+  Processor [label="Options::Processor"]
+  Parser [label="OptionParser"]
+  Prototype [label="Options::Prototype"]
+  Config [label="Options::Config"]
+
+  Arguments -> Processor
+  Processor -> Parser
+
+  Parser -> Prototype [label="Parse into"]
+  Prototype -> Config [label="Load from\n--config"]
+
+  Config -> Options [label="Update #1"]
+  Prototype -> Options [label="Update #2"]
+
+
+  Arguments -> Parser [style="invis"] // For centering purposes
+  Processor -> Prototype [style="invis"] // For centering purposes
+  { rank="same"; Processor Parser }
+}
+

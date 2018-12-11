@@ -1,0 +1,13 @@
+digraph G {
+  graph[rankdir="BT"]
+  node[shape="box" fontsize="12" fontname="Rive Pixel"]
+  edge[arrowsize="0.5" fontsize="12" fontname="Rive Pixel"]
+
+  Backup -> Metadata
+  Backup -> Config
+  Metadata -> Checksum
+  Checksum -> Archive
+  Archive -> Records
+  Archive -> Manifest
+}
+

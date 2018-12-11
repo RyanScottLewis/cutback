@@ -5,6 +5,7 @@ DIR_BLD       ?= build
 DIR_BIN       ?= bin
 DIR_TMPL      ?= templates
 DIR_DOC       ?= doc
+DIR_GRAPHS    ?= $(DIR_DOC)/graphs
 DIR_MAN       ?= $(DIR_DOC)/man
 DIR_EMB       ?= $(DIR_SRC)/$(NAME)/embed
 
@@ -24,6 +25,10 @@ GZ_EXE        ?= gzip
 GZ_FLAGS      += -f
 GZ_FLAGS      += -k
 GZ            ?= $(GZ_EXE) $(GZ_FLAGS)
+
+DOT_EXE       ?= dot
+DOR_FLAGS     += -T png
+DOT           ?= $(DOT_EXE) $(DOT_FLAGS)
 
 APP_YML       ?= app.yml shard.yml
 
@@ -59,8 +64,11 @@ HELP_OUT      ?= $(DIR_EMB)/help
 VERSION_TMPL  ?= $(DIR_TMPL)/version
 VERSION_OUT   ?= $(DIR_EMB)/version
 
+GRAPH_DOT     ?= $(call find,$(DIR_GRAPHS),*.dot)
+GRAPH_PNG     ?= $(GRAPH_DOT:.dot=.png)
+
 TEMPLATES     ?= $(call find,$(DIR_TMPL),*)
-DOCS          ?= $(README_MD) $(README_HTML) $(MAN_EXE_GZ) $(MAN_CFG_GZ)
+DOCS          ?= $(README_MD) $(README_HTML) $(MAN_EXE_GZ) $(MAN_CFG_GZ) $(GRAPH_PNG)
 EMBEDS        ?= $(HELP_OUT) $(VERSION_OUT)
 
 CLEAN         ?= $(DIR_BLD) $(DIR_MAN) $(GENERATE_EXE) $(DOCS) $(EMBEDS)
@@ -82,6 +90,8 @@ uninstall:
 	$(RM) $(MAN_CFG_DEST)
 
 docs: $(DOCS)
+
+graphs: $(GRAPH_PNG)
 
 clean:
 	$(RM) -r $(CLEAN)
@@ -125,4 +135,7 @@ $(CUTBACK_EXE): $(CUTBACK_CR) $(TEMPLATES) $(EMBEDS)
 $(GENERATE_EXE): $(GENERATE_CR) $(TEMPLATES)
 	@$(MKDIR) $(@D)
 	$(CR) -o $@ $<
+
+$(DIR_GRAPHS)/%.png: $(DIR_GRAPHS)/%.dot
+	$(DOT) -Tpng -o $@ $<
 
