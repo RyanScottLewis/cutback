@@ -35,6 +35,7 @@ generate_templates(files, [
   "templates/help",
   "templates/version",
   "templates/README.md",
+  "templates/options.cr",
 ])
 
 unless files.has_key?(path)
