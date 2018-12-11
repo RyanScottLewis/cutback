@@ -41,6 +41,7 @@ abstract class Cutback::Controller
   extend Helpers::ClassTraversal
 
   include Helpers::CommandExecution
+  include Helpers::GeneratorExecution
   include Helpers::MetadataCreation
 
   @app         : Definition::App
