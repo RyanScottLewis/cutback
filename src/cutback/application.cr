@@ -4,10 +4,10 @@ class Cutback::Application
     new(*arguments).execute
   end
 
-  @app : Definition::Root
+  @app : Definition::App
 
   def initialize(arguments : Array(String) = ARGV)
-    @app         = Definition::Root.load
+    @app         = Definition::App.load
     @arguments   = Arguments.new(arguments)
     @options     = Options.new(@arguments)
     @identifier  = Identifier.new(@options)

@@ -1,14 +1,14 @@
 class Cutback::Formatter::Man::Usage < Cutback::Formatter
 
-  @root : Definition::Root
+  @app : Definition::App
 
-  def initialize(@root)
+  def initialize(@app)
   end
 
   def to_s(io)
-    io << @root.name.to_roff.bold
+    io << @app.name.to_roff.bold
 
-    @root.arguments.each do |argument|
+    @app.arguments.each do |argument|
       io << " ["
       io << argument.name.upcase.to_roff.italic
       io << "]"
@@ -16,9 +16,9 @@ class Cutback::Formatter::Man::Usage < Cutback::Formatter
 
     io << "\n.br\n"
 
-    io << @root.name.to_roff.bold
+    io << @app.name.to_roff.bold
 
-    [@root.arguments[0], @root.arguments[2]].each do |argument|
+    [@app.arguments[0], @app.arguments[2]].each do |argument|
       io << " ["
       io << argument.name.upcase.to_roff.italic
       io << "]"

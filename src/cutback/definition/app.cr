@@ -1,4 +1,4 @@
-class Cutback::Definition::Root < Cutback::Definition
+class Cutback::Definition::App < Cutback::Definition
 
   def self.load
     from_yaml(Embed["app.yml"])

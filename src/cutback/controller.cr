@@ -43,7 +43,7 @@ abstract class Cutback::Controller
   include Helpers::CommandExecution
   include Helpers::MetadataCreation
 
-  @app         : Definition::Root
+  @app         : Definition::App
   @options     : Options
   @paths       : List::Path
   @tools       : List::Tool

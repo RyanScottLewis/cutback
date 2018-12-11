@@ -1,6 +1,6 @@
 class Cutback::Generator::Help < Cutback::Generator
 
-  @app : Definition::Root
+  @app : Definition::App
 
   def initialize(@app)
     @app.for = :help # TODO: I hate this

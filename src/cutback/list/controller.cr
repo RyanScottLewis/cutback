@@ -1,6 +1,6 @@
 class Cutback::List::Controller < Cutback::List(Cutback::Controller)
 
-  @app        : Definition::Root
+  @app        : Definition::App
   @options    : Options
   @paths      : List::Path
   @tools      : List::Tool
