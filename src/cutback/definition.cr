@@ -4,11 +4,8 @@ abstract class Cutback::Definition
 
   property for : Symbol?
 
-  def for(value) # TODO: Use .tap
-    instance = dup
-    instance.for = value
-
-    instance
+  def for(value)
+    dup.tap(&.for=(value))
   end
 
   macro formatters(*names, default=@name)
