@@ -1,3 +1,4 @@
+# TODO: Merge into Processor::Paths since it's only ever used there?
 class Cutback::ArchiveSuffix
 
   # List of compressors with suffixes that are not identical to their command name

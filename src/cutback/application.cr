@@ -12,7 +12,7 @@ class Cutback::Application
     @options     = Options.new
     @identifier  = Identifier.new
     @tools       = List::Tool.new(@options)
-    @paths       = List::Path.new(@options, @tools, @identifier)
+    @paths       = List::Path.new
     @logger      = Logger.new(@options, @paths)
     @controllers = List::Controller.new(@app, @options, @paths, @tools, @identifier, @logger)
     @router      = Router.new(@controllers, @logger)
@@ -28,8 +28,7 @@ class Cutback::Application
     Validator::Router.execute!(@logger, @router)
 
     Processor::Identifier.execute!(@logger, @identifier, @options)
-    @logger.debug("Update: Paths")
-    @paths.update
+    Processor::Paths.execute!(@logger, @paths, @tools, @identifier, @options)
     @logger.debug("Update: Tools")
     @tools.update
     @logger.debug("Update: Logger")
