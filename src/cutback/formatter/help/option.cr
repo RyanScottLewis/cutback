@@ -19,7 +19,7 @@ class Cutback::Formatter::Help::Option < Cutback::Formatter
   end
 
   def to_s(io)
-    io << flags.ljust(bool? ? 25 : 17)
+    io << flags.ljust(bool? ? 31 : 23) # TODO: MAGIC NUMBER Get max length from somewhere
     io << "VALUE".ljust(8) unless bool?
     io << @option.description
   end

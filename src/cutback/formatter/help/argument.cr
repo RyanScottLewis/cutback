@@ -6,7 +6,7 @@ class Cutback::Formatter::Help::Argument < Cutback::Formatter
   end
 
   def to_s(io)
-    io << @argument.name.ljust(25)
+    io << @argument.name.ljust(31) # TODO: MAGIC NUMBER Get max length from somewhere
     io << @argument.description
   end
 
