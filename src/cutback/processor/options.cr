@@ -1,6 +1,6 @@
 class Cutback::Processor::Options < Cutback::Processor
 
-  PATH_DELIMITER = ";"
+  include Helpers::Options::Definitions
 
   @arguments : Array(String)
   @options   : Cutback::Options
@@ -17,43 +17,6 @@ class Cutback::Processor::Options < Cutback::Processor
     update_options_from_config
     update_options_from_prototype
     preprocess_options
-  end
-
-  macro define_option(name, short, type)
-    {% if type.id == "bool" %}
-      @option_parser.on("-{{short}}", "--{{name}}",       "") {         @prototype.{{name.id}} = true }
-    {% elsif type.id == "string" %}
-      @option_parser.on("-{{short}}", "--{{name}} VALUE", "") { |value| @prototype.{{name.id}} = value }
-    {% elsif type.id == "list" %}
-      @option_parser.on("-{{short}}", "--{{name}} VALUE", "") { |value| @prototype.{{name.id}} = value.split(/#{PATH_DELIMITER}+/) }
-    {% elsif type.id == "date" %}
-      @option_parser.on("-{{short}}", "--{{name}} VALUE", "") { |value| @prototype.{{name.id}} = Time.parse_utc(value, "%F") } # TODO: Helper for this
-    {% elsif type.id == "integer" %}
-      @option_parser.on("-{{short}}", "--{{name}} VALUE", "") { |value| @prototype.{{name.id}} = value.to_i }
-    {% end %}
-  end
-
-  protected def define_options
-    define_option(help,       h, bool)
-    define_option(version,    v, bool)
-    define_option(config,     c, string)
-    define_option(dry,        D, bool)
-    define_option(force,      F, bool)
-    define_option(output,     o, string)
-    define_option(date,       d, date)
-    define_option(index,      i, integer)
-    define_option(paths,      p, list)
-    define_option(excludes,   e, list)
-    define_option(records,    r, list)
-    define_option(format,     f, string)
-    define_option(progress,   P, bool)
-    define_option(compress,   C, bool)
-    define_option(archiver,   a, string)
-    define_option(checker,    s, string)
-    define_option(compressor, x, string)
-    define_option(finder,     S, string)
-    define_option(reader,     R, string)
-    define_option(viewer,     w, string)
   end
 
   protected def parse_options_into_prototype
