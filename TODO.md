@@ -1,5 +1,9 @@
 # TODO
 
+* Processes
+  * Rename all to more specific names i.e. `SetupPathsFromOptions`
+    * This should allow me to remove "Cutback::" from most type declarations
+  * Merge `Validator` as `ValidateOptions`, etc
 * General
   * Tests
   * Requires at beginning of all files to avoid file dependency hell
