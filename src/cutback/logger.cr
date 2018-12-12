@@ -7,17 +7,13 @@ class Cutback::Logger
   end
 
   @loggers = {} of Symbol => ::Logger
-  @options : Options
-  @paths   : List::Path
 
-  def initialize(@options, @paths)
-    setup_stdout_logger # TODO: if @options.verbose
-    setup_stderr_logger
+  def initialize
+    add_debug(:stdout, STDOUT)
+    add_fatal(:stderr, STDERR)
   end
 
-  def update
-    setup_file_logger unless @options.dry
-  end
+  delegate :[]=, to: @loggers
 
   macro def_severity(name)
     def {{name.id}}(message)
@@ -36,18 +32,16 @@ class Cutback::Logger
     @loggers.values.each(&.log(severity, message))
   end
 
-  protected def setup_stdout_logger
-    @loggers[:stdout] = ::Logger.new(STDOUT, ::Logger::Severity::DEBUG, FORMATTER)
+  def add(name, io, severity)
+    @loggers[name] = ::Logger.new(io, severity, FORMATTER)
   end
 
-  protected def setup_stderr_logger
-    @loggers[:stderr] = ::Logger.new(STDERR, ::Logger::Severity::FATAL, FORMATTER)
+  def add_debug(name, io)
+    add(name, io, ::Logger::Severity::DEBUG)
   end
 
-  protected def setup_file_logger
-    file = @paths.log.open("a+")
-
-    @loggers[:file] = ::Logger.new(file, ::Logger::Severity::DEBUG, FORMATTER)
+  def add_fatal(name, io)
+    add(name, io, ::Logger::Severity::FATAL)
   end
 
 end
