@@ -16,15 +16,13 @@ abstract class Cutback::Processor
   end
 
   protected def log_execution(logger)
-    logger.debug("%s - %s" % [logger_scope, logger_message])
+    logger.debug("Processor: %s" % logger_scope)
   end
 
   protected def logger_scope
-    self.class.name.gsub(/^Cutback::/, "")
-  end
-
-  protected def logger_message
-    "Execute"
+    self.class.name.
+      gsub(/^Cutback::Processor::/, "").
+      gsub(/([a-z])([A-Z])/, "\\1 \\2")
   end
 
 end
