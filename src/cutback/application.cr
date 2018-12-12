@@ -6,10 +6,9 @@ class Cutback::Application
 
   @app : Definition::App
 
-  def initialize(arguments : Array(String) = ARGV)
+  def initialize(@arguments : Array(String) = ARGV)
     @app         = Definition::App.load # TODO: Needed? if so move to processor or someting =p
     @logger      = Logger.new
-    @arguments   = Arguments.new(arguments)
     @options     = Options.new
     @identifier  = Identifier.new
     @tools       = List::Tool.new
