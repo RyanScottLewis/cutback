@@ -8,12 +8,12 @@ class Cutback::Application
 
   def initialize(arguments : Array(String) = ARGV)
     @app         = Definition::App.load # TODO: Needed?
+    @logger      = Logger.new
     @arguments   = Arguments.new(arguments)
     @options     = Options.new
     @identifier  = Identifier.new
     @tools       = List::Tool.new
     @paths       = List::Path.new
-    @logger      = Logger.new
     @controllers = List::Controller.new(@app, @options, @paths, @tools, @identifier, @logger)
     @router      = Router.new(@controllers, @logger)
   end
@@ -32,7 +32,6 @@ class Cutback::Application
     Processor::Tools.execute!(@logger, @tools, @options)
     Processor::Logger.execute!(@logger, @paths, @options)
 
-    @logger.debug("Router: Execute")
     @router.execute
   rescue error : Cutback::Error
     display_error(error)

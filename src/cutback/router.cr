@@ -1,17 +1,28 @@
 class Cutback::Router
 
   @controllers : List::Controller
-  @logger      : Logger
+  @logger      : Cutback::Logger
 
-  property controller_name = "proxy"
-  property action_name     = "create"
+  property controller = "proxy"
+  property action     = "create"
 
   def initialize(@controllers, @logger)
   end
 
   def execute
-    @logger.debug("Router: Calling #{@controller_name}##{@action_name}")
-    @controllers[@controller_name].execute(@action_name)
+    execute_controller_action
+  end
+
+  def call(controller, action)
+    @controller = controller
+    @action     = action
+
+    execute_controller_action
+  end
+
+  protected def execute_controller_action
+    @logger.debug("Router: Calling #{@controller}##{@action}")
+    @controllers[@controller].execute(@action)
   end
 
 end

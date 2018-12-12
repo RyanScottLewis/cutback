@@ -10,16 +10,16 @@ class Cutback::Validator::Router < Cutback::Validator
     validate_action
   end
 
-  delegate controller_name, action_name, to: @router
+  delegate controller, action, to: @router
 
   protected def validate_controller
-    raise Error::InvalidController.new(controller_name) unless Controller.valid?(controller_name)
+    raise Error::InvalidController.new(controller) unless Controller.valid?(controller)
   end
 
   protected def validate_action
-    controller_class = Controller[controller_name]?.not_nil!
+    controller_class = Controller[controller]?.not_nil!
 
-    raise Error::InvalidAction.new(action_name) unless controller_class.action?(action_name)
+    raise Error::InvalidAction.new(action) unless controller_class.action?(action)
   end
 
 end

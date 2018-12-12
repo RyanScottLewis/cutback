@@ -8,10 +8,10 @@ class Cutback::Processor::Router < Cutback::Processor
 
   def execute
     if @arguments.size == 2
-      @router.controller_name = @arguments[0]
-      @router.action_name     = @arguments[1]
+      @router.controller = @arguments[0]
+      @router.action     = @arguments[1]
     elsif @arguments.size == 1
-      @router.action_name     = @arguments[0]
+      @router.action     = @arguments[0]
     end
   end
 
