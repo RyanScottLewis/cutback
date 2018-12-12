@@ -16,7 +16,7 @@ class Cutback::Processor::Logger < Cutback::Processor
     setup_file_logger unless @options.dry
   end
 
-  def execute!
+  def execute! # TODO: Both Controllers and Logger processors have to do this
     super(@logger)
   end
 

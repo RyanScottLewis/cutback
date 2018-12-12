@@ -14,7 +14,7 @@ class Cutback::Application
     @identifier  = Identifier.new
     @tools       = List::Tool.new
     @paths       = List::Path.new
-    @controllers = List::Controller.new(@app, @options, @paths, @tools, @identifier, @logger)
+    @controllers = List::Controller.new
     @router      = Router.new(@controllers, @logger)
   end
 
@@ -30,6 +30,7 @@ class Cutback::Application
     Processor::Identifier.execute!(@logger, @identifier, @options)
     Processor::Paths.execute!(@logger, @paths, @tools, @identifier, @options)
     Processor::Tools.execute!(@logger, @tools, @options)
+    Processor::Controllers.execute!(@logger, @app, @identifier, @paths, @tools, @controllers, @options)
     Processor::Logger.execute!(@logger, @paths, @options)
 
     @router.execute
