@@ -1,8 +1,8 @@
 abstract class Cutback::Controller
 
-  include Helpers::Actionable
   extend Helpers::ClassTraversal
 
+  include Helpers::Actionable
   include Helpers::CommandExecution
   include Helpers::GeneratorExecution
   include Helpers::MetadataCreation

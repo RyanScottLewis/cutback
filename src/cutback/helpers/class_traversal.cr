@@ -1,4 +1,4 @@
-module Cutback::Helpers::ClassTraversal
+module Cutback::Helpers::ClassTraversal # TODO: RENAME.. no traversal is occuring here lol
 
   def all
     {{ @type.all_subclasses.reject(&.abstract?) }}
