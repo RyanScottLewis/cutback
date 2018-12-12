@@ -55,6 +55,7 @@ abstract class Cutback::Controller
   def initialize(@app, @options, @paths, @tools, @identifier, @logger, @controllers)
   end
 
+  # TODO: Move to router? Makes sense right?
   def call(controller, action)
     @logger.debug("Controller: Calling #{controller}##{action}")
     @controllers[controller].execute(action)
