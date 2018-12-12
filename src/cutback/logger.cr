@@ -11,14 +11,12 @@ class Cutback::Logger
   @paths   : List::Path
 
   def initialize(@options, @paths)
-    @loggers[:stdout] = ::Logger.new(STDOUT, ::Logger::Severity::DEBUG, FORMATTER)
-    @loggers[:stderr] = ::Logger.new(STDERR, ::Logger::Severity::FATAL, FORMATTER)
+    setup_stdout_logger # TODO: if @options.verbose
+    setup_stderr_logger
   end
 
   def update
-    file = @paths.log.open("a+")
-
-    @loggers[:file] = ::Logger.new(file, ::Logger::Severity::DEBUG, FORMATTER)
+    setup_file_logger unless @options.dry
   end
 
   macro def_severity(name)
@@ -36,6 +34,20 @@ class Cutback::Logger
 
   def log(severity, message)
     @loggers.values.each(&.log(severity, message))
+  end
+
+  protected def setup_stdout_logger
+    @loggers[:stdout] = ::Logger.new(STDOUT, ::Logger::Severity::DEBUG, FORMATTER)
+  end
+
+  protected def setup_stderr_logger
+    @loggers[:stderr] = ::Logger.new(STDERR, ::Logger::Severity::FATAL, FORMATTER)
+  end
+
+  protected def setup_file_logger
+    file = @paths.log.open("a+")
+
+    @loggers[:file] = ::Logger.new(file, ::Logger::Severity::DEBUG, FORMATTER)
   end
 
 end
