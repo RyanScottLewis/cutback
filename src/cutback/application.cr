@@ -7,7 +7,7 @@ class Cutback::Application
   @app : Definition::App
 
   def initialize(arguments : Array(String) = ARGV)
-    @app         = Definition::App.load # TODO: Needed?
+    @app         = Definition::App.load # TODO: Needed? if so move to processor or someting =p
     @logger      = Logger.new
     @arguments   = Arguments.new(arguments)
     @options     = Options.new
@@ -30,7 +30,7 @@ class Cutback::Application
     Processor::Identifier.execute!(@logger, @identifier, @options)
     Processor::Paths.execute!(@logger, @paths, @tools, @identifier, @options)
     Processor::Tools.execute!(@logger, @tools, @options)
-    Processor::Controllers.execute!(@logger, @app, @identifier, @paths, @tools, @controllers, @options)
+    Processor::Controllers.execute!(@logger, @app, @options, @identifier, @paths, @tools, @controllers, @router)
     Processor::Logger.execute!(@logger, @paths, @options)
 
     @router.execute

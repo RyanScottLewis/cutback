@@ -6,13 +6,14 @@ class Cutback::Processor::Controllers < Cutback::Processor
   @paths       : List::Path
   @tools       : List::Tool
   @controllers : List::Controller
+  @router      : Cutback::Router
   @options     : Cutback::Options
 
   def self.execute!(*arguments)
     new(*arguments).execute!
   end
 
-  def initialize(@logger, @app, @identifier, @paths, @tools, @controllers, @options)
+  def initialize(@logger, @app, @options, @identifier, @paths, @tools, @controllers, @router)
   end
 
   def execute
@@ -30,7 +31,7 @@ class Cutback::Processor::Controllers < Cutback::Processor
   end
 
   protected def create(controller_class)
-    controller_class.new(@app, @options, @paths, @tools, @identifier, @logger, @controllers)
+    controller_class.new(@logger, @app, @options, @identifier, @paths, @tools, @controllers, @router)
   end
 
 end

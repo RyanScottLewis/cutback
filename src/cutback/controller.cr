@@ -7,16 +7,19 @@ abstract class Cutback::Controller
   include Helpers::GeneratorExecution
   include Helpers::MetadataCreation
 
+  @logger      : Logger
   @app         : Definition::App
   @options     : Options
+  @identifier  : Identifier
   @paths       : List::Path
   @tools       : List::Tool
-  @identifier  : Identifier
-  @logger      : Logger
   @controllers : List::Controller
+  @router      : Router
 
-  def initialize(@app, @options, @paths, @tools, @identifier, @logger, @controllers)
+  def initialize(@logger, @app, @options, @identifier, @paths, @tools, @controllers, @router)
   end
+
+  delegate call, to: @router
 
   macro delegate_actions(*names, to controller)
     {% for name, index in names %} # TODO: Use delegate_action
@@ -30,12 +33,6 @@ abstract class Cutback::Controller
     def {{name.id}}
       call({{controller.id.stringify}}, {{action_name.id.stringify}})
     end
-  end
-
-  # TODO: Move to router? Makes sense right?
-  def call(controller, action)
-    @logger.debug("Controller: Calling #{controller}##{action}")
-    @controllers[controller].execute(action)
   end
 
 end
