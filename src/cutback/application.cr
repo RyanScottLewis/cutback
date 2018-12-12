@@ -20,13 +20,11 @@ class Cutback::Application
 
   def execute
     Processor::Options.execute!(@logger, @arguments, @options)
-    Processor::Arguments.execute!(@logger, @arguments)
-    Processor::Router.execute!(@logger, @arguments, @router)
-
     Validator::Options.execute!(@logger, @options)
+    Processor::Arguments.execute!(@logger, @arguments)
     Validator::Arguments.execute!(@logger, @arguments)
+    Processor::Router.execute!(@logger, @arguments, @router)
     Validator::Router.execute!(@logger, @router)
-
     Processor::Identifier.execute!(@logger, @identifier, @options)
     Processor::Paths.execute!(@logger, @paths, @tools, @identifier, @options)
     Processor::Tools.execute!(@logger, @tools, @options)

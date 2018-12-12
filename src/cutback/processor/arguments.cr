@@ -10,7 +10,7 @@ class Cutback::Processor::Arguments < Cutback::Processor
   end
 
   protected def preprocess_arguments
-    @arguments.map! { |argument| argument.strip.downcase }
+    @arguments.map!(&.strip.downcase)
   end
 
 end
