@@ -1,12 +1,12 @@
 class Cutback::Path
 
   def self.join(*partials)
-    new(File.join(*partials))
+    new.join(*partials)
   end
 
   @value : String
 
-  def initialize(@value)
+  def initialize(@value="")
   end
 
   delegate to_s, to: @value
@@ -15,12 +15,24 @@ class Cutback::Path
     modification_time > path.modification_time
   end
 
+  def join(*partials)
+    Path.new(File.join(@value, *partials))
+  end
+
+  def expand
+    Path.new(File.expand_path(@value))
+  end
+
   def exists?
     File.exists?(@value)
   end
 
   def modification_time
     File.info(@value).modification_time
+  end
+
+  def directory?
+    File.info(@value).directory?
   end
 
   def size
