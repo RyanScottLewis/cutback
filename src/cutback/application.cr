@@ -11,7 +11,7 @@ class Cutback::Application
     @arguments   = Arguments.new(arguments)
     @options     = Options.new
     @identifier  = Identifier.new
-    @tools       = List::Tool.new(@options)
+    @tools       = List::Tool.new
     @paths       = List::Path.new
     @logger      = Logger.new(@options, @paths)
     @controllers = List::Controller.new(@app, @options, @paths, @tools, @identifier, @logger)
@@ -29,8 +29,7 @@ class Cutback::Application
 
     Processor::Identifier.execute!(@logger, @identifier, @options)
     Processor::Paths.execute!(@logger, @paths, @tools, @identifier, @options)
-    @logger.debug("Update: Tools")
-    @tools.update
+    Processor::Tools.execute!(@logger, @tools, @options)
     @logger.debug("Update: Logger")
     @logger.update
 
