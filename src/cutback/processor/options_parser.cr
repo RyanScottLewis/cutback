@@ -1,14 +1,14 @@
 # TODO: Split into Processor::Options::Parse and ::Update?
-class Cutback::Processor::Options < Cutback::Processor
+class Cutback::Processor::OptionsParser < Cutback::Processor
 
   include Helpers::Options::Definitions
 
   @arguments : Array(String)
-  @options   : Cutback::Options
+  @options   : Options
 
   def initialize(@arguments, @options)
     @option_parser = OptionParser.new
-    @prototype     = Cutback::Options::Prototype.new
+    @prototype     = Options::Prototype.new
 
     define_options
   end

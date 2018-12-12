@@ -1,4 +1,4 @@
-class Cutback::Processor::Logger < Cutback::Processor
+class Cutback::Processor::LoggerOutputUpdater < Cutback::Processor
 
   def self.execute!(*arguments)
     new(*arguments).execute!
@@ -6,7 +6,7 @@ class Cutback::Processor::Logger < Cutback::Processor
 
   @logger  : Cutback::Logger
   @paths   : List::Path
-  @options : Cutback::Options
+  @options : Options
 
   def initialize(@logger, @paths, @options)
   end

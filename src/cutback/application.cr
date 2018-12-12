@@ -18,17 +18,17 @@ class Cutback::Application
   end
 
   def execute
-    Processor::Options.execute!(@logger, @arguments, @options)
+    Processor::OptionsParser.execute!(@logger, @arguments, @options)
     Processor::OptionsValidator.execute!(@logger, @options)
-    Processor::Arguments.execute!(@logger, @arguments)
+    Processor::ArgumentsPreprocessor.execute!(@logger, @arguments)
     Processor::ArgumentsValidator.execute!(@logger, @arguments)
-    Processor::Router.execute!(@logger, @arguments, @router)
+    Processor::RouterArgumentsUpdater.execute!(@logger, @arguments, @router)
     Processor::RouterValidator.execute!(@logger, @router)
-    Processor::Identifier.execute!(@logger, @identifier, @options)
-    Processor::Paths.execute!(@logger, @paths, @tools, @identifier, @options)
-    Processor::Tools.execute!(@logger, @tools, @options)
-    Processor::Controllers.execute!(@logger, @app, @options, @identifier, @paths, @tools, @controllers, @router)
-    Processor::Logger.execute!(@logger, @paths, @options)
+    Processor::IdentifierOptionsUpdater.execute!(@logger, @identifier, @options)
+    Processor::PathsOptionsUpdater.execute!(@logger, @paths, @tools, @identifier, @options)
+    Processor::ToolsOptionsUpdater.execute!(@logger, @tools, @options)
+    Processor::ControllerFactory.execute!(@logger, @app, @options, @identifier, @paths, @tools, @controllers, @router)
+    Processor::LoggerOutputUpdater.execute!(@logger, @paths, @options)
 
     @router.execute
   rescue error : Cutback::Error

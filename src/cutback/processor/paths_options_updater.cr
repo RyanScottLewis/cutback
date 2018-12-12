@@ -1,9 +1,9 @@
-class Cutback::Processor::Paths < Cutback::Processor
+class Cutback::Processor::PathsOptionsUpdater < Cutback::Processor
 
   @paths      : List::Path
   @tools      : List::Tool
-  @identifier : Cutback::Identifier
-  @options    : Cutback::Options
+  @identifier : Identifier
+  @options    : Options
 
   def initialize(@paths, @tools, @identifier, @options)
   end
@@ -19,7 +19,7 @@ class Cutback::Processor::Paths < Cutback::Processor
   end
 
   protected def update(name, extname)
-    @paths[name] = Cutback::Path.join(@options.output, "#{@identifier}.%s" % extname)
+    @paths[name] = Path.join(@options.output, "#{@identifier}.%s" % extname)
   end
 
   protected def archive_ext

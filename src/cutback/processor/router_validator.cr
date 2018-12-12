@@ -1,6 +1,6 @@
 class Cutback::Processor::RouterValidator < Cutback::Processor
 
-  @router : Cutback::Router
+  @router : Router
 
   def initialize(@router)
   end

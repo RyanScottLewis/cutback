@@ -1,13 +1,13 @@
-class Cutback::Processor::Controllers < Cutback::Processor
+class Cutback::Processor::ControllerFactory < Cutback::Processor
 
   @logger      : Cutback::Logger
   @app         : Definition::App
-  @identifier  : Cutback::Identifier
+  @identifier  : Identifier
   @paths       : List::Path
   @tools       : List::Tool
   @controllers : List::Controller
-  @router      : Cutback::Router
-  @options     : Cutback::Options
+  @router      : Router
+  @options     : Options
 
   def self.execute!(*arguments)
     new(*arguments).execute!
@@ -25,7 +25,7 @@ class Cutback::Processor::Controllers < Cutback::Processor
   end
 
   def create_controllers
-    Cutback::Controller.all.each do |controller_class|
+    Controller.all.each do |controller_class|
       @controllers[controller_class.name] = create(controller_class)
     end
   end

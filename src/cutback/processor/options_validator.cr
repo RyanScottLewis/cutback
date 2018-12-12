@@ -2,7 +2,7 @@ class Cutback::Processor::OptionsValidator < Cutback::Processor
 
   FORMATS = %w[json yaml]
 
-  @options : Cutback::Options
+  @options : Options
 
   def initialize(@options)
   end
@@ -19,7 +19,7 @@ class Cutback::Processor::OptionsValidator < Cutback::Processor
   protected def validate_help
     return unless @options.help
 
-    puts Embed["help"]
+    puts Embed["help"] # TODO: Use generator
     exit
   end
 
@@ -27,7 +27,7 @@ class Cutback::Processor::OptionsValidator < Cutback::Processor
   protected def validate_version
     return unless @options.version
 
-    puts Embed["version"]
+    puts Embed["version"] # TODO: Use generator
     exit
   end
 

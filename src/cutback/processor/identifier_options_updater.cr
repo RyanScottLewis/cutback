@@ -1,7 +1,7 @@
-class Cutback::Processor::Identifier < Cutback::Processor
+class Cutback::Processor::IdentifierOptionsUpdater < Cutback::Processor
 
-  @identifier : Cutback::Identifier
-  @options    : Cutback::Options
+  @identifier : Identifier
+  @options    : Options
 
   def initialize(@identifier, @options)
   end

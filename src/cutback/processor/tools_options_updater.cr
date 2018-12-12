@@ -1,7 +1,7 @@
-class Cutback::Processor::Tools < Cutback::Processor
+class Cutback::Processor::ToolsOptionsUpdater < Cutback::Processor
 
   @tools   : List::Tool
-  @options : Cutback::Options
+  @options : Options
 
   def initialize(@tools, @options)
   end

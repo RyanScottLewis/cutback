@@ -1,7 +1,7 @@
-class Cutback::Processor::Router < Cutback::Processor
+class Cutback::Processor::RouterArgumentsUpdater < Cutback::Processor
 
   @arguments : Array(String)
-  @router    : Cutback::Router
+  @router    : Router
 
   def initialize(@arguments, @router)
   end
