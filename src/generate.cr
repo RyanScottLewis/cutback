@@ -1,8 +1,23 @@
 # Template generator built to bin/generate for internal file generation
 
+require "yaml"
+require "json"
 require "ecr"
 
-require "./setup"
+#require "./setup"
+
+# Standard library extensions
+require "./ext/**"
+
+require "./cutback/roff"
+
+require "./cutback/helpers/**"
+
+require "./cutback/formatter"
+require "./cutback/formatter/**"
+
+require "./cutback/definition"
+require "./cutback/definition/**"
 
 macro generate(path)
   String.build { |io| ECR.embed({{path}}, io) }
@@ -21,10 +36,10 @@ end
 
 input       = ARGV[0]
 output      = ARGV[1]
-app         = Cutback::Definition::App.load
+app         = Cutback::Definition::App.load("app.yml")
 files       = {} of String => String
 path        = File.basename(input)
-controllers = Cutback::Controller.all.sort_by(&.name)
+#controllers = Cutback::Controller.all.sort_by(&.name) # TODO REMOVE
 
 app.for = :help if File.basename(input) == "help"
 app.for = :man  if File.extname(input) =~ /\.\d/

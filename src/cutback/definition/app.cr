@@ -1,6 +1,10 @@
 class Cutback::Definition::App < Cutback::Definition
 
-  def self.load
+  def self.load(path)
+    from_yaml(File.read(path))
+  end
+
+  def self.load # TODO: Needed?
     from_yaml(Embed["app.yml"])
   end
 
