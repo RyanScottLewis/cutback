@@ -3,18 +3,15 @@
 #
 #       To update:
 #         * Edit app.yml
-#         * Run `make src/helpers/options.cr`
+#         * Run `make src/cutback/helpers/options.cr`
 
 # TODO: Template is ugly as sin, but output is pretty =]
 #       A hash-like interface or something would be better so much better than generating all this
 <%- max = app.options.map(&.name.size).max -%>
 
-# Ensure Options is defined as a class
-class Cutback::Options; end
-
-module Cutback::Options::Properties::Base
-  <% app.options.each do |option| %>
-    property <%= option.name.ljust(max) -%>
+module Cutback::Helpers::Options::Properties::Base
+  <%- app.options.each do |option| %>
+  property <%= option.name.ljust(max) -%>
     <%- unless option.default.nil? -%>
  = <%= option.type == "string" ? "\"#{option.default}\"" : option.default -%>
     <%- else -%>
@@ -26,10 +23,10 @@ module Cutback::Options::Properties::Base
 
 end
 
-module Cutback::Options::Properties::Prototype
+module Cutback::Helpers::Options::Properties::Prototype
 
   <%- app.options.each do |option| -%>
-    property <%= option.name.ljust(max) -%>
+  property <%= option.name.ljust(max) -%>
     <%- case option.type
         when "bool" -%>
  : Bool?
@@ -46,31 +43,35 @@ module Cutback::Options::Properties::Prototype
 
 end
 
-module Cutback::Options::Properties::Config
+module Cutback::Helpers::Options::Properties::Config
 
   include Helpers::Mappable
 
-  mapping(
-    <%- app.options.each do |option| -%>
+  macro included
+    mapping(
+      <%- app.options.each do |option| -%>
       <%= "#{option.name}:".ljust(max+1) -%>
-      <%- case option.type
-          when "bool" -%>
+        <%- case option.type
+            when "bool" -%>
  Bool?,
-      <%- when "string" -%>
+        <%- when "string" -%>
  String?,
-      <%- when "list" -%>
+        <%- when "list" -%>
  Array(String)?,
-      <%- when "date" -%>
+        <%- when "date" -%>
  Time?,
-      <%- when "integer" -%>
+        <%- when "integer" -%>
  Int32?,
+        <%- end -%>
       <%- end -%>
-    <%- end -%>
-  )
+    )
+  end
 
 end
 
-module Cutback::Options::Definitions
+module Cutback::Helpers::Options::Definitions
+
+  PATH_DELIMITER = ";" # TODO: Better place for this
 
   macro define_option(name, short, type)
     {% if type.id == "bool" %}
@@ -100,7 +101,7 @@ end
 # include Options::Updatable(Prototype) # i.e. Update options from prototype
 # include Options::Updatable(Options)   # i.e. Update config from options
 # ```
-module Cutback::Options::Updatable(T)
+module Cutback::Helpers::Options::Updatable(T)
 
   macro update_from_source(name)
     @{{name}} = source.{{name}}.not_nil! unless source.{{name}}.nil?
