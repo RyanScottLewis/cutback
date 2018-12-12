@@ -7,7 +7,7 @@ class Cutback::Application
   @app : Definition::App
 
   def initialize(arguments : Array(String) = ARGV)
-    @app         = Definition::App.load
+    @app         = Definition::App.load # TODO: Needed?
     @arguments   = Arguments.new(arguments)
     @options     = Options.new(@arguments)
     @identifier  = Identifier.new(@options)

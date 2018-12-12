@@ -1,8 +1,8 @@
 # Standard library
+require "yaml"
 require "json"
 require "logger"
 require "option_parser"
-require "yaml"
 
 # Shards
 require "baked_file_system"

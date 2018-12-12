@@ -1,3 +1,4 @@
+# TODO: This needs to be.. something else
 module Roff
 
   def self.escape(value)

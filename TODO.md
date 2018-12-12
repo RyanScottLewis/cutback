@@ -1,5 +1,7 @@
 # TODO
 
+* Definitions
+  * Add `config` boolean for options to disallow setting within config files (date, index)
 * Requires at beginning of all files to avoid file dependency hell
 * List classes
   * Should have a single base class
