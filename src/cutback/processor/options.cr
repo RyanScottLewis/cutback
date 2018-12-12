@@ -24,9 +24,14 @@ class Cutback::Processor::Options < Cutback::Processor
   end
 
   protected def update_options_from_config
-    return if @prototype.config.nil?
+    path   = cli_config_path unless @prototype.config.nil?
+    path   = search_config(path) if !path.nil? && path.directory?
+    path ||= search_config(user_config_path)
+    path ||= search_config(system_config_path)
 
-    config = Config.load(@prototype.config.not_nil!)
+    return if path.nil?
+
+    config = Config.load(path.to_s)
 
     @options.update(config)
   end
@@ -39,6 +44,28 @@ class Cutback::Processor::Options < Cutback::Processor
     @options.format   = @options.format.strip.downcase
     @options.progress = !@options.progress if @prototype.progress
     @options.compress = !@options.compress if @prototype.compress
+  end
+
+  protected def cli_config_path
+    Path.new(@prototype.config.not_nil!)
+  end
+
+  protected def user_config_path
+    if ENV.has_key?("XDG_CONFIG_HOME")
+      Path.join(ENV["XDG_CONFIG_HOME"], "cutback")
+    else
+      Path.join("~", ".config", "cutback").expand
+    end
+  end
+
+  protected def system_config_path
+    Path.join("/", "etc", "cutback")
+  end
+
+  protected def search_config(path)
+    pattern = path.join("config.{yaml,yml,json,js}").to_s
+
+    Dir[pattern].first?
   end
 
 end
