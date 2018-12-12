@@ -358,7 +358,10 @@ controllers:
         description: Update config
 
       - name:        destroy
-        description: Destroy metadata
+        description: Destroy config
+
+      - name:        view
+        description: View config without creating config file
 
   - name:            log
     description:     Log
