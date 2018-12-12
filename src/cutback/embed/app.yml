@@ -40,6 +40,7 @@ strategy: |
         * Tool (sha256sum, sha512sum, etc.)
         * Value
     * Save to `ID.{yaml,json}`
+
 arguments:
   - name:        options
     description: Command-line options
@@ -79,7 +80,7 @@ options:
     default:     false
 
   - name:        config
-    description: Configuration file path
+    description: Configuration file path or directory
     short:       c
     type:        string
 
