@@ -5,7 +5,7 @@ class Cutback::Validator::Router < Cutback::Validator
   def initialize(@router)
   end
 
-  def validate
+  def execute
     validate_controller
     validate_action
   end

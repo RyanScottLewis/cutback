@@ -7,7 +7,7 @@ class Cutback::Validator::Options < Cutback::Validator
   def initialize(@options)
   end
 
-  def validate
+  def execute
     validate_help
     validate_version
     validate_output

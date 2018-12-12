@@ -9,29 +9,23 @@ class Cutback::Application
   def initialize(arguments : Array(String) = ARGV)
     @app         = Definition::App.load # TODO: Needed?
     @arguments   = Arguments.new(arguments)
-    @options     = Options.new(@arguments)
+    @options     = Options.new
     @identifier  = Identifier.new(@options)
     @tools       = List::Tool.new(@options)
     @paths       = List::Path.new(@options, @tools, @identifier)
     @logger      = Logger.new(@options, @paths)
     @controllers = List::Controller.new(@app, @options, @paths, @tools, @identifier, @logger)
-    @router      = Router.new(@arguments, @controllers, @logger)
+    @router      = Router.new(@controllers, @logger)
   end
 
   def execute
-    @logger.debug("Processor: Options")
-    @options.process
-    @logger.debug("Processor: Arguments")
-    @arguments.process
-    @logger.debug("Processor: Router")
-    @router.process
+    Processor::Options.execute!(@logger, @arguments, @options)
+    Processor::Arguments.execute!(@logger, @arguments)
+    Processor::Router.execute!(@logger, @arguments, @router)
 
-    @logger.debug("Validator: Options")
-    @options.validate
-    @logger.debug("Validator: Arguments")
-    @arguments.validate
-    @logger.debug("Validator: Router")
-    @router.validate
+    Validator::Options.execute!(@logger, @options)
+    Validator::Arguments.execute!(@logger, @arguments)
+    Validator::Router.execute!(@logger, @router)
 
     @logger.debug("Update: Identifier")
     @identifier.update

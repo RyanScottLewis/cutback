@@ -6,7 +6,7 @@ class Cutback::Processor::Router < Cutback::Processor
   def initialize(@arguments, @router)
   end
 
-  def process
+  def execute
     if @arguments.size == 2
       @router.controller_name = @arguments[0]
       @router.action_name     = @arguments[1]

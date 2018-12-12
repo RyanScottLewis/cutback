@@ -1,3 +1,4 @@
+# TODO: Split into Processor::Options::Parse and ::Update?
 class Cutback::Processor::Options < Cutback::Processor
 
   include Helpers::Options::Definitions
@@ -12,7 +13,7 @@ class Cutback::Processor::Options < Cutback::Processor
     define_options
   end
 
-  def process
+  def execute
     parse_options_into_prototype
     update_options_from_config
     update_options_from_prototype

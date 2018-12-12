@@ -5,7 +5,7 @@ class Cutback::Validator::Arguments < Cutback::Validator
   def initialize(@arguments)
   end
 
-  def validate
+  def execute
     validate_size
   end
 

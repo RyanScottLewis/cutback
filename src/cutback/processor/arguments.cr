@@ -5,7 +5,7 @@ class Cutback::Processor::Arguments < Cutback::Processor
   def initialize(@arguments)
   end
 
-  def process
+  def execute
     preprocess_arguments
   end
 

@@ -10,18 +10,5 @@ class Cutback::Options
   include Helpers::Options::Updatable(Prototype)
   include Helpers::Options::Updatable(Config)
 
-  @arguments : Array(String)
-
-  def initialize(@arguments)
-  end
-
-  def process
-    Processor::Options.process(@arguments, self)
-  end
-
-  def validate
-    Validator::Options.validate(self)
-  end
-
 end
 
