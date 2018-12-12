@@ -1,5 +1,6 @@
 # TODO
 
+* Requires at beginning of all files to avoid file dependency hell
 * List classes
   * Should have a single base class
   * Should use SYMBOLS instead of strings and convert when needed
