@@ -1,4 +1,4 @@
-class Cutback::Processor::IdentifierOptionsUpdater < Cutback::Processor
+class Cutback::Action::IdentifierOptionsUpdater < Cutback::Action
 
   @identifier : Identifier
   @options    : Options

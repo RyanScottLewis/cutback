@@ -1,6 +1,6 @@
-abstract class Cutback::Processor
+abstract class Cutback::Action
 
-  def self.execute(*arguments)
+  def self.execute(*arguments) # TODO: Needed?
     new(*arguments).execute
   end
 
@@ -16,12 +16,12 @@ abstract class Cutback::Processor
   end
 
   protected def log_execution(logger)
-    logger.debug("Processor: %s" % logger_scope)
+    logger.debug("Action: %s" % logger_scope)
   end
 
   protected def logger_scope
     self.class.name.
-      gsub(/^Cutback::Processor::/, ""). # TODO: Use self.class or something
+      gsub(/^Cutback::Action::/, ""). # TODO: Use self.class or something
       gsub(/([a-z])([A-Z])/, "\\1 \\2")
   end
 

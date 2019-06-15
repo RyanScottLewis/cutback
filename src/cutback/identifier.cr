@@ -9,7 +9,7 @@ class Cutback::Identifier
     instance
   end
 
-  # TODO: Dont like this here - Processor::Identifier?
+  # TODO: Dont like this here - Action::Identifier?
   def self.largest_index(path : String, date : Time)
     paths    = Dir.glob(File.join(path, date.to_s("%F") + "*"))
     ids      = paths.map { |path| parse(path) }
@@ -23,7 +23,7 @@ class Cutback::Identifier
   property date  = Time.utc_now
   property index = 0
 
-  # TODO: Dont like this here - Processor::Identifier?
+  # TODO: Dont like this here - Action::Identifier?
   def increment_largest(options : Options)
     index = self.class.largest_index(options.output, options.date)
 

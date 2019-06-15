@@ -1,4 +1,4 @@
-class Cutback::Processor::RouterValidator < Cutback::Processor
+class Cutback::Action::RouterValidator < Cutback::Action
 
   @router : Router
 

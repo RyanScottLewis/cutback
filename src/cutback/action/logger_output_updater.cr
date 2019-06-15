@@ -1,4 +1,4 @@
-class Cutback::Processor::LoggerOutputUpdater < Cutback::Processor
+class Cutback::Action::LoggerOutputUpdater < Cutback::Action
 
   def self.execute!(*arguments)
     new(*arguments).execute!

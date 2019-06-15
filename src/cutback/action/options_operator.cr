@@ -1,4 +1,4 @@
-class Cutback::Processor::OptionsOperator < Cutback::Processor
+class Cutback::Action::OptionsOperator < Cutback::Action
 
   include Helpers::GeneratorExecution
 

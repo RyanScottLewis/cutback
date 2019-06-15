@@ -1,4 +1,4 @@
-class Cutback::Processor::RouterArgumentsUpdater < Cutback::Processor
+class Cutback::Action::RouterArgumentsUpdater < Cutback::Action
 
   @arguments : Array(String)
   @router    : Router

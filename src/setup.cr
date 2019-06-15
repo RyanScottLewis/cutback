@@ -18,7 +18,7 @@ require "./cutback/helpers/**"
 require "./cutback/*"
 
 require "./cutback/list/**"
-require "./cutback/processor/**"
+require "./cutback/action/**"
 require "./cutback/formatter/**"
 require "./cutback/definition/**"
 require "./cutback/generator/**"

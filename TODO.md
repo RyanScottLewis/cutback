@@ -9,7 +9,6 @@
   * Rename
     * `Definition::App` to `Definition::Application`
       * `@app` to `@definition` within `Application`
-    * `Processor` to `Action`
 * Definitions
   * Add `config` boolean for options to disallow setting within config files (date, index)
 * Metadata

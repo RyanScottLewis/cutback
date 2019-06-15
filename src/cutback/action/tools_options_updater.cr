@@ -1,4 +1,4 @@
-class Cutback::Processor::ToolsOptionsUpdater < Cutback::Processor
+class Cutback::Action::ToolsOptionsUpdater < Cutback::Action
 
   @tools   : List::Tool
   @options : Options

@@ -1,4 +1,4 @@
-class Cutback::Processor::ControllerFactory < Cutback::Processor
+class Cutback::Action::ControllerFactory < Cutback::Action
 
   @logger      : Cutback::Logger
   @app         : Definition::App

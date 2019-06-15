@@ -1,4 +1,4 @@
-class Cutback::Processor::PathsOptionsUpdater < Cutback::Processor
+class Cutback::Action::PathsOptionsUpdater < Cutback::Action
 
   @paths      : List::Path
   @tools      : List::Tool

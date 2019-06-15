@@ -1,4 +1,4 @@
-class Cutback::Processor::ArgumentsValidator < Cutback::Processor
+class Cutback::Action::ArgumentsValidator < Cutback::Action
 
   @arguments : Array(String)
 

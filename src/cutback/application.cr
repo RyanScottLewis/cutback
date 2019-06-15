@@ -8,7 +8,7 @@ class Cutback::Application
   @app : Definition::App
 
   def initialize(@arguments : Array(String) = ARGV)
-    @app         = Definition::App.load # TODO: Needed? if so move to processor or someting =p
+    @app         = Definition::App.load
     @logger      = Logger.new
     @options     = Options.new
     @identifier  = Identifier.new
@@ -18,12 +18,12 @@ class Cutback::Application
     @router      = Router.new(@controllers, @logger)
   end
 
-  macro process(name, *arguments)
-    Processor::{{name.id.camelcase}}.execute!(@logger, {{*arguments}})
+  macro action(name, *arguments)
+    Action::{{name.id.camelcase}}.execute!(@logger, {{*arguments}})
   end
 
   def execute
-    execute_processors
+    execute_actions
 
     @router.execute
   rescue error : Cutback::Error
@@ -36,19 +36,19 @@ class Cutback::Application
     exit 1
   end
 
-  protected def execute_processors
-    process(options_parser,             @arguments,  @options)
-    process(options_operator,           @app, @options)
-    process(options_validator,          @options)
-    process(arguments_preprocessor,     @arguments)
-    process(arguments_validator,        @arguments)
-    process(router_arguments_updater,   @arguments, @router)
-    process(router_validator,           @router)
-    process(identifier_options_updater, @identifier, @options)
-    process(paths_options_updater,      @paths, @tools,   @identifier, @options)
-    process(tools_options_updater,      @tools, @options)
-    process(controller_factory,         @app, @options, @identifier, @paths, @tools, @controllers, @router)
-    process(logger_output_updater,      @paths, @options)
+  protected def execute_actions
+    action(options_parser,             @arguments,  @options)
+    action(options_operator,           @app, @options)
+    action(options_validator,          @options)
+    action(arguments_preprocessor,     @arguments)
+    action(arguments_validator,        @arguments)
+    action(router_arguments_updater,   @arguments, @router)
+    action(router_validator,           @router)
+    action(identifier_options_updater, @identifier, @options)
+    action(paths_options_updater,      @paths, @tools,   @identifier, @options)
+    action(tools_options_updater,      @tools, @options)
+    action(controller_factory,         @app, @options, @identifier, @paths, @tools, @controllers, @router)
+    action(logger_output_updater,      @paths, @options)
   end
 
 end

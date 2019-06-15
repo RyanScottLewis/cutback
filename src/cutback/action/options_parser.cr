@@ -1,5 +1,5 @@
-# TODO: Split into Processor::Options::Parse and ::Update?
-class Cutback::Processor::OptionsParser < Cutback::Processor
+# TODO: Split into Action::Options::Parse and ::Update?
+class Cutback::Action::OptionsParser < Cutback::Action
 
   include Helpers::Options::Definitions
 
