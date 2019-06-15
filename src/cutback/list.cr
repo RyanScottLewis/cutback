@@ -1,4 +1,4 @@
-abstract class Cutback::List(T)
+abstract class Cutback::List(T) # TODO: Rename to Hash or... Dictionary?
 
   @all = {} of String => T
 

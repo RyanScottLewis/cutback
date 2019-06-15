@@ -51,6 +51,8 @@ class Cutback::Processor::OptionsParser < Cutback::Processor
     Path.new(@prototype.config.not_nil!)
   end
 
+  # TODO: use Definition::App#name instead of `cutback`
+
   protected def user_config_path
     if ENV.has_key?("XDG_CONFIG_HOME")
       Path.join(ENV["XDG_CONFIG_HOME"], "cutback")

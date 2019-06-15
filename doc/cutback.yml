@@ -1,5 +1,3 @@
-# Copy to /mnt/backup/cutback.yml
-
 ---
   # Output path for backup
   output: "./tmp"

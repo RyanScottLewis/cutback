@@ -21,7 +21,7 @@ abstract class Cutback::Processor
 
   protected def logger_scope
     self.class.name.
-      gsub(/^Cutback::Processor::/, "").
+      gsub(/^Cutback::Processor::/, ""). # TODO: Use self.class or something
       gsub(/([a-z])([A-Z])/, "\\1 \\2")
   end
 

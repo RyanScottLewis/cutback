@@ -17,38 +17,67 @@ $ sudo make DESTDIR="/" install
 
 ## Strategy
 
-1. Gather all files within search paths
-  * Skip
-    * Files matching exclusion patterns
-    * Files matching record patterns
-  * Save to `ID.manifest`
-2. Gather all files within search paths
-  * Only
-    * Files matching record patterns
-  * Save to `ID.records`
-3. Archive files within the manifest
-  * Only
-    * Files within the manifest
-  * Save to `ID.tar[.COMPRESSION-SUFFIX]`
-4. Create checksum
-5. Gather metadata
-  * Backup
-    * Date & time (UTC)
-    * Search paths
-    * Duration
+1. Search
   * Manifest
-    * File count
-    * Total file size
-  * Archive
-    * Compression
-      * Enabled
-      * Tool (gzip, xz, etc.)
-      * Flags (passed to the tool)
-    * Checksum
-      * Tool (sha256sum, sha512sum, etc.)
-      * Value
-  * Save to `ID.{yaml,json}`
+  * Records
+2. Archive
+  * Compress
+  * Checksum
+3. Generate
+  * Metadata
 
+### Search
+
+The first step is to search all paths listed in the `paths` configuration variable for all files
+recursively.
+
+All file patterns listed in the `excludes` configuration variable are excluded from this search
+entirely. File patterns allow for wildcards to be used instead of (or as well as) absolute paths to
+exclude whole subtrees of files.
+
+Files matching the file patterns listed in the `records` configuration variable are added to a list
+of files to keep a record of.
+
+Records are usually files that are low priority and easily reaquirable, such as movies, music, tv
+shows, etc. These files take up a lot of space and generally have a physical backup which means
+backing them up would be a waste of precious space. This also vastly improves the duration of the
+backup process, for both archiving and unarchiving.
+
+This list of records is located in the output directory, denoted with a `.records` suffix.
+
+All other files found within the search, are added to a list in the output directory, called the
+manifest, and denoted with a `.manifest` suffix.
+
+### Archive
+
+The manifest of files found in the previous step is now used to create the backup archive.  
+This archive is optionally compressed and denoted with a `.tar[.COMPRESSION]` suffix.
+
+A checksum is then generated from the archive.
+
+## Generate
+
+Information about the backup is recorded and saved with the suffix appropriate for the format in the
+`format` configuration variable:
+
+* Backup
+  * Date & time (UTC)
+  * Search paths
+  * Duration
+* Manifest
+  * File count
+  * Total file size
+* Archive
+  * Compression
+    * Enabled
+    * Tool (gzip, xz, etc.)
+    * Flags (passed to the tool)
+  * Checksum
+    * Tool (sha256sum, sha512sum, etc.)
+    * Value
+  * Size
+    * Byte count
+    * Human readable
 
 ### Manifest
 
@@ -141,7 +170,7 @@ TODO: Write development instructions here
 
 ## Contributing
 
-1. Fork it (<https://github.com/your-github-user/cutback/fork>)
+1. Fork it (<https://github.com/RyanScottLewis/cutback/fork>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

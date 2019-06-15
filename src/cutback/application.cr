@@ -1,3 +1,4 @@
+# Main point of entry and application Facade.
 class Cutback::Application
 
   def self.execute(*arguments)

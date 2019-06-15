@@ -9,6 +9,7 @@ description: |
   Cutback is a backup system with the goal of creating smaller, more focused backups by generating
   filtered file lists before archiving and keeping records of easily reaquirable files.
 strategy: |
+  TODO - REMOVE
   1. Gather all files within search paths
     * Skip
       * Files matching exclusion patterns
@@ -184,7 +185,7 @@ options:
 
 controllers:
   - name:            proxy
-    description:     Proxy actions
+    description:     Proxy actions (default)
     actions:
       - name:        help
         description: See application#help

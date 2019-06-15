@@ -17,6 +17,12 @@
       * CLI Option
       * ($XDG_CONFIG_HOME|~/.config)/cutback/config.{yaml,yml,json,js}
       * /etc/cutback/config.{yaml,yml,json,js}
+  * Interpolations or options for commands
+    * Interpolations
+      * This would mean the current Command system needs to replaced with a run-time implementation
+    * Options
+      * These would require interpolations within themselves, for example `xz` needs
+        `-T #{@paths.manifest}` so it could do something like `-T %{manifest}`
 * Templates
   * Remove help and version as they are unused now due to Definitions
 * Definitions
@@ -42,7 +48,8 @@
   * `output` option, when from config, should be relative to the config file
   * Paths should only be invalid when used in a generate manifest/records
   * `--index +` to increment index
-    * So without `--index`, the largest daily index is used so when run twice, the second time will do nothing (similar to make)
+    * So without `--index`, the largest daily index is used so when run twice, the second time will
+      do nothing (similar to make)
       But, with `-i +`, it'll increment the index by 1 and generate
 * Internationalization
   * embed/i18n.yml
@@ -57,4 +64,7 @@
 * Controllers
   * Delete confirmation
     * Unless `--force`
+* Output to scripts
+  * User could use Cutback to create shell scripts, since all cutback really does is generate and
+    run "scripts" anyways.
 
