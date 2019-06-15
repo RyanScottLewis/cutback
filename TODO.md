@@ -1,16 +1,18 @@
 # TODO
 
 * General
-  * Tests
   * Requires at beginning of all files to avoid file dependency hell
   * Check for binaries in toolset before executing them in command
-  * Auto-remove oldest after certain backup count threshold
+  * Backup threshold
+    * Auto-remove oldest after certain backup count threshold
     * Warn if threshold is larger than the output directory can hold
       For example if the last archive was 30GB and the output dir can hold 1.2TB
       then it can hold 40 backups. If the backup threshold is at 50 then the output
       directory will run out of space before that threshold is ever met
   * Commands and controllers both pass around the same set of variables, it'd be nice to group them
     into like a State or Environment class
+  * Hide error and just show short message on fail:
+    "Error: Invalid option: --foobarbaz" instead of full stacktrace unless verbose
 * Options
   * Default locations
     * Search order
@@ -31,6 +33,7 @@
   * `save` should check for @options.dry?
 * Documentation
   * Config man page
+  * Document supported compressors
   * Man
     ```
     See \fI<%= name %>(5)\fR for config file details.
