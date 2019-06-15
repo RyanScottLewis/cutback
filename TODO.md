@@ -10,7 +10,13 @@
       then it can hold 40 backups. If the backup threshold is at 50 then the output
       directory will run out of space before that threshold is ever met
   * Commands and controllers both pass around the same set of variables, it'd be nice to group them
-    into like a State or Environment class
+    * a State or Environment class
+    * Or pass only `@application` as dependency for all processors/controllers and have them delegate to
+      `@application` or set instance variables for the dependencies needed `@foo = @application.foo`
+  * Rename
+    * `Definition::App` to `Definition::Application`
+      * `@app` to `@definition` within `Application`
+    * `Processor` to `Action`
   * Hide error and just show short message on fail:
     "Error: Invalid option: --foobarbaz" instead of full stacktrace unless verbose
 * Options
