@@ -17,7 +17,6 @@ class Cutback::Definition::App < Cutback::Definition
     license:     String,
     summary:     String,
     description: String,
-    strategy:    String,
     arguments:   Collection(Argument),
     options:     Collection(Option),
     controllers: Collection(Controller),

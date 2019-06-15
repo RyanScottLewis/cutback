@@ -14,6 +14,47 @@ $ sudo make install
 $ sudo make DESTDIR="/" install
 ```
 
+## Usage
+
+The following will backup all files in the current user's home directory as well as a public
+`/srv/public` directory.
+
+All nodes with the `node_modules`, `.bundle`, and `.cache` name will not be included in the file list
+or the archive.
+
+In addition, public `Videos` directory at any depth will not be included, but will have a record kept
+of alongside the archive.  
+This will cut the archive size down significantly, as the videos can easily be reacquired.
+
+```sh
+$ cutback --paths '~;/srv/public' --excludes 'node_modules;.bundle;.cache' --records '/srv/public/*/Videos'
+```
+
+Cutback can also be configured from a [YAML][yaml] or [JSON][json] file with the `--config` option:
+
+```sh
+$ cutback --config backup.yaml
+```
+
+Here is the above configuration options within a YAML file:
+
+> Note that paths do not have to be surrounded by quotation marks but every now and then YAML doesn't
+> assume the value is a String, so we stick to surrounding with quotations every time.
+
+`backup.yaml`
+
+```yaml
+paths:             # Paths to search for files
+  - "~"
+  - "/srv/public"
+excludes:          # Paths to exclude from the file list
+  - "node_modules"
+  - ".bundle"
+  - ".cache"
+records:           # Paths to keep a record of, also excluded from the file list
+  - "/srv/public/*/Videos"
+```
+
 ## Strategy
 
 1. Search
@@ -77,47 +118,6 @@ Information about the backup is recorded and saved with the suffix appropriate f
   * Size
     * Byte count
     * Human readable
-
-## Usage
-
-The following will backup all files in the current user's home directory as well as a public
-`/srv/public` directory.
-
-All nodes with the `node_modules`, `.bundle`, and `.cache` name will not be included in the file list
-or the archive.
-
-In addition, public `Videos` directory at any depth will not be included, but will have a record kept
-of alongside the archive.  
-This will cut the archive size down significantly, as the videos can easily be reacquired.
-
-```sh
-$ cutback --paths '~;/srv/public' --excludes 'node_modules;.bundle;.cache' --records '/srv/public/*/Videos'
-```
-
-Cutback can also be configured from a [YAML][yaml] or [JSON][json] file with the `--config` option:
-
-```sh
-$ cutback --config backup.yaml
-```
-
-Here is the above configuration options within a YAML file:
-
-> Note that paths do not have to be surrounded by quotation marks but every now and then YAML doesn't
-> assume the value is a String, so we stick to surrounding with quotations every time.
-
-`backup.yaml`
-
-```yaml
-paths:             # Paths to search for files
-  - "~"
-  - "/srv/public"
-excludes:          # Paths to exclude from the file list
-  - "node_modules"
-  - ".bundle"
-  - ".cache"
-records:           # Paths to keep a record of, also excluded from the file list
-  - "/srv/public/*/Videos"
-```
 
 ### Viewing Progress
 

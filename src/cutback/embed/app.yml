@@ -1,5 +1,5 @@
 name: cutback
-version: 0.0.1
+version: v0.0.1-pre
 homepage: http://RyanScottLewis.github.io/cutback
 repository: https://github.com/RyanScottLewis/cutback
 issues: https://github.com/RyanScottLewis/cutback/issues
@@ -8,40 +8,6 @@ summary: System for smaller, more focused backups
 description: |
   Cutback is a backup system with the goal of creating smaller, more focused backups by generating
   filtered file lists before archiving and keeping records of easily reaquirable files.
-strategy: |
-  TODO - REMOVE
-  1. Gather all files within search paths
-    * Skip
-      * Files matching exclusion patterns
-      * Files matching record patterns
-    * Save to `ID.manifest`
-  2. Gather all files within search paths
-    * Only
-      * Files matching record patterns
-    * Save to `ID.records`
-  3. Archive files within the manifest
-    * Only
-      * Files within the manifest
-    * Save to `ID.tar[.COMPRESSION-SUFFIX]`
-  4. Create checksum
-  5. Gather metadata
-    * Backup
-      * Date & time (UTC)
-      * Search paths
-      * Duration
-    * Manifest
-      * File count
-      * Total file size
-    * Archive
-      * Compression
-        * Enabled
-        * Tool (gzip, xz, etc.)
-        * Flags (passed to the tool)
-      * Checksum
-        * Tool (sha256sum, sha512sum, etc.)
-        * Value
-    * Save to `ID.{yaml,json}`
-
 arguments:
   - name:        options
     description: Command-line options
