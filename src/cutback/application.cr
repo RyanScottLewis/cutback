@@ -22,10 +22,6 @@ class Cutback::Application
     Processor::{{name.id.camelcase}}.execute!(@logger, {{*arguments}})
   end
 
-  macro method_missing(call)
-    process({{call.name}}, {{*call.args}})
-  end
-
   def execute
     execute_processors
 
@@ -41,17 +37,17 @@ class Cutback::Application
   end
 
   protected def execute_processors
-    options_parser(@arguments, @options)
-    options_validator(@options)
-    arguments_preprocessor(@arguments)
-    arguments_validator(@arguments)
-    router_arguments_updater(@arguments, @router)
-    router_validator(@router)
-    identifier_options_updater(@identifier, @options)
-    paths_options_updater(@paths, @tools, @identifier, @options)
-    tools_options_updater(@tools, @options)
-    controller_factory(@app, @options, @identifier, @paths, @tools, @controllers, @router)
-    logger_output_updater(@paths, @options)
+    process(options_parser,             @arguments,  @options)
+    process(options_validator,          @options)
+    process(arguments_preprocessor,     @arguments)
+    process(arguments_validator,        @arguments)
+    process(router_arguments_updater,   @arguments, @router)
+    process(router_validator,           @router)
+    process(identifier_options_updater, @identifier, @options)
+    process(paths_options_updater,      @paths, @tools,   @identifier, @options)
+    process(tools_options_updater,      @tools, @options)
+    process(controller_factory,         @app, @options, @identifier, @paths, @tools, @controllers, @router)
+    process(logger_output_updater,      @paths, @options)
   end
 
 end
