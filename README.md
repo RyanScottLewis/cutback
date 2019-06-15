@@ -18,11 +18,11 @@ $ sudo make DESTDIR="/" install
 ## Strategy
 
 1. Search
-  * Manifest
-  * Records
+  * Generate manifest
+  * Generate records
 2. Archive
-  * Compress
-  * Checksum
+  * Compress archive
+  * Generate checksum
 3. Generate
   * Metadata
 
@@ -55,7 +55,7 @@ This archive is optionally compressed and denoted with a `.tar[.COMPRESSION]` su
 
 A checksum is then generated from the archive.
 
-## Generate
+### Generate
 
 Information about the backup is recorded and saved with the suffix appropriate for the format in the
 `format` configuration variable:
@@ -79,48 +79,6 @@ Information about the backup is recorded and saved with the suffix appropriate f
     * Byte count
     * Human readable
 
-### Manifest
-
-The list of all files within the search paths, sans exclusions.
-
-Used for creating the archive and verification of the archive contents.
-
-### Records
-
-The list of all files within the search paths, filtered by the records list.
-
-Used to keep the archive size (and backup duration) low as files within the records should be
-easily reaquirable (from external media, internet, etc.)
-
-### Archive
-
-The (optionally compressed) archive created from the file list within the manifest.
-
-### Checksum
-
-The checksum of the archive, for verification purposes.
-
-### Metadata
-
-The list of all files in the backup (manifest, records, archive, checksum) as well as information
-about each of them:
-
-* Backup
-  * Datetime (UTC)
-  * Search paths
-* Manifest
-  * Number of files
-  * Total sum of the size of files in list
-* Records
-  * Number of files
-  * Total sum of the size of files in list
-* Archive
-  * Compression
-    * Tool (gz, xz, etc)
-    * Enabled
-    * Compression ratio
-  * Archive size
-
 ## Usage
 
 The following will backup all files in the current user's home directory as well as a public
@@ -134,7 +92,7 @@ of alongside the archive.
 This will cut the archive size down significantly, as the videos can easily be reacquired.
 
 ```sh
-$ cutback --paths '~;/srv/public' --excludes 'node_modules;.bundle;.cache' --records '/srv/public/*/{Songs,Videos}'
+$ cutback --paths '~;/srv/public' --excludes 'node_modules;.bundle;.cache' --records '/srv/public/*/Videos'
 ```
 
 Cutback can also be configured from a [YAML][yaml] or [JSON][json] file with the `--config` option:
@@ -143,10 +101,12 @@ Cutback can also be configured from a [YAML][yaml] or [JSON][json] file with the
 $ cutback --config backup.yaml
 ```
 
-`backup.yaml`
+Here is the above configuration options within a YAML file:
 
 > Note that paths do not have to be surrounded by quotation marks but every now and then YAML doesn't
 > assume the value is a String, so we stick to surrounding with quotations every time.
+
+`backup.yaml`
 
 ```yaml
 paths:             # Paths to search for files
@@ -162,11 +122,8 @@ records:           # Paths to keep a record of, also excluded from the file list
 
 ### Viewing Progress
 
-If [PV][pv] is installed, you can pass the `--progress/-P` option 
-
-## Development
-
-TODO: Write development instructions here
+If [PV][pv] is installed, you can pass the `--progress/-P` option to view the progress of the
+current command, if applicable.
 
 ## Contributing
 
@@ -183,5 +140,4 @@ This program is available as open source under the terms of the MIT License <htt
 [yaml]:     http://yaml.org/
 [json]:     http://json.org/
 [pv]:       https://ivarch.com/programs/pv.shtml
-[progress]: #Viewing-Progress
 

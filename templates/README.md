@@ -54,7 +54,7 @@ This archive is optionally compressed and denoted with a `.tar[.COMPRESSION]` su
 
 A checksum is then generated from the archive.
 
-## Generate
+### Generate
 
 Information about the backup is recorded and saved with the suffix appropriate for the format in the
 `format` configuration variable:
@@ -77,48 +77,6 @@ Information about the backup is recorded and saved with the suffix appropriate f
   * Size
     * Byte count
     * Human readable
-
-### Manifest
-
-The list of all files within the search paths, sans exclusions.
-
-Used for creating the archive and verification of the archive contents.
-
-### Records
-
-The list of all files within the search paths, filtered by the records list.
-
-Used to keep the archive size (and backup duration) low as files within the records should be
-easily reaquirable (from external media, internet, etc.)
-
-### Archive
-
-The (optionally compressed) archive created from the file list within the manifest.
-
-### Checksum
-
-The checksum of the archive, for verification purposes.
-
-### Metadata
-
-The list of all files in the backup (manifest, records, archive, checksum) as well as information
-about each of them:
-
-* Backup
-  * Datetime (UTC)
-  * Search paths
-* Manifest
-  * Number of files
-  * Total sum of the size of files in list
-* Records
-  * Number of files
-  * Total sum of the size of files in list
-* Archive
-  * Compression
-    * Tool (gz, xz, etc)
-    * Enabled
-    * Compression ratio
-  * Archive size
 
 ## Usage
 
