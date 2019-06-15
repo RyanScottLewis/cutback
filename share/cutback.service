@@ -1,9 +1,7 @@
-# Copy to /etc/systemd/system/cutback.service
-
 [Unit]
 Description=Perform system backup
 
 [Service]
-Type=simple
+Type=oneshot
 ExecStart=/usr/bin/cutback -c /mnt/backup/cutback.yml
 

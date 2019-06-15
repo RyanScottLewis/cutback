@@ -1,9 +1,0 @@
-# Copy to /etc/systemd/system/cutback.timer
-# Run: sudo systemctl enable cutback.timer
-
-[Unit]
-Description=Perform system backup
-
-[Timer]
-OnCalendar=daily
-
