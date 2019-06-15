@@ -8,27 +8,9 @@ class Cutback::Processor::OptionsValidator < Cutback::Processor
   end
 
   def execute
-    validate_help
-    validate_version
     validate_output
     validate_paths
     validate_format
-  end
-
-  # TODO: Should be in a before_action type of callback in a base controller
-  protected def validate_help
-    return unless @options.help
-
-    puts Embed["help"] # TODO: Use generator
-    exit
-  end
-
-  # TODO: Should be in a before_action type of callback in a base controller
-  protected def validate_version
-    return unless @options.version
-
-    puts Embed["version"] # TODO: Use generator
-    exit
   end
 
   protected def validate_output

@@ -41,14 +41,11 @@ files       = {} of String => String
 path        = File.basename(input)
 #controllers = Cutback::Controller.all.sort_by(&.name) # TODO REMOVE
 
-app.for = :help if File.basename(input) == "help"
 app.for = :man  if File.extname(input) =~ /\.\d/
 
 generate_templates(files, [
   "templates/cutback.1",
   "templates/cutback.5",
-  "templates/help",
-  "templates/version",
   "templates/README.md",
   "templates/options.cr",
 ])

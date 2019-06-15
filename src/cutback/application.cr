@@ -38,6 +38,7 @@ class Cutback::Application
 
   protected def execute_processors
     process(options_parser,             @arguments,  @options)
+    process(options_operator,           @app, @options)
     process(options_validator,          @options)
     process(arguments_preprocessor,     @arguments)
     process(arguments_validator,        @arguments)

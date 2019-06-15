@@ -58,23 +58,16 @@ MAN_CFG_ROFF  ?= $(DIR_MAN)/$(NAME).5
 MAN_CFG_GZ    ?= $(DIR_MAN)/$(NAME).5.gz
 MAN_CFG_DEST  ?= $(DESTDIR)/usr/share/man/man5/$(NAME).5.gz
 
-HELP_TMPL     ?= $(DIR_TMPL)/help
-HELP_OUT      ?= $(DIR_EMB)/help
-
 OPTIONS_TMPL  ?= $(DIR_TMPL)/options.cr
 OPTIONS_CR    ?= $(DIR_SRC)/$(NAME)/helpers/options.cr
-
-VERSION_TMPL  ?= $(DIR_TMPL)/version
-VERSION_OUT   ?= $(DIR_EMB)/version
 
 GRAPH_DOT     ?= $(call find,$(DIR_GRAPHS),*.dot)
 GRAPH_PNG     ?= $(GRAPH_DOT:.dot=.png)
 
 TEMPLATES     ?= $(call find,$(DIR_TMPL),*)
 DOCS          ?= $(README_MD) $(README_HTML) $(MAN_EXE_GZ) $(MAN_CFG_GZ) $(GRAPH_PNG)
-EMBEDS        ?= $(HELP_OUT) $(VERSION_OUT)
 
-CLEAN         ?= $(DIR_BLD) $(DIR_MAN) $(GENERATE_EXE) $(DOCS) $(EMBEDS) $(OPTIONS_CR)
+CLEAN         ?= $(DIR_BLD) $(DIR_MAN) $(GENERATE_EXE) $(DOCS) $(OPTIONS_CR)
 
 .PHONY: all build docs clean
 
@@ -103,14 +96,6 @@ $(OPTIONS_CR): $(OPTIONS_TMPL) $(APP_YML) $(GENERATE_EXE)
 	@$(MKDIR) $(@D)
 	$(GENERATE_EXE) $< $@
 
-$(HELP_OUT): $(HELP_TMPL) $(APP_YML) $(GENERATE_EXE)
-	@$(MKDIR) $(@D)
-	$(GENERATE_EXE) $< $@
-
-$(VERSION_OUT): $(VERSION_TMPL) $(APP_YML) $(GENERATE_EXE)
-	@$(MKDIR) $(@D)
-	$(GENERATE_EXE) $< $@
-
 $(README_MD): $(README_TMPL) $(APP_YML) $(GENERATE_EXE)
 	@$(MKDIR) $(@D)
 	$(GENERATE_EXE) $< $@
@@ -135,7 +120,7 @@ $(README_HTML): $(README_MD)
 	@$(MKDIR) $(@D)
 	$(MD) -o $@ $<
 
-$(CUTBACK_EXE): $(CUTBACK_CR) $(OPTIONS_CR) $(TEMPLATES) $(EMBEDS)
+$(CUTBACK_EXE): $(CUTBACK_CR) $(OPTIONS_CR) $(TEMPLATES)
 	@$(MKDIR) $(@D)
 	$(CR) $(CUTBACK_FLAGS) -o $@ $<
 
