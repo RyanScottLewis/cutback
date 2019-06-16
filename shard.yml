@@ -4,6 +4,11 @@ version:
 
 crystal: 0.25.0
 
+development_dependencies:
+  ameba:
+    github: veelenga/ameba
+    version: ~> 0.10.0
+
 dependencies:
   baked_file_system:
     github: schovi/baked_file_system
