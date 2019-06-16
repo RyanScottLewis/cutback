@@ -1,28 +1,22 @@
 ---
   # Output path for backup
-  output: "./tmp"
+  output: "/var/lib/<%= app.name %>"
 
   # The list of paths to search for files to backup
   # The more specific these paths, the faster searching will be
   paths:
+    - "/etc"
     - "/home"
+    - "/root"
+    - "/srv"
 
   # The file patterns to exclude while searching
-  excludes:
-    - "*/.*"
-    - "*/Art/*"
-    - "*/Backups/*"
-    - "*/Bookmarks/*"
-    - "*/Downloads/*"
-    - "*/Recreation/*"
-    - "*/Science/*"
-    - "*/VirtualBox\ VMs/*"
-    - "*/sketchbook/*"
+  # excludes:
+  #   - "*/cache/*"
 
   # The file patterns to exclude while searching and keep a record of
-  records:
-    - "*/Pictures/*"
-    - "*/Documents/Plans/*"
+  # records:
+  #   - "*/Videos/*"
 
   # Format of the archive metadata
   format: yaml

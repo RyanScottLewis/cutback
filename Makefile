@@ -1,140 +1,200 @@
-NAME          ?= cutback
+# == Dependencies
+# Verify that all development dependencies can be found in PATH
 
-DIR_SRC       ?= src
-DIR_BLD       ?= build
-DIR_BIN       ?= bin
-DIR_TMPL      ?= templates
-DIR_DOC       ?= doc
-DIR_GRAPHS    ?= $(DIR_DOC)/graphs
-DIR_MAN       ?= $(DIR_DOC)/man
-DIR_EMB       ?= $(DIR_SRC)/$(NAME)/embed
+#DEPENDENCIES = yq tar install crystal gzip dot find markdown
+#DEPENDENCY_CHECK := $(foreach exec,$(DEPENDENCIES),\
+	#$(if $(shell which $(exec)),,$(error "No '$(exec)' in PATH")))
 
-MKDIR_EXE     ?= mkdir
-MKDIR_FLAGS   += -p
-MKDIR         ?= $(MKDIR_EXE) $(MKDIR_FLAGS)
+# == Functions
 
-MD_EXE        ?= markdown
-MD_FLAGS      += -f fencedcode,toc
-MD            ?= $(MD_EXE) $(MD_FLAGS)
+app-var = $(shell yq -r .$1 $(APP_YML))
+find    = $(shell find $1 -path '$2')
 
-CR_EXE        ?= crystal
-CR_FLAGS      += build
-CR            ?= $(CR_EXE) $(CR_FLAGS)
+# == Variables
 
-GZ_EXE        ?= gzip
-GZ_FLAGS      += -f
-GZ_FLAGS      += -k
-GZ            ?= $(GZ_EXE) $(GZ_FLAGS)
+# TODO: Cache into a .make file since this seems to slow down make significantly
+NAME            ?= $(call app-var,name)
+VERSION         ?= $(call app-var,version)
+ARCH            ?= $(shell uname -m)
 
-DOT_EXE       ?= dot
-DOT_FLAGS     += -T png
-DOT           ?= $(DOT_EXE) $(DOT_FLAGS)
+BUILD           ?= build
 
-AMEBA_EXE     ?= ./bin/ameba
-AMEBA_FLAGS   += $(DIR_SRC)
-AMEBA         ?= $(AMEBA_EXE) $(AMEBA_FLAGS)
+APP_YML         ?= app.yml
 
-APP_YML       ?= app.yml shard.yml
+GEN_BUILD       ?= bin
+GEN_CR          ?= src/generate.cr
+GEN_EXE         ?= $(GEN_BUILD)/generate
 
-find = $(shell find ./$1 -path '$2')
+TMPL_SRC        ?= templates
+TMPL_SOURCES    ?= $(call find,$(TMPL_SRC),*)
 
-CUTBACK_CR    ?= $(DIR_SRC)/$(NAME).cr $(call find,$(DIR_SRC)/$(NAME),*.cr)
-CUTBACK_EXE   ?= $(DIR_BLD)/$(NAME)
-ifndef DEBUG
-CUTBACK_FLAGS += --release
-endif
-CUTBACK_DEST  ?= $(DESTDIR)/usr/bin/cutback
+OPTIONS_BUILD   ?= src/$(NAME)/helpers
+OPTIONS_TMPL    ?= $(TMPL_SRC)/options.cr
+OPTIONS_CR      ?= $(OPTIONS_BUILD)/options.cr
 
-GENERATE_CR   ?= $(DIR_SRC)/generate.cr
-GENERATE_EXE  ?= $(DIR_BIN)/generate
+DOCS_BUILD      ?= $(BUILD)/doc
 
-README_TMPL   ?= $(DIR_TMPL)/README.md
-README_MD     ?= README.md
-README_HTML   ?= $(DIR_DOC)/README.html
+README_TMPL     ?= $(TMPL_SRC)/README.md
+README_MD       ?= README.md
+README_HTML     ?= $(DOCS_BUILD)/README.html
 
-MAN_EXE_TMPL  ?= $(DIR_TMPL)/$(NAME).1
-MAN_EXE_ROFF  ?= $(DIR_MAN)/$(NAME).1
-MAN_EXE_GZ    ?= $(DIR_MAN)/$(NAME).1.gz
-MAN_EXE_DEST  ?= $(DESTDIR)/usr/share/man/man1/$(NAME).1.gz
+MARKDOWN_SRC    ?= doc
+MARKDOWN_MD     ?= $(call find,$(MARKDOWN_SRC),*.md)
+MARKDOWN_HTML   ?= $(MARKDOWN_MD:$(MARKDOWN_SRC)/%.md=$(DOCS_BUILD)/%.html)
+# TODO: This is weird to have here, prolly unneeded
+MARKDOWN_HTML   += $(README_HTML)
 
-MAN_CFG_TMPL  ?= $(DIR_TMPL)/$(NAME).5
-MAN_CFG_ROFF  ?= $(DIR_MAN)/$(NAME).5
-MAN_CFG_GZ    ?= $(DIR_MAN)/$(NAME).5.gz
-MAN_CFG_DEST  ?= $(DESTDIR)/usr/share/man/man5/$(NAME).5.gz
+LICENSE_TMPL    ?= $(TMPL_SRC)/LICENSE
+LICENSE_TXT     ?= LICENSE
 
-OPTIONS_TMPL  ?= $(DIR_TMPL)/options.cr
-OPTIONS_CR    ?= $(DIR_SRC)/$(NAME)/helpers/options.cr
+MAKEFILE_TMPL   ?= $(TMPL_SRC)/Makefile
+MAKEFILE_SCRIPT ?= $(BUILD)/Makefile
 
-GRAPH_DOT     ?= $(call find,$(DIR_GRAPHS),*.dot)
-GRAPH_PNG     ?= $(GRAPH_DOT:.dot=.png)
+CONFIG_BUILD    ?= $(BUILD)/etc
+CONFIG_TMPL     ?= $(TMPL_SRC)/config.yml
+CONFIG_YML      ?= $(CONFIG_BUILD)/config.yml
 
-TEMPLATES     ?= $(call find,$(DIR_TMPL),*)
-DOCS          ?= $(README_MD) $(README_HTML) $(MAN_EXE_GZ) $(MAN_CFG_GZ) $(GRAPH_PNG)
+MAN_SRC         ?= doc/man
+MAN_BUILD       ?= $(BUILD)/man
+MAN_TMPL        ?= $(call find,$(TMPL_SRC),*.roff)
+MAN_ROFF        ?= $(MAN_TMPL:$(TMPL_SRC)/%=$(MAN_SRC)/%)
+MAN_GZ          ?= $(MAN_ROFF:$(MAN_SRC)/%.roff=$(MAN_BUILD)/%.gz)
 
-CLEAN         ?= $(DIR_BLD) $(DIR_MAN) $(GENERATE_EXE) $(DOCS) $(OPTIONS_CR)
+DOCS_TARGETS    ?= $(README_MD) $(MARKDOWN_HTML) $(LICENSE_TXT) $(MAN_GZ)
 
-.PHONY: all build docs lint clean
+GRAPHS_SRC      ?= doc/graphs
+GRAPHS_BUILD    ?= $(BUILD)/doc/graphs
+GRAPHS_DOT      ?= $(call find,$(GRAPHS_SRC),*.md)
+GRAPHS_PNG      ?= $(GRAPHS_DOT:$(GRAPHS_SRC)/%.dot=$(GRAPHS_BUILD)/%.png)
+
+APP_SRC         ?= src
+APP_BUILD       ?= $(BUILD)/bin
+APP_CR          ?= $(APP_SRC)/$(NAME).cr $(call find,$(APP_SRC)/$(NAME),*.cr)
+APP_EXE         ?= $(APP_BUILD)/$(NAME)
+
+ARCHIVE_BUILD   ?= $(BUILD)/package
+ARCHIVE_NAME    ?= $(NAME)-$(ARCH)-$(VERSION)
+ARCHIVE_GZ      ?= $(ARCHIVE_BUILD)/$(ARCHIVE_NAME).tar.gz
+ARCHIVE_FILES   ?= $(README_HTML) $(DOCS_BUILD)/Contributors.html $(LICENSE_TXT) $(MAKEFILE_SCRIPT) $(MAN_GZ) $(CONFIG_YML)
+
+CLEAN += $(BUILD)
+CLEAN += $(GEN_EXE)
+CLEAN += $(README_MD)
+CLEAN += $(LICENSE_TXT)
+
+# == Tasks
+
+.PHONY: all build package docs lint clean
 
 all: docs build
 
-build: $(CUTBACK_EXE) $(README_MD)
+package: $(ARCHIVE_GZ)
 
-install: $(CUTBACK_EXE)
-	install -m 755 -D $(CUTBACK_EXE) $(CUTBACK_DEST)
-	install -m 644 -D $(MAN_EXE_GZ) $(MAN_EXE_DEST)
-	install -m 644 -D $(MAN_CFG_GZ) $(MAN_CFG_DEST)
+build: $(APP_EXE)
 
-uninstall:
-	$(RM) $(CUTBACK_DEST)
-	$(RM) $(MAN_EXE_DEST)
-	$(RM) $(MAN_CFG_DEST)
+docs: $(DOCS_TARGETS)
 
-docs: $(DOCS)
-
-graphs: $(GRAPH_PNG)
+graphs: $(GRAPHS_PNG)
 
 lint:
-	$(AMEBA)
+	./bin/ameba
 
 clean:
-	$(RM) -r $(CLEAN)
+	rm -rf $(CLEAN)
 
-$(OPTIONS_CR): $(OPTIONS_TMPL) $(APP_YML) $(GENERATE_EXE)
-	@$(MKDIR) $(@D)
-	$(GENERATE_EXE) $< $@
+# == Rules
 
-$(README_MD): $(README_TMPL) $(APP_YML) $(GENERATE_EXE)
-	@$(MKDIR) $(@D)
-	$(GENERATE_EXE) $< $@
+# -- Generator
 
-$(MAN_EXE_ROFF): $(MAN_EXE_TMPL) $(APP_YML) $(GENERATE_EXE)
-	@$(MKDIR) $(@D)
-	$(GENERATE_EXE) $< $@
+$(GEN_EXE): $(GEN_CR) $(APP_YML) $(TMPL_SOURCES) | $(GEN_BUILD)/
+	crystal build -o $@ $<
 
-$(MAN_EXE_GZ): $(MAN_EXE_ROFF)
-	@$(MKDIR) $(@D)
-	$(GZ) $<
+# -- Options
 
-$(MAN_CFG_ROFF): $(MAN_CFG_TMPL) $(APP_YML) $(GENERATE_EXE)
-	@$(MKDIR) $(@D)
-	$(GENERATE_EXE) $< $@
+$(OPTIONS_CR): $(OPTIONS_TMPL) $(GEN_EXE) | $(OPTIONS_BUILD)/
+	$(GEN_EXE) $< $@
 
-$(MAN_CFG_GZ): $(MAN_CFG_ROFF)
-	@$(MKDIR) $(@D)
-	$(GZ) $<
+# -- Readme
 
-$(README_HTML): $(README_MD)
-	@$(MKDIR) $(@D)
-	$(MD) -o $@ $<
+$(README_MD): $(README_TMPL) $(GEN_EXE)
+	$(GEN_EXE) $< $@
 
-$(CUTBACK_EXE): $(CUTBACK_CR) $(OPTIONS_CR) $(TEMPLATES)
-	@$(MKDIR) $(@D)
-	$(CR) $(CUTBACK_FLAGS) -o $@ $<
+$(README_HTML): $(README_MD) | $(DOCS_BUILD)/
+	markdown -f fencedcode,toc -o $@ $<
 
-$(GENERATE_EXE): $(GENERATE_CR) $(TEMPLATES)
-	@$(MKDIR) $(@D)
-	$(CR) -o $@ $<
+# -- Markdown Docs
 
-$(DIR_GRAPHS)/%.png: $(DIR_GRAPHS)/%.dot
-	$(DOT) -Tpng -o $@ $<
+$(DOCS_BUILD)/%.html: $(MARKDOWN_SRC)/%.md | $(DOCS_BUILD)/
+	markdown -f fencedcode,toc -o $@ $<
+
+# -- Man Pages
+
+$(MAN_SRC)/%.roff: $(TMPL_SRC)/%.roff $(GEN_EXE) | $(MAN_SRC)/
+	$(GEN_EXE) $< $@
+
+$(MAN_BUILD)/%.gz: $(MAN_SRC)/%.roff | $(MAN_BUILD)/
+	gzip < $< > $@
+
+# -- License
+
+$(LICENSE_TXT): $(LICENSE_TMPL) $(GEN_EXE)
+	$(GEN_EXE) $< $@
+
+# -- Config
+
+$(CONFIG_YML): $(CONFIG_TMPL) $(GEN_EXE) | $(CONFIG_BUILD)/
+	$(GEN_EXE) $< $@
+
+# -- Makefile
+
+$(MAKEFILE_SCRIPT): $(MAKEFILE_TMPL) $(GEN_EXE) | $(BUILD)/
+	$(GEN_EXE) $< $@
+
+# -- Graphs
+
+$(GRAPHS_BUILD)/%.png: $(GRAPHS_SRC)/%.dot | $(GRAPHS_BUILD)/
+	dot -T png -o $@ $<
+
+# -- Application
+
+# TODO: --release
+$(APP_EXE): $(APP_CR) $(OPTIONS_CR) | $(APP_BUILD)/
+	crystal build -o $@ $<
+
+# -- Archive
+
+$(ARCHIVE_GZ): $(APP_EXE) $(ARCHIVE_FILES) | $(ARCHIVE_BUILD)/
+	tar -czf $@ --transform 's/^build\///g' $^
+
+# -- Directories
+
+$(BUILD)/:
+	mkdir -p $@
+
+$(GEN_BUILD)/:
+	mkdir -p $@
+
+$(OPTIONS_BUILD)/:
+	mkdir -p $@
+
+$(MAN_SRC)/:
+	mkdir -p $@
+
+$(MAN_BUILD)/:
+	mkdir -p $@
+
+$(CONFIG_BUILD)/:
+	mkdir -p $@
+
+$(DOCS_BUILD)/:
+	mkdir -p $@
+
+$(GRAPHS_BUILD)/:
+	mkdir -p $@
+
+$(APP_BUILD)/:
+	mkdir -p $@
+
+$(ARCHIVE_BUILD)/:
+	mkdir -p $@
 

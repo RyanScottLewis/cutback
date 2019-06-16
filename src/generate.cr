@@ -29,25 +29,27 @@ macro generate_templates(hash, paths)
   {% end %}
 end
 
-if ARGV.size != 2
-  puts "Usage: #{PROGRAM_NAME} INPUT OUTPUT"
+if ARGV.size == 0 || ARGV.size > 2
+  puts "Usage: #{PROGRAM_NAME} INPUT [OUTPUT]"
   exit 1
 end
 
-input       = ARGV[0]
-output      = ARGV[1]
-app         = Cutback::Definition::Application.load("app.yml")
-files       = {} of String => String
-path        = File.basename(input)
-#controllers = Cutback::Controller.all.sort_by(&.name) # TODO REMOVE
+input  = ARGV[0]
+output = ARGV[1] unless ARGV.size == 1
+app    = Cutback::Definition::Application.load("app.yml")
+files  = {} of String => String
+path   = File.basename(input)
 
-app.for = :man  if File.extname(input) =~ /\.\d/
+app.for = :man if File.extname(input) =~ /\.roff$/
 
-generate_templates(files, [
-  "templates/cutback.1",
-  "templates/cutback.5",
-  "templates/README.md",
+generate_templates(files, [ # TODO: Pragmatic
+  "templates/config.yml",
+  "templates/cutback.1.roff",
+  "templates/cutback.5.roff",
+  "templates/LICENSE",
+  "templates/Makefile",
   "templates/options.cr",
+  "templates/README.md",
 ])
 
 unless files.has_key?(path)
@@ -57,7 +59,11 @@ end
 
 data = files[path]
 
-File.open(output, "w+") do |io|
-  io.puts(data)
+if output.nil?
+  puts data
+else
+  File.open(output, "w+") do |io|
+    io.puts(data)
+  end
 end
 

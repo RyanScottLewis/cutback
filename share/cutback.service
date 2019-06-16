@@ -3,5 +3,5 @@ Description=Perform system backup
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/cutback -c /mnt/backup/cutback.yml
+ExecStart=/usr/bin/cutback -c /etc/xdg/cutback/config.yml
 

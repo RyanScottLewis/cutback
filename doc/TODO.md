@@ -1,5 +1,9 @@
 # TODO
 
+* Documentation
+  * Embed Overview.svg within README
+* Generator
+  * Forward missing methods to `app` to avoid the excessive `app.` prefixes within templates
 * General
   * Requires at beginning of all files to avoid file dependency hell
 * Definitions
