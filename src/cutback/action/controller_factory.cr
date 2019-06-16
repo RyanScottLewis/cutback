@@ -1,7 +1,7 @@
 class Cutback::Action::ControllerFactory < Cutback::Action
 
   @logger      : Cutback::Logger
-  @app         : Definition::App
+  @definition  : Definition::Application
   @identifier  : Identifier
   @paths       : List::Path
   @tools       : List::Tool
@@ -13,7 +13,7 @@ class Cutback::Action::ControllerFactory < Cutback::Action
     new(*arguments).execute!
   end
 
-  def initialize(@logger, @app, @options, @identifier, @paths, @tools, @controllers, @router)
+  def initialize(@logger, @definition, @options, @identifier, @paths, @tools, @controllers, @router)
   end
 
   def execute
@@ -31,7 +31,7 @@ class Cutback::Action::ControllerFactory < Cutback::Action
   end
 
   protected def create(controller_class)
-    controller_class.new(@logger, @app, @options, @identifier, @paths, @tools, @controllers, @router)
+    controller_class.new(@logger, @definition, @options, @identifier, @paths, @tools, @controllers, @router)
   end
 
 end

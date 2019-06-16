@@ -1,14 +1,14 @@
 class Cutback::Formatter::Help::Usage < Cutback::Formatter
 
-  @app : Definition::App
+  @definition : Definition::Application
 
-  def initialize(@app)
+  def initialize(@definition)
   end
 
   def to_s(io)
-    io << @app.name
+    io << @definition.name
 
-    @app.arguments.each do |argument|
+    @definition.arguments.each do |argument|
       io << " ["
       io << argument.name.upcase
       io << "]"
@@ -16,9 +16,9 @@ class Cutback::Formatter::Help::Usage < Cutback::Formatter
 
     io << "\n".ljust(8)
 
-    io << @app.name
+    io << @definition.name
 
-    [@app.arguments[0], @app.arguments[2]].each do |argument|
+    [@definition.arguments[0], @definition.arguments[2]].each do |argument|
       io << " ["
       io << argument.name.upcase
       io << "]"

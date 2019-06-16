@@ -5,10 +5,10 @@ class Cutback::Application
     new(*arguments).execute
   end
 
-  @app : Definition::App
+  @definition : Definition::Application
 
   def initialize(@arguments : Array(String) = ARGV)
-    @app         = Definition::App.load
+    @definition  = Definition::Application.load
     @logger      = Logger.new
     @options     = Options.new
     @identifier  = Identifier.new
@@ -38,7 +38,7 @@ class Cutback::Application
 
   protected def execute_actions
     action(options_parser,             @arguments,  @options)
-    action(options_operator,           @app, @options)
+    action(options_operator,           @definition, @options)
     action(options_validator,          @options)
     action(arguments_preprocessor,     @arguments)
     action(arguments_validator,        @arguments)
@@ -47,7 +47,7 @@ class Cutback::Application
     action(identifier_options_updater, @identifier, @options)
     action(paths_options_updater,      @paths, @tools,   @identifier, @options)
     action(tools_options_updater,      @tools, @options)
-    action(controller_factory,         @app, @options, @identifier, @paths, @tools, @controllers, @router)
+    action(controller_factory,         @definition, @options, @identifier, @paths, @tools, @controllers, @router)
     action(logger_output_updater,      @paths, @options)
   end
 

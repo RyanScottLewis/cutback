@@ -1,14 +1,14 @@
 class Cutback::Formatter::Help::Outline < Cutback::Formatter
 
-  @app : Definition::App
+  @definition : Definition::Application
 
-  def initialize(@app)
+  def initialize(@definition)
   end
 
   def to_s(io)
-    version = "v#{@app.version}"
+    version = "v#{@definition.version}"
 
-    io << [@app.name, version, "-", @app.summary].flatten.join(" ")
+    io << [@definition.name, version, "-", @definition.summary].flatten.join(" ")
   end
 
 end

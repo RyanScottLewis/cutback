@@ -36,7 +36,7 @@ end
 
 input       = ARGV[0]
 output      = ARGV[1]
-app         = Cutback::Definition::App.load("app.yml")
+app         = Cutback::Definition::Application.load("app.yml")
 files       = {} of String => String
 path        = File.basename(input)
 #controllers = Cutback::Controller.all.sort_by(&.name) # TODO REMOVE

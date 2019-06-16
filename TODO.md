@@ -6,9 +6,6 @@
     * a State or Environment class
     * Or pass only `@application` as dependency for all processors/controllers and have them delegate to
       `@application` or set instance variables for the dependencies needed `@foo = @application.foo`
-  * Rename
-    * `Definition::App` to `Definition::Application`
-      * `@app` to `@definition` within `Application`
 * Definitions
   * Add `config` boolean for options to disallow setting within config files (date, index)
 * Metadata

@@ -1,30 +1,30 @@
 class Cutback::Generator::Help < Cutback::Generator
 
-  @app : Definition::App
+  @definition : Definition::Application
 
-  def initialize(@app)
-    @app.for = :help # TODO: I hate this
+  def initialize(@definition)
+    @definition.for = :help # TODO: I hate this
   end
 
   def generate
     String.build do |io|
-      io.puts @app.outline
+      io.puts @definition.outline
       io.puts
-      io.puts "Usage: %s" % @app.usage
+      io.puts "Usage: %s" % @definition.usage
       io.puts
-      io.puts @app.description
+      io.puts @definition.description
       io.puts
       io.puts "Arguments:"
-      io.puts @app.arguments.to_s.indent
+      io.puts @definition.arguments.to_s.indent
       io.puts
       io.puts "Options:"
-      io.puts @app.options.to_s.indent
+      io.puts @definition.options.to_s.indent
       io.puts
       io.puts "Controllers & Actions:"
-      io.puts @app.controllers.to_s.indent
+      io.puts @definition.controllers.to_s.indent
       io.puts
-      io.puts "See `man 1 %s` for more detailed information." % @app.name
-      io.puts "See `man 5 %s` for configuration file information." % @app.name
+      io.puts "See `man 1 %s` for more detailed information." % @definition.name
+      io.puts "See `man 5 %s` for configuration file information." % @definition.name
     end
   end
 

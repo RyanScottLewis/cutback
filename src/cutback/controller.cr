@@ -9,7 +9,7 @@ abstract class Cutback::Controller
   include Helpers::MetadataCreation
 
   @logger      : Logger
-  @app         : Definition::App
+  @definition  : Definition::Application
   @options     : Options
   @identifier  : Identifier
   @paths       : List::Path
@@ -17,7 +17,7 @@ abstract class Cutback::Controller
   @controllers : List::Controller
   @router      : Router
 
-  def initialize(@logger, @app, @options, @identifier, @paths, @tools, @controllers, @router)
+  def initialize(@logger, @definition, @options, @identifier, @paths, @tools, @controllers, @router)
   end
 
 end

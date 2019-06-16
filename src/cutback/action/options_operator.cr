@@ -2,10 +2,10 @@ class Cutback::Action::OptionsOperator < Cutback::Action
 
   include Helpers::GeneratorExecution
 
-  @app     : Definition::App
-  @options : Options
+  @definition : Definition::Application
+  @options    : Options
 
-  def initialize(@app, @options)
+  def initialize(@definition, @options)
   end
 
   def execute
@@ -16,14 +16,14 @@ class Cutback::Action::OptionsOperator < Cutback::Action
   protected def check_help
     return unless @options.help
 
-    puts generate(:help, @app)
+    puts generate(:help, @definition)
     exit
   end
 
   protected def check_version
     return unless @options.version
 
-    puts @app.version
+    puts @definition.version
     exit
   end
 

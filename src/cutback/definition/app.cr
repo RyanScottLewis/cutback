@@ -1,4 +1,4 @@
-class Cutback::Definition::App < Cutback::Definition
+class Cutback::Definition::Application < Cutback::Definition
 
   def self.load(path)
     from_yaml(File.read(path))
