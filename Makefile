@@ -27,8 +27,12 @@ GZ_FLAGS      += -k
 GZ            ?= $(GZ_EXE) $(GZ_FLAGS)
 
 DOT_EXE       ?= dot
-DOR_FLAGS     += -T png
+DOT_FLAGS     += -T png
 DOT           ?= $(DOT_EXE) $(DOT_FLAGS)
+
+AMEBA_EXE     ?= ./bin/ameba
+AMEBA_FLAGS   += $(DIR_SRC)
+AMEBA         ?= $(AMEBA_EXE) $(AMEBA_FLAGS)
 
 APP_YML       ?= app.yml shard.yml
 
@@ -69,7 +73,7 @@ DOCS          ?= $(README_MD) $(README_HTML) $(MAN_EXE_GZ) $(MAN_CFG_GZ) $(GRAPH
 
 CLEAN         ?= $(DIR_BLD) $(DIR_MAN) $(GENERATE_EXE) $(DOCS) $(OPTIONS_CR)
 
-.PHONY: all build docs clean
+.PHONY: all build docs lint clean
 
 all: docs build
 
@@ -88,6 +92,9 @@ uninstall:
 docs: $(DOCS)
 
 graphs: $(GRAPH_PNG)
+
+lint:
+	$(AMEBA)
 
 clean:
 	$(RM) -r $(CLEAN)
