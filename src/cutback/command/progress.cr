@@ -4,17 +4,17 @@ class Cutback::Command::Progress < Cutback::Command
   @size : UInt64?
   @path : String?
 
-  def initialize(@options, @paths, @tools, @logger, @message=nil, @size=nil, @path=nil)
+  def initialize(@application, @message=nil, @size=nil, @path=nil)
   end
 
   def execute
-    @logger.info(@message) if @message
+    logger.info(@message) if @message
 
     super
   end
 
   def generate
-    append @tools.viewer
+    append tools.viewer
 
     append "-r" # Show current rate
     append "-a" # Show average rate

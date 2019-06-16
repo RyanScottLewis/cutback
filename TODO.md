@@ -2,10 +2,6 @@
 
 * General
   * Requires at beginning of all files to avoid file dependency hell
-  * Commands and controllers both pass around the same set of variables, it'd be nice to group them
-    * a State or Environment class
-    * Or pass only `@application` as dependency for all processors/controllers and have them delegate to
-      `@application` or set instance variables for the dependencies needed `@foo = @application.foo`
 * Definitions
   * Add `config` boolean for options to disallow setting within config files (date, index)
 * Metadata

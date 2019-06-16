@@ -1,13 +1,13 @@
 class Cutback::Command::Compress < Cutback::Command
 
   def generate
-    append @tools.compressor
+    append tools.compressor
     append_arguments
     append_error
   end
 
   protected def append_arguments
-    case @tools.compressor
+    case tools.compressor
     when "bzip2" then append_unthreaded_arguments
     when "gzip"  then append_unthreaded_arguments
     when "lrzip" then append_lrzip_arguments
@@ -17,18 +17,18 @@ class Cutback::Command::Compress < Cutback::Command
     when "lzop"  then append_unthreaded_arguments
     when "xz"    then append_threaded_arguments
     else
-      @logger.warn("Using unknown compressor")
+      logger.warn("Using unknown compressor")
 
       nil
     end
   end
 
   protected def append_level_flag
-    append "-#{@options.compress_level}"
+    append "-#{options.compress_level}"
   end
 
   protected def append_threads_flag
-    append "--threads #{@options.compress_threads}" unless @tools.compressor == "lrzip"
+    append "--threads #{options.compress_threads}" unless tools.compressor == "lrzip"
   end
 
   protected def append_threaded_arguments
@@ -37,13 +37,13 @@ class Cutback::Command::Compress < Cutback::Command
   end
 
   protected def append_unthreaded_arguments
-    @logger.warn("Using multiple threads is unavailable")
+    logger.warn("Using multiple threads is unavailable")
 
     append_level_flag
   end
 
   protected def append_lrzip_arguments
-    append "-L #{@options.compress_level}"
+    append "-L #{options.compress_level}"
     append_threads_flag
   end
 

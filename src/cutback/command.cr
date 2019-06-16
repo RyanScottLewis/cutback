@@ -1,15 +1,16 @@
 abstract class Cutback::Command
 
-  @options  : Options
-  @paths    : List::Path
-  @tools    : List::Tool
-  @logger   : Logger
-  @message  : String?
+  @application : Application
+  @message     : String?
 
   @partials = [] of String
 
-  def initialize(@options, @paths, @tools, @logger, @message=nil)
+  def initialize(@application, @message=nil)
   end
+
+  getter application
+
+  delegate options, paths, tools, logger, message, to: application
 
   abstract def generate
 
@@ -25,9 +26,9 @@ abstract class Cutback::Command
   def execute
     command = to_s
 
-    @logger.info("Command: #{command}")
+    logger.info("Command: #{command}")
 
-    @options.dry ? "" : `#{command}`
+    options.dry ? "" : `#{command}`
   end
 
   protected def append(value : String)
@@ -68,23 +69,23 @@ abstract class Cutback::Command
   end
 
   protected def append_error
-    append "2>>", @paths.log
+    append "2>>", paths.log
   end
 
   protected def progress(size=nil, path=nil)
-    Progress.new(@options, @paths, @tools, @logger, @message, size, path.to_s)
+    Progress.new(@application, @message, size, path.to_s)
   end
 
   protected def checksum(check=false)
-    Checksum.new(@options, @paths, @tools, @logger, check)
+    Checksum.new(@application, check)
   end
 
   protected def find(output=nil, includes=[] of String, excludes=[] of String)
-    Find.new(@options, @paths, @tools, @logger, output, includes, excludes)
+    Find.new(@application, output, includes, excludes)
   end
 
   protected def compress
-    Compress.new(@options, @paths, @tools, @logger)
+    Compress.new(@application)
   end
 
 end

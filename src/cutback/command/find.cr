@@ -2,11 +2,11 @@ class Cutback::Command::Find < Cutback::Command
 
   @output : String?
 
-  def initialize(@options, @paths, @tools, @logger, @message=nil, @output=nil, @includes=[] of String, @excludes=[] of String)
+  def initialize(@application, @message=nil, @output=nil, @includes=[] of String, @excludes=[] of String)
   end
 
   def generate
-    append @tools.finder
+    append tools.finder
 
     append formatted_paths
 
@@ -17,13 +17,13 @@ class Cutback::Command::Find < Cutback::Command
 
     append_error
 
-    append_pipe progress if @options.progress
+    append_pipe progress if options.progress
 
     append_output @output.not_nil! unless @output.nil?
   end
 
   protected def formatted_paths
-    @options.paths.map { |path| "'#{path}'" }
+    options.paths.map { |path| "'#{path}'" }
   end
 
   protected def bracketed(flags)
@@ -37,7 +37,7 @@ class Cutback::Command::Find < Cutback::Command
   end
 
   protected def exclude_flags
-    excludes = @options.excludes + @excludes
+    excludes = options.excludes + @excludes
     result   = excludes.map { |path| "-not -path '#{path}'" }
 
     bracketed(result)

@@ -2,11 +2,11 @@ class Cutback::Command::Read < Cutback::Command
 
   @path : String
 
-  def initialize(@options, @paths, @tools, @logger, @path, @message=nil)
+  def initialize(@application, @path, @message=nil)
   end
 
   def generate
-    append @tools.reader
+    append tools.reader
     append formatted_path
 
     append_error

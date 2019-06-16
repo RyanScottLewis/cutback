@@ -1,9 +1,7 @@
 module Cutback::Helpers::CommandExecution
 
-  delegate options, paths, tools, logger, to: @application
-
   macro command(name, **arguments)
-    Command::{{name.id.camelcase}}.new(options, paths, tools, logger, {{**arguments}})
+    Command::{{name.id.camelcase}}.new(application, {{**arguments}})
   end
 
   # TODO: Rename to run_command
