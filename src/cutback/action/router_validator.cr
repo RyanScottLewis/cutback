@@ -1,16 +1,13 @@
 class Cutback::Action::RouterValidator < Cutback::Action
 
-  @router : Router
-
-  def initialize(@router)
-  end
+  delegate router, to: application
 
   def execute
     validate_controller
     validate_action
   end
 
-  delegate controller, action, to: @router
+  delegate controller, action, to: router
 
   protected def validate_controller
     raise Error::InvalidController.new(controller) unless Controller.valid?(controller)

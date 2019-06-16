@@ -4,18 +4,27 @@ abstract class Cutback::Action
     new(*arguments).execute
   end
 
-  def self.execute!(logger, *arguments)
-    new(*arguments).execute!(logger)
+  def self.execute!(*arguments)
+    new(*arguments).execute!
   end
+
+  @application : Application
+
+  def initialize(@application)
+  end
+
+  getter application
+
+  delegate logger, to: application
 
   abstract def execute
 
-  def execute!(logger : Cutback::Logger)
-    log_execution(logger)
+  def execute!
+    log_execution
     execute
   end
 
-  protected def log_execution(logger)
+  protected def log_execution
     logger.debug("Action: %s" % logger_scope)
   end
 

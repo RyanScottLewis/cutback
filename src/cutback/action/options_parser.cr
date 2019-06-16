@@ -3,15 +3,14 @@ class Cutback::Action::OptionsParser < Cutback::Action
 
   include Helpers::Options::Definitions
 
-  @arguments : Array(String)
-  @options   : Options
-
-  def initialize(@arguments, @options)
+  def initialize(@application)
     @option_parser = OptionParser.new
     @prototype     = Options::Prototype.new
 
     define_options
   end
+
+  delegate arguments, options, to: application
 
   def execute
     parse_options_into_prototype
@@ -21,7 +20,7 @@ class Cutback::Action::OptionsParser < Cutback::Action
   end
 
   protected def parse_options_into_prototype
-    @option_parser.parse(@arguments)
+    @option_parser.parse(arguments)
   end
 
   protected def update_options_from_config
@@ -34,17 +33,17 @@ class Cutback::Action::OptionsParser < Cutback::Action
 
     config = Config.load(path.to_s)
 
-    @options.update(config)
+    options.update(config)
   end
 
   protected def update_options_from_prototype
-    @options.update(@prototype)
+    options.update(@prototype)
   end
 
   protected def preprocess_options
-    @options.format   = @options.format.strip.downcase
-    @options.progress = !@options.progress if @prototype.progress
-    @options.compress = !@options.compress if @prototype.compress
+    options.format   = options.format.strip.downcase
+    options.progress = !options.progress if @prototype.progress
+    options.compress = !options.compress if @prototype.compress
   end
 
   protected def cli_config_path

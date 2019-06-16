@@ -1,13 +1,9 @@
 class Cutback::Action::ToolsOptionsUpdater < Cutback::Action
 
-  @tools   : List::Tool
-  @options : Options
-
-  def initialize(@tools, @options)
-  end
+  delegate tools, options, to: application
 
   macro update_tool(name)
-    @tools[{{name.id.stringify}}] = @options.{{name}}.not_nil! unless @options.{{name}}.nil?
+    tools[{{name.id.stringify}}] = options.{{name}}.not_nil! unless options.{{name}}.nil?
   end
 
   def execute

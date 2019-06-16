@@ -2,12 +2,14 @@ class Cutback::Controller::Backup < Cutback::Controller
 
   actions create, read, update, destroy, metadata
 
+  delegate controllers, options, to: application
+
   def create
     call(%w[metadata config], "create")
   end
 
   def read
-    puts generate(:backup_table, @controllers)
+    puts generate(:backup_table, controllers)
   end
 
   def update
@@ -19,7 +21,7 @@ class Cutback::Controller::Backup < Cutback::Controller
   end
 
   def metadata
-    show_metadata_for(:backup, @options)
+    show_metadata_for(:backup, options)
   end
 
   protected def call(controllers : Array(String), action)

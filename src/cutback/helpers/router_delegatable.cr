@@ -1,6 +1,7 @@
 module Cutback::Helpers::RouterDelegatable
 
-  delegate call, to: @router
+  delegate router, to: @application
+  delegate call, to: router
 
   macro delegate_action(name, to controller, action action_name)
     def {{name.id}}

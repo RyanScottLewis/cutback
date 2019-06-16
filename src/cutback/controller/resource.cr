@@ -8,6 +8,8 @@ abstract class Cutback::Controller::Resource < Cutback::Controller
 
   actions create, read, update, destroy, metadata
 
+  delegate controllers, paths, options, to: application
+
   def create
     create_dependencies
     create_resource if resource_stale?
@@ -53,7 +55,7 @@ abstract class Cutback::Controller::Resource < Cutback::Controller
   end
 
   def resource_path
-    @paths[resource_name]
+    paths[resource_name]
   end
 
   def resource_exists?
@@ -61,11 +63,11 @@ abstract class Cutback::Controller::Resource < Cutback::Controller
   end
 
   protected def dependency_controllers
-    @@dependencies.map { |name| @controllers[name].as(Resource) }
+    @@dependencies.map { |name| controllers[name].as(Resource) }
   end
 
   protected def dependency_paths
-    @@dependencies.map { |name| @paths[name] }
+    @@dependencies.map { |name| paths[name] }
   end
 
   protected def create_dependencies
@@ -87,7 +89,7 @@ abstract class Cutback::Controller::Resource < Cutback::Controller
   end
 
   def resource_stale?
-    @options.force || !resource_exists? || dependencies_modified? || dependencies_stale?
+    options.force || !resource_exists? || dependencies_modified? || dependencies_stale?
   end
 
 end

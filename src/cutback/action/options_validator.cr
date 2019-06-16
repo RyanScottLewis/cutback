@@ -2,10 +2,7 @@ class Cutback::Action::OptionsValidator < Cutback::Action
 
   FORMATS = %w[json yaml]
 
-  @options : Options
-
-  def initialize(@options)
-  end
+  delegate options, to: application
 
   def execute
     validate_output
@@ -14,15 +11,15 @@ class Cutback::Action::OptionsValidator < Cutback::Action
   end
 
   protected def validate_output
-    raise Error::InvalidOutput.new if @options.output.nil?
+    raise Error::InvalidOutput.new if options.output.nil?
   end
 
   protected def validate_paths
-    raise Error::InvalidPaths.new if @options.paths.empty?
+    raise Error::InvalidPaths.new if options.paths.empty?
   end
 
   protected def validate_format
-    raise Error::InvalidFormat.new unless FORMATS.includes?(@options.format)
+    raise Error::InvalidFormat.new unless FORMATS.includes?(options.format)
   end
 
 end

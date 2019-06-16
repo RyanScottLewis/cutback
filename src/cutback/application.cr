@@ -18,8 +18,18 @@ class Cutback::Application
     @router      = Router.new(@controllers, @logger)
   end
 
-  macro action(name, *arguments)
-    Action::{{name.id.camelcase}}.execute!(@logger, {{*arguments}})
+  getter arguments
+  getter definition
+  getter logger
+  getter options
+  getter identifier
+  getter tools
+  getter paths
+  getter controllers
+  getter router
+
+  macro action(name)
+    Action::{{name.id.camelcase}}.execute!(self)
   end
 
   def execute
@@ -37,18 +47,18 @@ class Cutback::Application
   end
 
   protected def execute_actions
-    action(options_parser,             @arguments,  @options)
-    action(options_operator,           @definition, @options)
-    action(options_validator,          @options)
-    action(arguments_preprocessor,     @arguments)
-    action(arguments_validator,        @arguments)
-    action(router_arguments_updater,   @arguments, @router)
-    action(router_validator,           @router)
-    action(identifier_options_updater, @identifier, @options)
-    action(paths_options_updater,      @paths, @tools,   @identifier, @options)
-    action(tools_options_updater,      @tools, @options)
-    action(controller_factory,         @definition, @options, @identifier, @paths, @tools, @controllers, @router)
-    action(logger_output_updater,      @paths, @options)
+    action options_parser
+    action options_operator
+    action options_validator
+    action arguments_preprocessor
+    action arguments_validator
+    action router_arguments_updater
+    action router_validator
+    action identifier_options_updater
+    action paths_options_updater
+    action tools_options_updater
+    action controller_factory
+    action logger_output_updater
   end
 
 end

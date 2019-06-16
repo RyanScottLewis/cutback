@@ -1,29 +1,16 @@
 class Cutback::Action::LoggerOutputUpdater < Cutback::Action
 
-  def self.execute!(*arguments)
-    new(*arguments).execute!
-  end
-
-  @logger  : Cutback::Logger
-  @paths   : List::Path
-  @options : Options
-
-  def initialize(@logger, @paths, @options)
-  end
+  delegate paths, options, to: application
 
   def execute
-    # TODO: remove_stdout_logger unless @options.verbose
-    setup_file_logger unless @options.dry
-  end
-
-  def execute! # TODO: Both Controllers and Logger processors have to do this
-    super(@logger)
+    # TODO: remove_stdout_logger unless options.verbose
+    setup_file_logger unless options.dry
   end
 
   protected def setup_file_logger
-    file = @paths.log.open("a+")
+    file = paths.log.open("a+")
 
-    @logger.add_debug(:file, file)
+    logger.add_debug(:file, file)
   end
 
 end
