@@ -1,15 +1,8 @@
 Layout/TrailingBlankLines:
-  Description: Disallows trailing blank lines
   Enabled: false
 
 Lint/ShadowingOuterLocalVar:
-  Description: Disallows the usage of the same name as outer local variables for block or proc arguments.
-  Enabled: true
+  Enabled: false
 
-Lint/UnusedArgument:
-  Description: Disallows unused arguments
-  IgnoreDefs: false
-  IgnoreBlocks: false
-  IgnoreProcs: false
-  Enabled: true
-
+Lint/ShadowingOuterLocalVar:
+  Enabled: false

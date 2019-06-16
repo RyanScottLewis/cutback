@@ -1,6 +1,6 @@
 class Cutback::Logger
 
-  FORMATTER = ::Logger::Formatter.new do |severity, datetime, progname, message, io|
+  FORMATTER = ::Logger::Formatter.new do |severity, datetime, _, message, io|
     label = severity.unknown? ? "ANY" : severity.to_s
     io << "[" << datetime << ", " << label.rjust(5) << "] "
     io << message
