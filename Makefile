@@ -16,6 +16,7 @@ find    = $(shell find $1 -path '$2')
 NAME            ?= $(call app-var,name)
 VERSION         ?= $(call app-var,version)
 ARCH            ?= $(shell uname -m)
+KERNEL          ?= $(shell uname -s | tr A-Z a-z)
 
 BUILD           ?= build
 
@@ -73,7 +74,7 @@ APP_CR          ?= $(APP_SRC)/$(NAME).cr $(call find,$(APP_SRC)/$(NAME),*.cr)
 APP_EXE         ?= $(APP_BUILD)/$(NAME)
 
 ARCHIVE_BUILD   ?= $(BUILD)/package
-ARCHIVE_NAME    ?= $(NAME)-$(ARCH)-$(VERSION)
+ARCHIVE_NAME    ?= $(NAME)-$(KERNEL)-$(ARCH)-$(VERSION)
 ARCHIVE_GZ      ?= $(ARCHIVE_BUILD)/$(ARCHIVE_NAME).tar.gz
 ARCHIVE_FILES   ?= $(README_HTML) $(DOCS_BUILD)/Contributors.html $(LICENSE_TXT) $(MAKEFILE_SCRIPT) $(MAN_GZ) $(CONFIG_YML)
 
