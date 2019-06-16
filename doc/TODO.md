@@ -2,6 +2,8 @@
 
 * Documentation
   * Embed Overview.svg within README
+* Packaging
+  * Package all under directory `NAME-VERSION/` so it doesnt extract into the current directory
 * Generator
   * Forward missing methods to `app` to avoid the excessive `app.` prefixes within templates
 * General
@@ -22,6 +24,9 @@
       do nothing (similar to make)
       But, with `-i +`, it'll increment the index by 1 and generate
 * Command
+  * Fallbacks
+    * Allow arrays within archiver, checker, etc options
+  * Allow `fzf` and other file finders besides just `find`
   * Use `Process.new` to run commands somehow, this will allow me to get the process ID in order to
     gather process stats while it is running and report to logger after it is finished
     See: `Process#terminated?`
@@ -31,4 +36,6 @@
 * Controllers
   * Delete confirmation
     * Unless `--force`
+  * Skippable actions
+    If an action cannot execute but can be skipped (cannot compress because no compressor is available)
 
