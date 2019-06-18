@@ -6,6 +6,8 @@
   * Package all under directory `NAME-VERSION/` so it doesnt extract into the current directory
 * Generator
   * Forward missing methods to `app` to avoid the excessive `app.` prefixes within templates
+  * Generate PKGBUILD?
+    * Then `.SRCINFO` with `makepkg --printsrcinfo > .SRCINFO`
 * General
   * Requires at beginning of all files to avoid file dependency hell
 * Definitions
