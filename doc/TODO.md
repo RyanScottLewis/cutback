@@ -8,6 +8,9 @@
   * Forward missing methods to `app` to avoid the excessive `app.` prefixes within templates
   * Generate PKGBUILD?
     * Then `.SRCINFO` with `makepkg --printsrcinfo > .SRCINFO`
+  * Generate website
+    * Can be generated and hosted from `/doc/site` on GitHub Pages?
+      See: https://stackoverflow.com/a/55505885/139089
 * General
   * Requires at beginning of all files to avoid file dependency hell
 * Definitions
