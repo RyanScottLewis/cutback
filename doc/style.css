@@ -1,0 +1,291 @@
+/* https://github.com/mirego/simple-css-reset */
+
+/*
+  The code below has been extracted from the following projects:
+  - https://github.com/murtaugh/HTML5-Reset
+  - http://meyerweb.com
+  - http://html5doctor.com
+  - http://html5boilerplate.com
+  … and then cleaned up a lot.
+*/
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+code,
+em,
+img,
+small,
+strong,
+sub,
+sup,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+footer,
+header,
+nav,
+section,
+time,
+audio,
+video {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  background: transparent;
+  font-size: 100%;
+  font-weight: inherit;
+  vertical-align: baseline;
+}
+
+article,
+aside,
+figure,
+footer,
+header,
+nav,
+section {
+  display: block;
+}
+
+html {
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+html,
+body {
+  background-color: #fff;
+  color: #000;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img,
+object {
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th {
+  font-weight: bold;
+  vertical-align: bottom;
+}
+
+td {
+  font-weight: normal;
+  vertical-align: top;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+input[type='radio'] {
+  vertical-align: text-bottom;
+}
+
+input[type='checkbox'] {
+  vertical-align: bottom;
+}
+
+strong {
+  font-weight: bold;
+}
+
+label,
+input[type='file'] {
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+}
+
+button,
+input[type='button'],
+input[type='submit'] {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+/* Flexbox classes */
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+/* Variables */
+
+:root {
+  /* Lower the number, the more the spacing */
+  --spacing-0: 80px;
+  --spacing-1: calc(var(--spacing-0) / 2);
+  --spacing-2: calc(var(--spacing-1) / 2);
+  --spacing-3: calc(var(--spacing-2) / 2);
+  --spacing-4: calc(var(--spacing-3) / 2);
+
+  /* Lower the number, the lighter the color */
+  --color-1: rgba(247, 247, 247, 1);
+  --color-2: rgba(222, 203, 183, 1);
+  --color-3: rgba(140, 126, 116, 1);
+  --color-4: rgba(89, 79, 76, 1);
+  --color-5: rgba(63, 46, 44, 1);
+}
+
+/* General styles */
+
+html, body { height: 100%; }
+
+body {
+  color:       var(--color-5);
+  background:  var(--color-1);
+  font-family: Arial, Helvetica, sans-serif;
+  padding:     var(--spacing-1) 0;
+}
+
+@media (max-width: 120em) {
+  body { padding: var(--spacing-1) var(--spacing-0); }
+}
+
+@media (max-width: 60em) {
+  body { padding: var(--spacing-2) var(--spacing-1); }
+}
+
+@media (max-width: 30em) {
+  body { padding: var(--spacing-3) var(--spacing-4); }
+}
+
+h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+
+h1 { font-size: 2.00em; }
+h2 { font-size: 1.50em; }
+h3 { font-size: 1.17em; }
+h4 { font-size: 1.00em; }
+h5 { font-size: 0.83em; }
+h6 { font-size: 0.67em; }
+
+a {
+  color: var(--color-4);
+}
+
+a:hover {
+  color:           var(--color-2);
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--color-5);
+}
+
+body > header,
+body > nav,
+body > main,
+body > main > section {
+  margin-bottom: var(--spacing-2);
+}
+
+body > header {
+  text-align: center;
+}
+
+body > header > h1 {
+  font-size:   5em;
+  font-weight: bold;
+  margin:      0;
+  line-height: 1em;
+  color:       var(--color-5);
+}
+
+@media (max-width: 60em) {
+  body > header > h1 { font-size: 4em; }
+}
+
+@media (max-width: 30em) {
+  body > header > h1 { font-size: 3em; }
+}
+
+body > header > small {
+  color: var(--color-4);
+}
+
+body > nav a {
+  text-decoration: none;
+}
+
+body > nav li {
+  padding:       var(--spacing-3);
+  margin-bottom: var(--spacing-4);
+  background:    var(--color-2);
+}
+
+body > nav li:not(:last-child) {
+  margin-right: var(--spacing-4);
+}
+
+body > main > section > :first-child {
+  margin-bottom: var(--spacing-3);
+}
+
+body > main > section > :not(:first-child) {
+  margin-left: var(--spacing-3);
+}
+
