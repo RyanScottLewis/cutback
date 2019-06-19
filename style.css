@@ -228,7 +228,7 @@ a {
 }
 
 a:hover {
-  color:           var(--color-2);
+  color:           var(--color-3);
   text-decoration: underline;
 }
 
@@ -277,7 +277,25 @@ body > nav li {
   background:    var(--color-2);
 }
 
-body > nav li:not(:last-child) {
+body > nav .nav-item:before {
+  content:    "";
+  display:    block;
+  background: var(--color-3);
+  height:     10px;
+  transform:  skewX(-45deg);
+  position:   relative;
+  left:       5px;
+}
+
+body > nav .rightborder {
+  background: var(--color-3);
+  width:      10px;
+  transform:  skewY(-45deg) scaleY(0.72);
+  position:   relative;
+  top:        -3px;
+}
+
+body > nav .rightborder:not(:last-child) {
   margin-right: var(--spacing-4);
 }
 
