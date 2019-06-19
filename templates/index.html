@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Cutback is a backup system with the goal of creating smaller, more focused backups by generating filtered file lists before archiving and keeping records of easily reaquirable files.">
+    <meta name="description" content="<%= app.description.gsub('\n', ' ').strip %>">
     <meta name="author" content="Cutback Contributors">
     <title>Cutback Backup System</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <header>
-      <h1>cutback</h1>
-      <small>Backup system with the goal of creating smaller, more focused backups.</small>
+      <h1><%= app.name %></h1>
+      <small><%= app.summary %></small>
     </header>
     <nav>
       <ul class="flex-container flex-center">
@@ -25,11 +25,11 @@
         </div>
         <div class="rightborder">&nbsp;</div>
         <div class="nav-item">
-          <li><a href="https://github.com/RyanScottLewis/cutback">Source</a></li>
+          <li><a href="<%= app.repository %>">Source</a></li>
         </div>
         <div class="rightborder">&nbsp;</div>
         <div class="nav-item">
-          <li><a href="https://github.com/RyanScottLewis/cutback/releases" target="_blank">Download</a></li>
+          <li><a href="<%= app.releases %>" target="_blank">Download</a></li>
         </div>
         <div class="rightborder">&nbsp;</div>
       </ul>
@@ -41,7 +41,9 @@
       </section>
       <section>
         <h1>Packages <a href="#packages">#</a></h1>
-            <li><a href="https://aur.archlinux.org/packages/cutback/" target="_blank">Arch Linux AUR</a></li>
+          <%- app.packages.each do |name, url| -%>
+            <li><a href="<%= url %>" target="_blank"><%= name %></a></li>
+          <%- end -%>
         </ul>
       </section>
     </main>

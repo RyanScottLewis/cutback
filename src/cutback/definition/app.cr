@@ -14,6 +14,8 @@ class Cutback::Definition::Application < Cutback::Definition
     homepage:    String,
     repository:  String,
     issues:      String,
+    releases:    String,
+    packages:    Hash(String, String),
     license:     String,
     summary:     String,
     description: String,

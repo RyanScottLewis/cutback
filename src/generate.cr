@@ -46,6 +46,7 @@ generate_templates(files, [ # TODO: Pragmatic
   "templates/config.yml",
   "templates/cutback.1.roff",
   "templates/cutback.5.roff",
+  "templates/index.html",
   "templates/LICENSE",
   "templates/Makefile",
   "templates/options.cr",

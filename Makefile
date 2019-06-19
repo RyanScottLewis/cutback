@@ -48,6 +48,9 @@ MARKDOWN_HTML   += $(README_HTML)
 LICENSE_TMPL    ?= $(TMPL_SRC)/LICENSE
 LICENSE_TXT     ?= LICENSE
 
+SITE_TMPL       ?= $(TMPL_SRC)/index.html
+SITE_HTML       ?= index.html
+
 MAKEFILE_TMPL   ?= $(TMPL_SRC)/Makefile
 MAKEFILE_SCRIPT ?= $(BUILD)/Makefile
 
@@ -61,7 +64,7 @@ MAN_TMPL        ?= $(call find,$(TMPL_SRC),*.roff)
 MAN_ROFF        ?= $(MAN_TMPL:$(TMPL_SRC)/%=$(MAN_SRC)/%)
 MAN_GZ          ?= $(MAN_ROFF:$(MAN_SRC)/%.roff=$(MAN_BUILD)/%.gz)
 
-DOCS_TARGETS    ?= $(README_MD) $(MARKDOWN_HTML) $(LICENSE_TXT) $(MAN_GZ)
+DOCS_TARGETS    ?= $(README_MD) $(MARKDOWN_HTML) $(LICENSE_TXT) $(MAN_GZ) $(SITE_HTML)
 
 GRAPHS_SRC      ?= doc/graphs
 GRAPHS_BUILD    ?= $(BUILD)/doc/graphs
@@ -82,6 +85,7 @@ CLEAN += $(BUILD)
 CLEAN += $(GEN_EXE)
 CLEAN += $(README_MD)
 CLEAN += $(LICENSE_TXT)
+CLEAN += $(INDEX_HTML)
 
 # == Tasks
 
@@ -139,6 +143,11 @@ $(MAN_BUILD)/%.gz: $(MAN_SRC)/%.roff | $(MAN_BUILD)/
 # -- License
 
 $(LICENSE_TXT): $(LICENSE_TMPL) $(GEN_EXE)
+	$(GEN_EXE) $< $@
+
+# -- Site
+
+$(SITE_HTML): $(SITE_TMPL) $(GEN_EXE)
 	$(GEN_EXE) $< $@
 
 # -- Config

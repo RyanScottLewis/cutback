@@ -3,8 +3,11 @@ version: 0.0.1-pre
 homepage: http://RyanScottLewis.github.io/cutback
 repository: https://github.com/RyanScottLewis/cutback
 issues: https://github.com/RyanScottLewis/cutback/issues
+releases: https://github.com/RyanScottLewis/cutback/releases
+packages:
+  "Arch Linux AUR": https://aur.archlinux.org/packages/cutback/
 license: This program is available as open source under the terms of the MIT License <http://opensource.org/licenses/MIT>.
-summary: System for smaller, more focused backups
+summary: Backup system with the goal of creating smaller, more focused backups.
 description: |
   Cutback is a backup system with the goal of creating smaller, more focused backups by generating
   filtered file lists before archiving and keeping records of easily reaquirable files.
