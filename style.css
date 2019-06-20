@@ -96,10 +96,6 @@ object {
   max-width: 100%;
 }
 
-ul {
-  list-style: none;
-}
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -193,7 +189,8 @@ button::-moz-focus-inner {
 
 /* General styles */
 
-html, body { height: 100%; }
+html { height: 100% }
+body { min-height: 100% }
 
 body {
   color:       var(--color-5);
@@ -214,7 +211,10 @@ body {
   body { padding: var(--spacing-3) var(--spacing-4); }
 }
 
-h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+h1, h2, h3, h4, h5, h6 {
+  font-weight:   bold;
+  margin-bottom: var(--spacing-3);
+}
 
 h1 { font-size: 2.00em; }
 h2 { font-size: 1.50em; }
@@ -223,17 +223,32 @@ h4 { font-size: 1.00em; }
 h5 { font-size: 0.83em; }
 h6 { font-size: 0.67em; }
 
-a {
-  color: var(--color-4);
+ul {
+  list-style-position: inside;
+  list-style-type:     square;
+}
+
+ul.list-unstyled { list-style: none; }
+
+a, a:visited {
+  color: var(--color-5);
 }
 
 a:hover {
-  color:           var(--color-3);
+  color:           var(--color-4);
   text-decoration: underline;
 }
 
-a:visited {
-  color: var(--color-5);
+blockquote {
+  padding:     var(--spacing-3);
+  background:  var(--color-2);
+  border-left: var(--spacing-4) solid var(--color-3);
+  font-size:   0.9em;
+}
+
+code {
+  background: var(--color-2);
+  padding:    2px 5px;
 }
 
 body > header,
@@ -264,8 +279,22 @@ body > header > h1 {
   body > header > h1 { font-size: 3em; }
 }
 
+body > header > .version {
+  font-weight: bold;
+  margin-bottom: var(--spacing-3);
+}
+
 body > header > small {
-  color: var(--color-4);
+  display: block;
+  color:   var(--color-4);
+}
+
+body .warning {
+  padding:       var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+  color:         var(--color-1);
+  background:    #C83737;
+  border:        var(--spacing-4) solid var(--color-5);
 }
 
 body > nav a {
@@ -289,7 +318,7 @@ body > nav .nav-item:before {
 }
 
 body > nav .rightborder {
-  background: var(--color-3);
+  background: var(--color-4);
   width:      10px;
   transform:  skewY(-45deg) scaleY(0.72);
   position:   relative;
@@ -300,11 +329,11 @@ body > nav .rightborder:not(:last-child) {
   margin-right: var(--spacing-4);
 }
 
-body > main > section > :first-child {
-  margin-bottom: var(--spacing-3);
+body > main > section > :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+  margin-left: var(--spacing-3);
 }
 
-body > main > section > :not(:first-child) {
-  margin-left: var(--spacing-3);
+body > main > section > :not(:last-child) {
+  margin-bottom: var(--spacing-3);
 }
 

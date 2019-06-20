@@ -12,10 +12,11 @@
   <body>
     <header>
       <h1>cutback</h1>
+      <div class="version">v0.0.1-pre</div>
       <small>Backup system with the goal of creating smaller, more focused backups.</small>
     </header>
     <nav>
-      <ul class="flex-container flex-center">
+      <ul class="flex-container flex-center list-unstyled">
         <div class="nav-item">
           <li><a href="#overview">Overview</a></li>
         </div>
@@ -25,7 +26,11 @@
         </div>
         <div class="rightborder">&nbsp;</div>
         <div class="nav-item">
-          <li><a href="https://github.com/RyanScottLewis/cutback">Source</a></li>
+          <li><a href="#configuration">Configuration</a></li>
+        </div>
+        <div class="rightborder">&nbsp;</div>
+        <div class="nav-item">
+          <li><a href="https://github.com/RyanScottLewis/cutback" target="_blank">Source</a></li>
         </div>
         <div class="rightborder">&nbsp;</div>
         <div class="nav-item">
@@ -38,13 +43,66 @@
         <div class="rightborder">&nbsp;</div>
       </ul>
     </nav>
+    <div class="flex-container flex-center">
+      <section class="warning">
+        Note that this is a pre-release, any and all information presented in this document are
+        subject to change.
+        <br/>
+        In short, use at your own risk.
+      </section>
+    </div>
     <main>
       <section>
         <h1>Overview <a href="#overview">#</a></h1>
-        <p>Here is a certain amount of copy. Copy copy copy copy cat.
+        <p>Cutback is a backup system with the goal of creating smaller, more focused backups by generating
+filtered file lists before archiving and keeping records of easily reaquirable files.
+</p>
+        <p>
+          The backup strategy is broken up into discrete steps, each handled by a user-defined
+          external application, and producing one or more files.
+        </p>
+        <blockquote>
+          Before the backup is started, an identifier is generated from the date and the current
+          backup index, which is incremented by 1 on each build for that date.
+          <br/>
+          All files generated will have this identifier as it's file basename.
+        </blockquote>
+        <h2>Search <a href="#overview-search">#</a></h2>
+        <p>
+          This step searches for files according to the following rules:
+        </p>
+        <ul>
+          <li>Directories listed in the <code>paths</code> configuration variable are searched recursively.</li>
+          <li>Files matching patterns listed in the <code>excludes</code> configuration variable are excluded entirely.</li>
+          <li>Files matching patterns listed in the <code>records</code> configuration variable are added to a list of files to keep a record of.</li>
+        </ul>
+        <blockquote>
+          Records are usually files that are low priority and easily reaquirable, such as movies,
+          music, tv shows, etc.
+          <br/>
+          This vastly improves the duration of the backup process, as well as the size of the
+          resulting archive.
+        </blockquote>
+        <p>
+          This list of records is located in the output directory, denoted with a
+          <code>.records</code> suffix.
+        </p>
+        <p>
+          All other files found within the search, are added to a list in the output directory,
+          called the manifest, and denoted with a <code>.manifest</code> suffix.
+        </p>
+        <h2>Archive <a href="#overview-archive">#</a></h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu lectus velit. Duis tristique risus tincidunt convallis mollis. Duis cursus commodo tempor. Aliquam pellentesque velit et nulla congue, vitae rutrum orci pharetra. Curabitur id diam erat. Nullam ex diam, gravida ac ultrices vel, sodales sodales leo. Suspendisse rhoncus ligula ut lacinia bibendum. Donec pretium pharetra magna. Phasellus quis erat odio. Pellentesque aliquet nulla id ex tempus fermentum. Phasellus magna leo, tempus at purus in, maximus eleifend massa. Praesent eleifend purus et ex congue egestas. Integer vel rutrum turpis. Nullam rutrum enim sed nunc auctor consectetur. Fusce id nisi nec elit varius pulvinar nec tempor metus.</p>
+        <h2>Compress <a href="#overview-compress">#</a> (Optional)</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu lectus velit. Duis tristique risus tincidunt convallis mollis. Duis cursus commodo tempor. Aliquam pellentesque velit et nulla congue, vitae rutrum orci pharetra. Curabitur id diam erat. Nullam ex diam, gravida ac ultrices vel, sodales sodales leo. Suspendisse rhoncus ligula ut lacinia bibendum. Donec pretium pharetra magna. Phasellus quis erat odio. Pellentesque aliquet nulla id ex tempus fermentum. Phasellus magna leo, tempus at purus in, maximus eleifend massa. Praesent eleifend purus et ex congue egestas. Integer vel rutrum turpis. Nullam rutrum enim sed nunc auctor consectetur. Fusce id nisi nec elit varius pulvinar nec tempor metus.</p>
+        <h2>Encrypt <a href="#overview-encrypt">#</a> (Optional)</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu lectus velit. Duis tristique risus tincidunt convallis mollis. Duis cursus commodo tempor. Aliquam pellentesque velit et nulla congue, vitae rutrum orci pharetra. Curabitur id diam erat. Nullam ex diam, gravida ac ultrices vel, sodales sodales leo. Suspendisse rhoncus ligula ut lacinia bibendum. Donec pretium pharetra magna. Phasellus quis erat odio. Pellentesque aliquet nulla id ex tempus fermentum. Phasellus magna leo, tempus at purus in, maximus eleifend massa. Praesent eleifend purus et ex congue egestas. Integer vel rutrum turpis. Nullam rutrum enim sed nunc auctor consectetur. Fusce id nisi nec elit varius pulvinar nec tempor metus.</p>
+        <h2>Generate <a href="#overview-generate">#</a></h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu lectus velit. Duis tristique risus tincidunt convallis mollis. Duis cursus commodo tempor. Aliquam pellentesque velit et nulla congue, vitae rutrum orci pharetra. Curabitur id diam erat. Nullam ex diam, gravida ac ultrices vel, sodales sodales leo. Suspendisse rhoncus ligula ut lacinia bibendum. Donec pretium pharetra magna. Phasellus quis erat odio. Pellentesque aliquet nulla id ex tempus fermentum. Phasellus magna leo, tempus at purus in, maximus eleifend massa. Praesent eleifend purus et ex congue egestas. Integer vel rutrum turpis. Nullam rutrum enim sed nunc auctor consectetur. Fusce id nisi nec elit varius pulvinar nec tempor metus.</p>
       </section>
       <section>
         <h1>Packages <a href="#packages">#</a></h1>
+        <ul>
             <li><a href="https://aur.archlinux.org/packages/cutback/" target="_blank">Arch Linux AUR</a></li>
         </ul>
       </section>
