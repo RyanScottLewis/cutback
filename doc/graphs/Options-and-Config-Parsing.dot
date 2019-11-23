@@ -1,5 +1,5 @@
 digraph G {
-  graph[rankdir="TB"]
+  graph[label="Options and Config Parsing" labelloc="t" rankdir="TB"]
   node[shape="box" fontsize="12" fontname="Rive Pixel"]
   edge[arrowsize="0.5" fontsize="12" fontname="Rive Pixel"]
 
@@ -15,8 +15,8 @@ digraph G {
   Parser -> Prototype [label="Parse into"]
   Prototype -> Config [label="Load from\n--config"]
 
-  Config -> Options [label="Update #1"]
-  Prototype -> Options [label="Update #2"]
+  Config -> Options [label="Merge #1"]
+  Prototype -> Options [label="Merge #2"]
 
 
   Arguments -> Parser [style="invis"] // For centering purposes

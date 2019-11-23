@@ -1,7 +1,10 @@
 digraph G {
-  graph[rankdir="BT"]
+  graph[label="Resource Dependency Hierarchy" labelloc="t" rankdir="BT"]
   node[shape="box" fontsize="12" fontname="Rive Pixel"]
   edge[arrowsize="0.5" fontsize="12" fontname="Rive Pixel"]
+
+  Manifest [label=<<b>Manifest</b><br/>List of all files<br/>within the archive>]
+  Records [label=<<b>Records</b><br/>List of all files<br/><i>not</i> within the archive<br/>but kept a record of>]
 
   Backup -> Metadata
   Backup -> Config
