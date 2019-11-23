@@ -68,7 +68,7 @@ DOCS_TARGETS    ?= $(README_MD) $(MARKDOWN_HTML) $(LICENSE_TXT) $(MAN_GZ) $(SITE
 
 GRAPHS_SRC      ?= doc/graphs
 GRAPHS_BUILD    ?= $(BUILD)/doc/graphs
-GRAPHS_DOT      ?= $(call find,$(GRAPHS_SRC),*.md)
+GRAPHS_DOT      ?= $(call find,$(GRAPHS_SRC),*.dot)
 GRAPHS_PNG      ?= $(GRAPHS_DOT:$(GRAPHS_SRC)/%.dot=$(GRAPHS_BUILD)/%.png)
 
 APP_SRC         ?= src
@@ -91,7 +91,7 @@ CLEAN += $(INDEX_HTML)
 
 .PHONY: all build package docs lint clean
 
-all: docs build
+all: docs build graphs
 
 package: $(ARCHIVE_GZ)
 
