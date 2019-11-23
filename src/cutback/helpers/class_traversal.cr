@@ -1,4 +1,7 @@
-module Cutback::Helpers::ClassTraversal # TODO: RENAME.. no traversal is occuring here lol
+# TODO:
+# * RENAME.. no traversal is occuring here. ClassCollection?
+# * Split out .name, .names, etc which depend on instance's #name into another concern
+module Cutback::Helpers::ClassTraversal
 
   def all
     {{ @type.all_subclasses.reject(&.abstract?) }}
