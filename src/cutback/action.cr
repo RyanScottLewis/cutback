@@ -1,3 +1,5 @@
+# Encapsulates a single action using SRP. Each class instance executes a single function which is
+# logged to the application's logger. Subclass and define the `#execute` method.
 abstract class Cutback::Action
 
   def self.execute(*arguments) # TODO: Needed?
