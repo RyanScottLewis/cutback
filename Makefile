@@ -64,7 +64,9 @@ MAN_TMPL        ?= $(call find,$(TMPL_SRC),*.roff)
 MAN_ROFF        ?= $(MAN_TMPL:$(TMPL_SRC)/%=$(MAN_SRC)/%)
 MAN_GZ          ?= $(MAN_ROFF:$(MAN_SRC)/%.roff=$(MAN_BUILD)/%.gz)
 
-DOCS_TARGETS    ?= $(README_MD) $(MARKDOWN_HTML) $(LICENSE_TXT) $(MAN_GZ) $(SITE_HTML)
+API_BUILD       ?= doc/api
+
+DOCS_TARGETS    ?= $(README_MD) $(MARKDOWN_HTML) $(LICENSE_TXT) $(MAN_GZ) $(SITE_HTML) $(API_BUILD)/
 
 GRAPHS_SRC      ?= doc/graphs
 GRAPHS_BUILD    ?= $(BUILD)/doc/graphs
@@ -83,9 +85,9 @@ ARCHIVE_FILES   ?= $(README_HTML) $(DOCS_BUILD)/Contributors.html $(LICENSE_TXT)
 
 CLEAN += $(BUILD)
 CLEAN += $(GEN_EXE)
-CLEAN += $(README_MD)
+CLEAN += $(README_MD) # TODO: Just do DOCS_TARGETS for these below?
 CLEAN += $(LICENSE_TXT)
-CLEAN += $(INDEX_HTML)
+CLEAN += $(SITE_HTML)
 
 # == Tasks
 
@@ -139,6 +141,11 @@ $(MAN_SRC)/%.roff: $(TMPL_SRC)/%.roff $(GEN_EXE) | $(MAN_SRC)/
 
 $(MAN_BUILD)/%.gz: $(MAN_SRC)/%.roff | $(MAN_BUILD)/
 	gzip < $< > $@
+
+# -- API Docs
+
+$(API_BUILD)/:
+	crystal docs -p -o $@
 
 # -- License
 
