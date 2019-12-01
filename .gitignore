@@ -6,5 +6,6 @@
 *.dwarf
 doc/README.html
 doc/man/
+/doc/api/
 src/cutback/embed/*
 !src/cutback/embed/app.yml
