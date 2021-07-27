@@ -16,7 +16,7 @@ module Cutback::Helpers::Options::Properties::Base
   property force            = false
   property config           : String?
   property output           = "."
-  property date             = Time.utc_now
+  property date             = Time.utc
   property index            : Int32?
   property paths            = [] of String
   property excludes         = [] of String
