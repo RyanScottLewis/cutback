@@ -1,9 +1,8 @@
+# TODO: Rename to Serializable
 module Cutback::Helpers::Mappable
 
-  macro mapping(**properties)
-    YAML.mapping({{properties}})
-    JSON.mapping({{properties}})
-  end
+  include YAML::Serializable
+  include JSON::Serializable
 
 end
 
