@@ -1,9 +1,7 @@
 class Cutback::Definition::Action < Cutback::Definition
 
-  mapping(
-    name:        String,
-    description: String,
-  )
+  property name        : String
+  property description : String
 
   formatters help, man
 
