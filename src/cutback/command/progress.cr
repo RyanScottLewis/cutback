@@ -1,7 +1,7 @@
 class Cutback::Command::Progress < Cutback::Command
 
   @name : String?
-  @size : UInt64?
+  @size : Int64?
   @path : String?
 
   def initialize(@application, @message=nil, @size=nil, @path=nil)

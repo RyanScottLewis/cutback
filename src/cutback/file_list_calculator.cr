@@ -4,8 +4,8 @@ class Cutback::FileListCalculator
     new.calculate(path)
   end
 
-  getter count : Int32  = 0
-  getter bytes : UInt64 = 0
+  getter count : Int32 = 0
+  getter bytes : Int64 = 0
 
   def calculate(path)
     data   = File.read(path.to_s)

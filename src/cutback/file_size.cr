@@ -4,7 +4,7 @@ class Cutback::FileSize
     new(value).to_s
   end
 
-  @value : UInt64
+  @value : Int64
 
   def initialize(@value)
   end

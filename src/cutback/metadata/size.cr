@@ -1,6 +1,6 @@
 class Cutback::Metadata::Size < Cutback::Metadata
 
-  property bytes : UInt64
+  property bytes : Int64
   property human : String
 
   def initialize(@bytes, @human)
