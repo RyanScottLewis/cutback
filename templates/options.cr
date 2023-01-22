@@ -45,9 +45,9 @@ end
 
 module Cutback::Helpers::Options::Properties::Config
 
-  include Helpers::Mappable
-
   macro included
+    include Helpers::Mappable
+
     <%- app.options.each do |option| -%>
     <%= "property #{option.name} : ".ljust(max+1) -%>
       <%- case option.type
