@@ -1,8 +1,10 @@
 # TODO: Rename to Serializable
 module Cutback::Helpers::Mappable
 
-  include YAML::Serializable
-  include JSON::Serializable
+  macro included
+    include YAML::Serializable
+    include JSON::Serializable
+  end
 
 end
 
