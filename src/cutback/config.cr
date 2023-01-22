@@ -3,6 +3,7 @@
 #   in src/cutback/config.cr:18: undefined constant Cutback::Options
 #
 #     include Helpers::Options::Updatable(Cutback::Options)
+
 class Cutback::Options; end
 
 class Cutback::Config
@@ -22,9 +23,9 @@ class Cutback::Config
 
   include Helpers::Dumpable
   include Helpers::Options::Properties::Config
-  include Helpers::Options::Updatable(Options)
+  include Helpers::Options::Updatable(Cutback::Options)
 
-  def initialize(options : Options)
+  def initialize(options : Cutback::Options)
     update(options)
   end
 

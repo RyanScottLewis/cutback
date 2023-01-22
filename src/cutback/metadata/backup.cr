@@ -6,7 +6,7 @@ class Cutback::Metadata::Backup < Cutback::Metadata
   def initialize(@date, @paths)
   end
 
-  def initialize(options : Options)
+  def initialize(options : Cutback::Options)
     @date  = options.date
     @paths = options.paths
   end
