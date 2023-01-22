@@ -1,9 +1,9 @@
 # == Dependencies
 # Verify that all development dependencies can be found in PATH
 
-#DEPENDENCIES = yq tar install crystal gzip dot find markdown
-#DEPENDENCY_CHECK := $(foreach exec,$(DEPENDENCIES),\
-	#$(if $(shell which $(exec)),,$(error "No '$(exec)' in PATH")))
+DEPENDENCIES = yq tar install crystal gzip dot find markdown
+DEPENDENCY_CHECK := $(foreach exec,$(DEPENDENCIES),\
+	$(if $(shell which $(exec)),,$(error "No '$(exec)' in PATH")))
 
 # == Functions
 
