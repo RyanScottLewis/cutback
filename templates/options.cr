@@ -48,23 +48,21 @@ module Cutback::Helpers::Options::Properties::Config
   include Helpers::Mappable
 
   macro included
-    mapping(
-      <%- app.options.each do |option| -%>
-      <%= "#{option.name}:".ljust(max+1) -%>
-        <%- case option.type
-            when "bool" -%>
- Bool?,
-        <%- when "string" -%>
- String?,
-        <%- when "list" -%>
- Array(String)?,
-        <%- when "date" -%>
- Time?,
-        <%- when "integer" -%>
- Int32?,
-        <%- end -%>
+    <%- app.options.each do |option| -%>
+    <%= "property #{option.name} : ".ljust(max+1) -%>
+      <%- case option.type
+          when "bool" -%>
+Bool?
+      <%- when "string" -%>
+String?
+      <%- when "list" -%>
+Array(String)?
+      <%- when "date" -%>
+Time?
+      <%- when "integer" -%>
+Int32?
       <%- end -%>
-    )
+    <%- end -%>
   end
 
 end
