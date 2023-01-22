@@ -3,7 +3,7 @@ class Cutback::Identifier
   REGEXP = /(\d{4}-\d{2}-\d{2})-(\d+)/
 
   def self.parse(value) # TODO: Needed?
-    instance = new(Time.utc_now, 0)
+    instance = new(Time.utc, 0)
     instance.parse(value)
 
     instance
@@ -20,7 +20,7 @@ class Cutback::Identifier
     indicies.max
   end
 
-  property date  = Time.utc_now
+  property date  = Time.utc
   property index = 0
 
   # TODO: Dont like this here - Action::Identifier?

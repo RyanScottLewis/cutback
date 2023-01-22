@@ -64,7 +64,7 @@ options:
     description: Date for the backup in YYYY-MM-DD format
     short:       d
     type:        date
-    default:     Time.utc_now
+    default:     Time.utc
 
   - name:        index
     description: Index for the backup
