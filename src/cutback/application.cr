@@ -43,6 +43,10 @@ class Cutback::Application
   protected def display_error(error)
     @logger.fatal("Error: #{error.class} - #{error}")
 
+    error.backtrace.each do |line|
+      @logger.fatal("  #{line}")
+    end
+
     exit 1
   end
 
