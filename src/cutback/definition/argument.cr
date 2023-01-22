@@ -1,10 +1,8 @@
 class Cutback::Definition::Argument < Cutback::Definition
 
-  mapping(
-    name:        String,
-    description: String,
-    optional:    Bool,
-  )
+  property name        : String
+  property description : String
+  property optional    : Bool
 
   formatters help, man
 

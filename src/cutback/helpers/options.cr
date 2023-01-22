@@ -66,32 +66,28 @@ module Cutback::Helpers::Options::Properties::Config
 
   include Helpers::Mappable
 
-  macro included
-    mapping(
-      help:             Bool?,
-      version:          Bool?,
-      dry:              Bool?,
-      force:            Bool?,
-      config:           String?,
-      output:           String?,
-      date:             Time?,
-      index:            Int32?,
-      paths:            Array(String)?,
-      excludes:         Array(String)?,
-      records:          Array(String)?,
-      format:           String?,
-      progress:         Bool?,
-      compress:         Bool?,
-      compress_level:   Int32?,
-      compress_threads: Int32?,
-      finder:           String?,
-      archiver:         String?,
-      compressor:       String?,
-      checker:          String?,
-      reader:           String?,
-      viewer:           String?,
-    )
-  end
+  property help             : Bool?
+  property version          : Bool?
+  property dry              : Bool?
+  property force            : Bool?
+  property config           : String?
+  property output           : String?
+  property date             : Time?
+  property index            : Int32?
+  property paths            : Array(String)?
+  property excludes         : Array(String)?
+  property records          : Array(String)?
+  property format           : String?
+  property progress         : Bool?
+  property compress         : Bool?
+  property compress_level   : Int32?
+  property compress_threads : Int32?
+  property finder           : String?
+  property archiver         : String?
+  property compressor       : String?
+  property checker          : String?
+  property reader           : String?
+  property viewer           : String?
 
 end
 

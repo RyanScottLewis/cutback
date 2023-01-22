@@ -1,9 +1,7 @@
 class Cutback::Metadata::Archive < Cutback::Metadata
 
-  mapping(
-    compression: Compression,
-    size:        Size,
-  )
+  property compression : Compression
+  property size        : Size
 
   def initialize(@compression, @size)
   end

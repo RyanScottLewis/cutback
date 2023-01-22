@@ -1,10 +1,8 @@
 class Cutback::Definition::Controller < Cutback::Definition
 
-  mapping(
-    name:        String,
-    description: String,
-    actions:     Array(Action),
-  )
+  property name        : String
+  property description : String
+  property actions     : Array(Action)
 
   formatters help, man
 

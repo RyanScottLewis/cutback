@@ -1,9 +1,7 @@
 abstract class Cutback::Metadata::FileList < Cutback::Metadata
 
-  mapping(
-    count: Int32,
-    size:  Size,
-  )
+  property count : Int32
+  property size  : Size
 
   def initialize(@count, @size)
   end

@@ -8,21 +8,19 @@ class Cutback::Definition::Application < Cutback::Definition
     from_yaml(Embed["app.yml"])
   end
 
-  mapping(
-    name:        String,
-    version:     String,
-    homepage:    String,
-    repository:  String,
-    issues:      String,
-    releases:    String,
-    packages:    Hash(String, String),
-    license:     String,
-    summary:     String,
-    description: String,
-    arguments:   Collection(Argument),
-    options:     Collection(Option),
-    controllers: Collection(Controller),
-  )
+  property name        : String
+  property version     : String
+  property homepage    : String
+  property repository  : String
+  property issues      : String
+  property releases    : String
+  property packages    : Hash(String, String)
+  property license     : String
+  property summary     : String
+  property description : String
+  property arguments   : Collection(Argument)
+  property options     : Collection(Option)
+  property controllers : Collection(Controller)
 
   def for=(value)
     @for = value
