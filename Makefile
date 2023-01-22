@@ -88,6 +88,7 @@ CLEAN += $(GEN_EXE)
 CLEAN += $(README_MD) # TODO: Just do DOCS_TARGETS for these below?
 CLEAN += $(LICENSE_TXT)
 CLEAN += $(SITE_HTML)
+CLEAN += $(OPTIONS_CR)
 
 # == Tasks
 
