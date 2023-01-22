@@ -2,6 +2,8 @@ abstract class Cutback::Definition
 
   include Helpers::Mappable
 
+  @[YAML::Field(ignore: true)]
+  @[JSON::Field(ignore: true)]
   property for : Symbol?
 
   def for(value)
