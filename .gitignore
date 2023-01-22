@@ -8,4 +8,5 @@ doc/README.html
 doc/man/
 /doc/api/
 src/cutback/embed/*
+src/cutback/helpers/options.cr
 !src/cutback/embed/app.yml
