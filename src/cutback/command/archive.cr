@@ -16,6 +16,8 @@ class Cutback::Command::Archive < Cutback::Command
         append_pipe progress
       else
         size = FileListCalculator.calculate(paths.manifest)
+        # TODO: This should print the size in a human readable format
+        #       This value is just... thrown out
 
         append_pipe progress(size: size.bytes)
       end

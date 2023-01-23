@@ -17,7 +17,11 @@ class Cutback::Command::Compress < Cutback::Command
     when "lzop"  then append_unthreaded_arguments
     when "xz"    then append_threaded_arguments
     else
+      # TODO: Write which compressor lol
       logger.warn("Using unknown compressor")
+      # TODO: Should append_level_flag?
+      # Could possibly make it a config: compress_append_level_option
+      # Also could do the same for --threads: compress_append_threads_option
 
       nil
     end

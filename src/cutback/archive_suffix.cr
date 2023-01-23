@@ -14,7 +14,7 @@ class Cutback::ArchiveSuffix
     new.for(tool)
   end
 
-  def for(tool)
+  def for(tool) # TODO: BUG - Doesnt even work! Always uses xz for some reason
     suffix = TOOL_SUFFIXES[tool]? || tool
 
     ".#{suffix}"

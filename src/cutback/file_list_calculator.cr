@@ -1,4 +1,5 @@
 class Cutback::FileListCalculator
+  # TODO: This should be cached as BACKUP_NAME.manifest.size
 
   def self.calculate(path)
     new.calculate(path)
