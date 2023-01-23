@@ -95,7 +95,7 @@ CLEAN += $(SITE_HTML)
 
 .PHONY: all build package docs lint clean
 
-all: docs build graphs
+all: docs graphs build
 
 package: $(ARCHIVE_GZ)
 
