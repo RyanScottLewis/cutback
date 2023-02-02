@@ -1,3 +1,4 @@
+# Backup identifier in the form of `DATE-INDEX`
 class Cutback::Identifier
 
   REGEXP = /(\d{4}-\d{2}-\d{2})-(\d+)/

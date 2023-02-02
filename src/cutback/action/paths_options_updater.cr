@@ -18,7 +18,7 @@ class Cutback::Action::PathsOptionsUpdater < Cutback::Action
 
   protected def archive_ext
     result = "tar"
-    result += ArchiveSuffix.for(tools.compressor) if options.compress
+    result += ArchiveSuffix.for(tools.compressor) if options.compress # TODO: Just doesn't work. Might be a problem from config merging
 
     result.to_s
   end

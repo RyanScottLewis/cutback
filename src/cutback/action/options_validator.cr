@@ -1,3 +1,4 @@
+# TODO: better error output and explanations for the execptions
 class Cutback::Action::OptionsValidator < Cutback::Action
 
   FORMATS = %w[json yaml]

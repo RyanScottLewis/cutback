@@ -51,18 +51,23 @@ class Cutback::Application
   end
 
   protected def execute_actions
-    action options_parser
-    action options_operator
-    action options_validator
-    action arguments_preprocessor
-    action arguments_validator
-    action router_arguments_updater
-    action router_validator
-    action identifier_options_updater
-    action paths_options_updater
-    action tools_options_updater
-    action controller_factory
-    action logger_output_updater
+    action options_parser             # TODO: parse_options
+    # TODO: Option merging actions and such should be more explicit right here
+    action options_operator           # TODO: operate_on_options
+    action options_validator          # TODO: validate_options
+
+    action arguments_preprocessor     # TODO: preprocess_arguments
+    action arguments_validator        # TODO: validate_arguments
+
+    action router_arguments_updater   # TODO: update_router_arguments
+    action router_validator           # TODO: validate_router
+
+    action identifier_options_updater # TODO: update_identifier_from_options
+    action paths_options_updater      # TODO: update_paths_from_options
+    action tools_options_updater      # TODO: update_tools_from_options
+    action logger_output_updater      # TODO: update_logger_from_options
+
+    action controller_factory         # TODO: initialize_controllers
   end
 
 end

@@ -1,3 +1,4 @@
+# TODO: Better name
 class Cutback::Action::OptionsOperator < Cutback::Action
 
   include Helpers::GeneratorExecution
