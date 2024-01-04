@@ -18,8 +18,6 @@
 * Create the backup's config file as the first action
   * Add an interactive mode which asks user if they'd like to verify/edit the config before continuing
 * Remove `config view` because `config read` exists
-* Searching - File filter conditionals
-  * If the file is in this folder or path pattern AND it's size is greater than 500MiB then add to *records* rather than *manifest* after *finding*.
 * Reading then Diffing
   * After generating archive, diff the manifest with the contents of the archive to serve as a double check before creating checksum.
   * Otherwise, if the archive was built corrupt then all you're doing is generating a checksum of a corrupt archive, which sucks.
@@ -28,6 +26,11 @@
 * Encryption
   * Any time a tarball or archive is created (Archiving or Bundle Archiving steps) add the ability to password encrypt the archive
 * Manifest & Records Compression
+* Searching
+  * Use `locate` utility which uses a `locatedb`, updated with `updatedb`
+  * File filter conditionals and actions
+    * If the file is in this folder or path pattern AND it's size is greater than 500MiB
+      * Add to *records* rather than *manifest*
 * New order:
   * `config create`
   * `manifest create`
@@ -38,6 +41,5 @@
   * `script create`
   * `bundle create`
   * `encrypt create`
-
-
+  * `upload create`
 
