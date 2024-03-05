@@ -26,6 +26,7 @@
 * Encryption
   * Any time a tarball or archive is created (Archiving or Bundle Archiving steps) add the ability to password encrypt the archive
 * Manifest & Records Compression
+* In Cutback, the records list could be used to start a procedure to collect all the record files and split them up into ISOs for physical backup (or zip for remote backup) - ISOs specifically sized to DVD-Rs for example
 * Searching
   * Use `locate` utility which uses a `locatedb`, updated with `updatedb`
   * File filter conditionals and actions
