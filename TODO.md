@@ -44,3 +44,4 @@
   * `encrypt create`
   * `upload create`
 * Deduplication ala `borg`?
+* Document the controller action dependencies (!)
