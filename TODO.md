@@ -43,4 +43,4 @@
   * `bundle create`
   * `encrypt create`
   * `upload create`
-
+* Deduplication ala `borg`?
