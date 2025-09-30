@@ -13,8 +13,6 @@
       scripts and deploy them to other nodes without them even having to install/utilize cutback
 * bash and zsh auto completion
   * Is there a generator for this sort of thing? Otherwise I'm making a `template/` file.
-* Uplaod operation defaulting to `rclone` after backup generation
-  * Enforce 3-2-1 backup scheme
 * Create the backup's config file as the first action
   * Add an interactive mode which asks user if they'd like to verify/edit the config before continuing
 * Remove `config view` because `config read` exists
@@ -48,3 +46,7 @@
   * I don't like this because it splits your backups among multiple files, so then you actually *need* multiple backup archives. They should be singular and portable.
 * Document the controller action dependencies (!!!!!)
 * Allow searching through other networked filesystems to create the manifest/records to allow backing up my entire network at once into one archive.
+* Post-completion hooks - Ensure 3-2-1 backup system
+  * `rsync` completed backup to another host
+  * `rclone` completed backup to another host (Google Drive, AWS, etc.)
+
