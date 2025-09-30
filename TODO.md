@@ -26,6 +26,7 @@
 * Encryption
   * Any time a tarball or archive is created (Archiving or Bundle Archiving steps) add the ability to password encrypt the archive
 * Manifest & Records Compression
+  * This would be automatically occur when all the output files are put into a single archive file (optionally compressed/encrypted)
 * In Cutback, the records list could be used to start a procedure to collect all the record files and split them up into ISOs for physical backup (or zip for remote backup) - ISOs specifically sized to DVD-Rs for example
 * Searching
   * Use `locate` utility which uses a `locatedb`, updated with `updatedb`
@@ -44,4 +45,6 @@
   * `encrypt create`
   * `upload create`
 * Deduplication ala `borg`?
-* Document the controller action dependencies (!)
+  * I don't like this because it splits your backups among multiple files, so then you actually *need* multiple backup archives. They should be singular and portable.
+* Document the controller action dependencies (!!!!!)
+* Allow searching through other networked filesystems to create the manifest/records to allow backing up my entire network at once into one archive.
