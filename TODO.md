@@ -4,6 +4,7 @@
 * Move to GitHub issues
 * Move all TODOs within codebase into GitHub issues?
 * Use time and timezone in filename dates (uses utc atm but theres no way to know from filenames)
+* Respect .gitignore files? Are there any other ignore files that we should respect?
 * `script create`
   * Generate `.sh` files within the backup files
     * 2023-01-23-000.archive-create.sh
